@@ -3,49 +3,62 @@ import {
   LayoutDashboard, Package, Truck, Warehouse, 
   ShieldCheck, Store, Settings, LogOut, PlusCircle,
   Bell, User, Search, Home, Sprout, BarChart3,
-  ShoppingCart, HelpCircle, MapPin, CheckCircle2
+  ShoppingCart, HelpCircle, MapPin, CheckCircle2, Plus
 } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export const Sidebar = ({ role }) => {
   const location = useLocation();
   
   const menuItems = {
     farmer: [
-      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/farmer' },
-      { icon: <Sprout size={20}/>, label: 'My Batches', path: '/dashboard/farmer?tab=batches' },
-      { icon: <PlusCircle size={20}/>, label: 'Production Tracking', path: '/dashboard/farmer?tab=tracking' },
-      { icon: <BarChart3 size={20}/>, label: 'Analytics', path: '/dashboard/farmer?tab=analytics' },
-      { icon: <ShoppingCart size={20}/>, label: 'Orders', path: '/dashboard/farmer?tab=orders' },
-      { icon: <HelpCircle size={20}/>, label: 'Help & Support', path: '/dashboard/farmer?tab=support' },
+      { icon: <Sprout size={20}/>, label: 'My Batches', path: '/dashboard/farmer?tab=My Batches' },
+      { icon: <PlusCircle size={20}/>, label: 'Production Tracking', path: '/dashboard/farmer?tab=Production Tracking' },
+      { icon: <BarChart3 size={20}/>, label: 'Analytics', path: '/dashboard/farmer?tab=Analytics' },
+      { icon: <ShoppingCart size={20}/>, label: 'Orders', path: '/dashboard/farmer?tab=Orders' },
+      { icon: <HelpCircle size={20}/>, label: 'Help & Support', path: '/dashboard/farmer?tab=Help & Support' },
     ],
     distributor: [
-      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/distributor' },
-      { icon: <Truck size={20}/>, label: 'Shipments', path: '/distributor/shipments' },
-      { icon: <MapPin size={20}/>, label: 'Logistics', path: '/distributor/logistics' },
+      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/distributor?tab=Overview' },
+      { icon: <Truck size={20}/>, label: 'Shipments', path: '/dashboard/distributor?tab=Shipments' },
+      { icon: <MapPin size={20}/>, label: 'Logistics', path: '/dashboard/distributor?tab=Logistics' },
     ],
     warehouse: [
-      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/warehouse' },
-      { icon: <Warehouse size={20}/>, label: 'Inventory', path: '/warehouse/inventory' },
-      { icon: <CheckCircle2 size={20}/>, label: 'Quality Checks', path: '/warehouse/quality' },
+      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/warehouse?tab=Overview' },
+      { icon: <Warehouse size={20}/>, label: 'Inventory', path: '/dashboard/warehouse?tab=Inventory' },
+      { icon: <CheckCircle2 size={20}/>, label: 'Quality Checks', path: '/dashboard/warehouse?tab=Quality' },
     ],
     certifier: [
-      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/certifier' },
-      { icon: <ShieldCheck size={20}/>, label: 'Pending Reviews', path: '/certifier/reviews' },
-      { icon: <CheckCircle2 size={20}/>, label: 'Audit History', path: '/certifier/history' },
+      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/certifier?tab=Overview' },
+      { icon: <ShieldCheck size={20}/>, label: 'Pending Reviews', path: '/dashboard/certifier?tab=Reviews' },
+      { icon: <CheckCircle2 size={20}/>, label: 'Audit History', path: '/dashboard/certifier?tab=History' },
     ],
     retailer: [
-      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/retailer' },
-      { icon: <Store size={20}/>, label: 'Inventory', path: '/retailer/inventory' },
-      { icon: <ShoppingCart size={20}/>, label: 'Store Analytics', path: '/retailer/sales' },
+      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/retailer?tab=Overview' },
+      { icon: <Store size={20}/>, label: 'Inventory', path: '/dashboard/retailer?tab=Inventory' },
+      { icon: <ShoppingCart size={20}/>, label: 'Store Analytics', path: '/dashboard/retailer?tab=Sales' },
     ],
     consumer: [
-      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/consumer' },
+      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/consumer?tab=Overview' },
       { icon: <Home size={20}/>, label: 'Marketplace', path: '/shop' },
+    ],
+    admin: [
+      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/admin?tab=Overview' },
+      { icon: <User size={20}/>, label: 'User Management', path: '/dashboard/admin?tab=Users' },
+      { icon: <Settings size={20}/>, label: 'System Settings', path: '/dashboard/admin?tab=Settings' },
+    ]
+  };
+
+  const actions = {
+    farmer: [
+      { icon: <Plus size={20}/>, label: 'Create New Batch', action: 'create_batch' }
     ]
   };
 
   const currentMenu = menuItems[role] || [];
+  const currentActions = actions[role] || [];
+  const currentPath = location.pathname + location.search;
+  const navigate = useNavigate();
 
   return (
     <aside className="sidebar">
@@ -61,28 +74,66 @@ export const Sidebar = ({ role }) => {
       
       <div className="sidebar-label" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', marginBottom: '15px' }}>NAVIGATION</div>
       <nav className="sidebar-nav" style={{ flex: 1 }}>
-        {currentMenu.map((item, idx) => (
-          <Link 
-            key={idx} 
-            to={item.path} 
-            className={location.pathname === item.path ? 'active' : ''}
-            style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '12px', 
-              padding: '12px 16px', 
-              borderRadius: '12px',
-              textDecoration: 'none',
-              color: 'white',
-              fontSize: '0.95rem',
-              fontWeight: location.pathname === item.path ? '600' : '400',
-              opacity: location.pathname === item.path ? 1 : 0.7,
-              marginBottom: '4px'
-            }}
-          >
-            {item.icon} {item.label}
-          </Link>
-        ))}
+        {currentMenu.map((item, idx) => {
+          const isActive = currentPath === item.path || (item.path === '/dashboard/farmer?tab=Overview' && currentPath === '/dashboard/farmer');
+          return (
+            <Link 
+              key={idx} 
+              to={item.path} 
+              className={isActive ? 'active' : ''}
+              style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '12px', 
+                padding: '12px 16px', 
+                borderRadius: '12px',
+                textDecoration: 'none',
+                color: 'white',
+                fontSize: '0.95rem',
+                fontWeight: isActive ? '600' : '400',
+                opacity: isActive ? 1 : 0.7,
+                marginBottom: '4px'
+              }}
+            >
+              {item.icon} {item.label}
+            </Link>
+          );
+        })}
+
+        {currentActions.length > 0 && (
+          <>
+            <div className="sidebar-label" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', margin: '30px 0 15px 0' }}>ACTIONS</div>
+            {currentActions.map((action, idx) => (
+              <button 
+                key={idx}
+                className="sidebar-action-btn"
+                onClick={() => {
+                   if (action.action === 'create_batch') {
+                      navigate('/dashboard/farmer?tab=create');
+                   }
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  padding: '14px 16px',
+                  borderRadius: '12px',
+                  background: '#fdfaf5',
+                  color: '#2d3a2d',
+                  border: 'none',
+                  fontSize: '0.95rem',
+                  fontWeight: '700',
+                  width: '100%',
+                  cursor: 'pointer',
+                  marginTop: '10px',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                }}
+              >
+                {action.icon} {action.label}
+              </button>
+            ))}
+          </>
+        )}
       </nav>
 
       <div className="sidebar-footer" style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px' }}>

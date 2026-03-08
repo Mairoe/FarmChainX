@@ -1,152 +1,124 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { useSearchParams } from 'react-router-dom';
 import { 
   LayoutDashboard, 
-  Package, 
-  Truck, 
-  Warehouse, 
   ShieldCheck, 
-  Store, 
   Settings, 
-  LogOut,
-  PlusCircle,
-  Clock,
-  CheckCircle2,
-  AlertCircle
+  User, 
+  CheckCircle2, 
+  AlertCircle,
+  Activity
 } from 'lucide-react';
+import { Sidebar, Topbar } from '../components/DashboardUI';
 import '../styles/dashboard.css';
 
-const Dashboard = ({ role = 'farmer' }) => {
-  const roleConfig = {
-    farmer: {
-      title: 'Farmer Dashboard',
-      stats: [
-        { label: 'Active Batches', value: '12', icon: <Package size={20}/> },
-        { label: 'Harvested Today', value: '450kg', icon: <CheckCircle2 size={20}/> },
-        { label: 'Pending Certification', value: '3', icon: <Clock size={20}/> }
-      ],
-      actions: ['Log New Batch', 'Update Irrigation', 'Pest Control Entry']
-    },
-    certifier: {
-      title: 'Certifier Portal',
-      stats: [
-        { label: 'Pending Reviews', value: '8', icon: <Clock size={20}/> },
-        { label: 'Approved This Week', value: '24', icon: <CheckCircle2 size={20}/> },
-        { label: 'Flagged Batches', value: '2', icon: <AlertCircle size={20}/> }
-      ],
-      actions: ['Review Submissions', 'Issue Certificate', 'Compliance Reports']
-    },
-    distributor: {
-      title: 'Logistics Dashboard',
-      stats: [
-        { label: 'In Transit', value: '15', icon: <Truck size={20}/> },
-        { label: 'Warehouse Load', value: '82%', icon: <Warehouse size={20}/> },
-        { label: 'Deliveries Today', value: '7', icon: <CheckCircle2 size={20}/> }
-      ],
-      actions: ['Shipment Entry', 'Route Optimization', 'Inventory Log']
-    },
-    retailer: {
-      title: 'Retailer Panel',
-      stats: [
-        { label: 'Stock Levels', value: 'Low', icon: <AlertCircle size={20}/> },
-        { label: 'Sales Today', value: '$1.4k', icon: <Store size={20}/> },
-        { label: 'Verified Batches', value: '100%', icon: <ShieldCheck size={20}/> }
-      ],
-      actions: ['Order Inventory', 'Sales Report', 'Verify Shipment']
-    },
-    admin: {
-      title: 'System Administration',
-      stats: [
-        { label: 'Total Users', value: '1,204', icon: <LayoutDashboard size={20}/> },
-        { label: 'Active Smart Contracts', value: '52', icon: <ShieldCheck size={20}/> },
-        { label: 'System Health', value: '99.9%', icon: <CheckCircle2 size={20}/> }
-      ],
-      actions: ['User Management', 'Network Audit', 'Global Reports']
+const Dashboard = ({ role = 'admin' }) => {
+  const [searchParams] = useSearchParams();
+  const activeTab = searchParams.get('tab') || 'Overview';
+
+  const stats = [
+    { label: 'Total Users', value: '1,204', icon: <User size={18}/> },
+    { label: 'Network Health', value: '99.9%', icon: <Activity size={18}/> },
+    { label: 'Smart Contracts', value: '52', icon: <ShieldCheck size={18}/> },
+    { label: 'Daily TX', value: '1.4k', icon: <CheckCircle2 size={18}/> }
+  ];
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'Overview':
+        return (
+          <div className="dashboard-content-grid" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '20px' }}>
+            <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+              <h3>System Activity</h3>
+              <p style={{ color: '#666', marginBottom: '20px' }}>Real-time blockchain transactions and user logs.</p>
+               <div className="activity-list">
+                  {[1, 2, 3, 4, 5].map(i => (
+                    <div key={i} className="activity-item" style={{ display: 'flex', gap: '15px', padding: '15px 0', borderBottom: '1px solid #f8f8f8' }}>
+                      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#4a6b4a', marginTop: '6px' }}></div>
+                      <div>
+                        <p style={{ margin: 0, fontSize: '0.95rem' }}><strong>Batch #{450+i}</strong> status verified by Certifier</p>
+                        <span style={{ fontSize: '0.8rem', color: '#999' }}>{i*2} hours ago</span>
+                      </div>
+                    </div>
+                  ))}
+               </div>
+            </div>
+
+            <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+               <h3>System Status</h3>
+               <div style={{ padding: '20px', background: '#f8fbf8', borderRadius: '12px', border: '1px solid #eef2ee', marginBottom: '15px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
+                     <span style={{ fontWeight: '600' }}>API Gateway</span>
+                     <span style={{ color: '#10b981', fontSize: '0.8rem', fontWeight: 'bold' }}>Online</span>
+                  </div>
+                  <div style={{ width: '100%', height: '4px', background: '#eee', borderRadius: '2px' }}>
+                     <div style={{ width: '98%', height: '100%', background: '#10b981', borderRadius: '2px' }}></div>
+                  </div>
+               </div>
+               <div style={{ padding: '20px', background: '#f8fbf8', borderRadius: '12px', border: '1px solid #eef2ee' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
+                     <span style={{ fontWeight: '600' }}>Blockchain Node</span>
+                     <span style={{ color: '#10b981', fontSize: '0.8rem', fontWeight: 'bold' }}>Healthy</span>
+                  </div>
+                  <div style={{ width: '100%', height: '4px', background: '#eee', borderRadius: '2px' }}>
+                     <div style={{ width: '100%', height: '100%', background: '#10b981', borderRadius: '2px' }}></div>
+                  </div>
+               </div>
+            </div>
+          </div>
+        );
+      case 'Users':
+        return (
+          <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+            <h3>User Management</h3>
+            <div className="table-container">
+               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                 <thead>
+                    <tr style={{ textAlign: 'left', borderBottom: '1px solid #eee' }}>
+                       <th style={{ padding: '15px 0' }}>User</th>
+                       <th style={{ padding: '15px 0' }}>Role</th>
+                       <th style={{ padding: '15px 0' }}>Status</th>
+                       <th style={{ padding: '15px 0' }}>Joined</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <tr style={{ borderBottom: '1px solid #f8f8f8' }}>
+                       <td style={{ padding: '20px 0' }}>John Doe</td>
+                       <td style={{ padding: '20px 0' }}>Farmer</td>
+                       <td style={{ padding: '20px 0' }}><span className="status-badge active">Active</span></td>
+                       <td style={{ padding: '20px 0' }}>2024-01-15</td>
+                    </tr>
+                 </tbody>
+               </table>
+            </div>
+          </div>
+        );
+      default:
+        return <div>Section under development</div>;
     }
   };
 
-  const config = roleConfig[role] || roleConfig.farmer;
-
   return (
-    <div className="dashboard-layout">
-      <aside className="sidebar">
-        <div className="sidebar-header">
-          <div className="logo-icon-small">
-            <PlusCircle size={20} color="white" />
-          </div>
-          <h3>FarmChainX</h3>
-        </div>
+    <div className="dashboard-layout dark-sidebar">
+      <Sidebar role={role} />
+      <main className="dashboard-main light-bg">
+        <Topbar title="System Administration" subtitle="Manage network and global settings" />
         
-        <nav className="sidebar-nav">
-          <a href="#" className="active"><LayoutDashboard size={20}/> Dashboard</a>
-          <a href="#"><Package size={20}/> {role === 'farmer' ? 'My Crops' : 'Batches'}</a>
-          <a href="#"><Truck size={20}/> Shipments</a>
-          <a href="#"><ShieldCheck size={20}/> {role === 'certifier' ? 'Certifications' : 'Quality'}</a>
-          <a href="#"><Settings size={20}/> Settings</a>
-        </nav>
-
-        <button className="logout-btn">
-          <LogOut size={20}/> Logout
-        </button>
-      </aside>
-
-      <main className="dashboard-main">
-        <header className="dashboard-header">
-          <div>
-            <h1>{config.title}</h1>
-            <p>Welcome back, {role.charAt(0).toUpperCase() + role.slice(1)}</p>
-          </div>
-          <div className="user-profile">
-            <div className="avatar">JD</div>
-          </div>
-        </header>
-
-        <section className="stats-grid">
-          {config.stats.map((stat, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="stat-card glass-card"
-            >
-              <div className="stat-icon">{stat.icon}</div>
-              <div>
-                <p className="stat-label">{stat.label}</p>
-                <h3 className="stat-value">{stat.value}</h3>
+        <div className="dashboard-stats-row">
+          {stats.map((stat, idx) => (
+            <div key={idx} className="minimal-stat-card shadow-sm">
+              <div className="stat-card-header">
+                {stat.label}
+                <div style={{ color: '#4a6b4a' }}>{stat.icon}</div>
               </div>
-            </motion.div>
+              <div className="stat-card-value">{stat.value}</div>
+            </div>
           ))}
-        </section>
+        </div>
 
-        <section className="dashboard-content">
-          <div className="recent-activity glass-card">
-            <h3>Recent Activity</h3>
-            <div className="activity-list">
-              {[1, 2, 3, 4].map(i => (
-                <div key={i} className="activity-item">
-                  <div className="activity-indicator"></div>
-                  <div className="activity-details">
-                    <p><strong>Batch #{450+i}</strong> updated status to 'Verified'</p>
-                    <span>{i*2} hours ago</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="quick-actions glass-card">
-            <h3>Quick Actions</h3>
-            <div className="action-btns">
-              {config.actions.map((action, i) => (
-                <button key={i} className="action-btn">
-                  <PlusCircle size={18}/>
-                  {action}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
+        <div className="tab-content" style={{ marginTop: '20px' }}>
+          {renderContent()}
+        </div>
       </main>
     </div>
   );

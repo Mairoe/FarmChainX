@@ -1,42 +1,85 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { ShieldCheck, CheckCircle2, FileText, ClipboardList, LayoutDashboard } from 'lucide-react';
 import { Sidebar, Topbar } from '../../components/DashboardUI';
 import '../../styles/dashboard.css';
 
 const CertifierPage = () => {
-  return (
-    <div className="dashboard-layout">
-      <Sidebar role="certifier" />
-      <main className="dashboard-main">
-        <Topbar title="Certifier Portal" subtitle="Validate and approve organic batches" />
-        
-        <div className="dashboard-content-grid">
-          <div className="main-stats stat-cards">
-            <div className="stat-card glass-card">
-              <h3>8</h3>
-              <p>Pending Reviews</p>
+  const [searchParams] = useSearchParams();
+  const activeTab = searchParams.get('tab') || 'Overview';
+
+  const stats = [
+    { label: 'Pending Reviews', value: '12', icon: <ClipboardList size={18} /> },
+    { label: 'Approved Today', value: '5', icon: <CheckCircle2 size={18} /> },
+    { label: 'Audit Compliance', value: '98%', icon: <ShieldCheck size={18} /> },
+    { label: 'Total Certs Issued', value: '450', icon: <FileText size={18} /> },
+  ];
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'Overview':
+        return (
+          <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+            <h3>Certification Overview</h3>
+            <p style={{ color: '#666', marginBottom: '20px' }}>Monitor compliance and certification requests across the supply chain.</p>
+            <div style={{ padding: '40px', background: '#f8fbf8', borderRadius: '12px', textAlign: 'center' }}>
+               <ShieldCheck size={50} color="#4a6b4a" />
+               <h4 style={{ marginTop: '15px' }}>Blockchain Certification Hub</h4>
+               <p style={{ color: '#666', fontSize: '0.9rem' }}>All certificates are cryptographically signed and stored on-chain.</p>
             </div>
           </div>
-          <div className="full-width-section glass-card">
-            <h3>Pending Requests</h3>
+        );
+      case 'Reviews':
+        return (
+          <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+            <h3>Pending Reviews</h3>
             <div className="table-container">
-              <table>
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
-                  <tr>
-                    <th>Req ID</th>
-                    <th>Batch</th>
-                    <th>Action</th>
+                  <tr style={{ textAlign: 'left', borderBottom: '1px solid #eee' }}>
+                    <th style={{ padding: '15px 0' }}>Request ID</th>
+                    <th style={{ padding: '15px 0' }}>Producer</th>
+                    <th style={{ padding: '15px 0' }}>Batch</th>
+                    <th style={{ padding: '15px 0' }}>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>CERT-01</td>
-                    <td>#452</td>
-                    <td><button className="btn btn-primary btn-sm">Review</button></td>
+                  <tr style={{ borderBottom: '1px solid #f8f8f8' }}>
+                    <td style={{ padding: '20px 0', fontWeight: 'bold' }}>#CERT-102</td>
+                    <td style={{ padding: '20px 0' }}>Greenfield Farm</td>
+                    <td style={{ padding: '20px 0' }}>#BT-123</td>
+                    <td style={{ padding: '20px 0' }}><button className="btn btn-primary" style={{ padding: '6px 15px', fontSize: '0.8rem' }}>Review</button></td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
+        );
+      default:
+        return <div>Section under development</div>;
+    }
+  };
+
+  return (
+    <div className="dashboard-layout dark-sidebar">
+      <Sidebar role="certifier" />
+      <main className="dashboard-main light-bg">
+        <Topbar title="Certifier Dashboard" subtitle="Verify compliance and sustainability" />
+        
+        <div className="dashboard-stats-row">
+          {stats.map((stat, idx) => (
+            <div key={idx} className="minimal-stat-card shadow-sm">
+              <div className="stat-card-header">
+                {stat.label}
+                <div style={{ color: '#4a6b4a' }}>{stat.icon}</div>
+              </div>
+              <div className="stat-card-value">{stat.value}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="tab-content" style={{ marginTop: '20px' }}>
+          {renderContent()}
         </div>
       </main>
     </div>
