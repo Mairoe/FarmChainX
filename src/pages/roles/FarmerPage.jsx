@@ -19,13 +19,19 @@ import {
   Droplets,
   Bug,
   Tag,
-  X
+  X,
+  TrendingUp,
+  Map as MapIcon,
+  Zap
 } from 'lucide-react';
 import { Sidebar, Topbar } from '../../components/DashboardUI';
+import MapPicker from '../../components/MapPicker';
 import '../../styles/dashboard.css';
 
 const FarmerPage = () => {
   const [searchParams] = useSearchParams();
+  const [showMapPicker, setShowMapPicker] = React.useState(false);
+  const [location, setLocation] = React.useState('');
   const activeTab = searchParams.get('tab') || 'My Batches';
 
   const stats = [
@@ -172,9 +178,36 @@ const FarmerPage = () => {
                    </div>
                    <div className="input-group">
                       <label style={{ fontSize: '0.9rem', color: '#2d3a2d', fontWeight: '600', marginBottom: '10px', display: 'block' }}>Farm Location (GPS/City)</label>
-                      <div style={{ position: 'relative' }}>
-                        <input type="text" placeholder="e.g. 12.34, 56.78 or Nashville, TN" style={{ background: '#f5f5f0', border: 'none', padding: '15px', borderRadius: '12px', width: '100%' }} />
-                        <MapPin size={18} style={{ position: 'absolute', right: '15px', top: '15px', color: '#666' }} />
+                      <div style={{ position: 'relative', display: 'flex', gap: '10px' }}>
+                        <div style={{ position: 'relative', flex: 1 }}>
+                          <input 
+                            type="text" 
+                            placeholder="e.g. 12.34, 56.78 or Nashville, TN" 
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                            style={{ background: '#f5f5f0', border: 'none', padding: '15px', borderRadius: '12px', width: '100%' }} 
+                          />
+                          <MapPin size={18} style={{ position: 'absolute', right: '15px', top: '15px', color: '#666' }} />
+                        </div>
+                        <button 
+                          onClick={() => setShowMapPicker(true)}
+                          type="button"
+                          style={{ 
+                            padding: '0 15px', 
+                            borderRadius: '12px', 
+                            border: '1px solid #4a6b4a', 
+                            background: 'white', 
+                            color: '#4a6b4a', 
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '5px',
+                            fontWeight: '600',
+                            fontSize: '0.85rem'
+                          }}
+                        >
+                          <MapIcon size={16} /> Map
+                        </button>
                       </div>
                    </div>
                    <div className="input-group">
@@ -307,26 +340,87 @@ const FarmerPage = () => {
 
       case 'Analytics':
         return (
-          <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
-            <div style={{ marginBottom: '30px' }}>
-              <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>Production Analytics</h3>
-              <p style={{ color: '#666', fontSize: '0.9rem' }}>Real-time insights and yield forecasts for your farm</p>
-            </div>
-            
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
-              <div className="glass-card" style={{ padding: '20px', background: '#f8fbf8', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <BarChart3 size={40} color="#4a6b4a" />
-                <span style={{ marginLeft: '10px', color: '#666' }}>Yield Forecast Chart Placeholder</span>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '20px' }}>
+            <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+              <div style={{ marginBottom: '30px' }}>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>Production Statistics</h3>
+                <p style={{ color: '#666', fontSize: '0.9rem' }}>Overview of your farming operations</p>
               </div>
-              <div className="glass-card" style={{ padding: '20px', background: '#f8fbf8', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <BarChart3 size={40} color="#4a6b4a" />
-                <span style={{ marginLeft: '10px', color: '#666' }}>Market Price Comparison Placeholder</span>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                {[
+                  { label: 'Organic Compliance Rate', value: '0%', color: '#10b981' },
+                  { label: 'Certification Success Rate', value: '0/0', color: '#3b82f6' },
+                  { label: 'Active Production', value: '0/0', color: '#f59e0b' }
+                ].map((item, idx) => (
+                  <div key={idx} style={{ padding: '20px', border: '1px solid #f0f0f0', borderRadius: '12px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                      <span style={{ fontWeight: '600', color: '#2d3a2d' }}>{item.label}</span>
+                      <span style={{ fontWeight: '700', color: item.color }}>{item.value}</span>
+                    </div>
+                    <div style={{ height: '8px', background: '#f5f5f0', borderRadius: '4px', overflow: 'hidden' }}>
+                      <div style={{ width: '0%', height: '100%', background: item.color }}></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ marginTop: '30px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                <div style={{ padding: '20px', background: '#f8fbf8', borderRadius: '12px', textAlign: 'center' }}>
+                   <BarChart3 size={40} color="#4a6b4a" style={{ marginBottom: '10px' }} />
+                   <p style={{ fontSize: '0.8rem', color: '#666' }}>Yield Forecast Chart</p>
+                </div>
+                <div style={{ padding: '20px', background: '#f8fbf8', borderRadius: '12px', textAlign: 'center' }}>
+                   <BarChart3 size={40} color="#4a6b4a" style={{ marginBottom: '10px' }} />
+                   <p style={{ fontSize: '0.8rem', color: '#666' }}>Market Price comparison</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+              <div style={{ marginBottom: '30px' }}>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>AI Advisory Panel</h3>
+                <p style={{ color: '#666', fontSize: '0.9rem' }}>Smart farming insights and recommendations</p>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                <div style={{ padding: '15px', background: '#eff6ff', borderRadius: '12px', border: '1px solid #dbeafe' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', color: '#1e40af' }}>
+                    <Droplets size={18} />
+                    <span style={{ fontWeight: '700', fontSize: '0.95rem' }}>Weather Alert</span>
+                  </div>
+                  <p style={{ fontSize: '0.85rem', color: '#3b82f6', margin: 0 }}>Heavy rain expected next week. Consider adjusting irrigation schedule for active batches.</p>
+                </div>
+
+                <div style={{ padding: '15px', background: '#f0fdf4', borderRadius: '12px', border: '1px solid #dcfce7' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', color: '#166534' }}>
+                    <CheckCircle2 size={18} />
+                    <span style={{ fontWeight: '700', fontSize: '0.95rem' }}>Harvest Reminder</span>
+                  </div>
+                  <p style={{ fontSize: '0.85rem', color: '#10b981', margin: 0 }}>0 batch(es) approaching harvest date this week.</p>
+                </div>
+
+                <div style={{ padding: '15px', background: '#faf5ff', borderRadius: '12px', border: '1px solid #f3e8ff' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', color: '#6b21a8' }}>
+                    <TrendingUp size={18} />
+                    <span style={{ fontWeight: '700', fontSize: '0.95rem' }}>Market Trend</span>
+                  </div>
+                  <p style={{ fontSize: '0.85rem', color: '#a855f7', margin: 0 }}>Organic tomatoes showing 15% price increase. Good time to harvest and sell.</p>
+                </div>
+
+                <div style={{ padding: '15px', background: '#fff7ed', borderRadius: '12px', border: '1px solid #ffedd5' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', color: '#9a3412' }}>
+                    <Zap size={18} />
+                    <span style={{ fontWeight: '700', fontSize: '0.95rem' }}>Organic Tip</span>
+                  </div>
+                  <p style={{ fontSize: '0.85rem', color: '#f97316', margin: 0 }}>Companion planting with marigolds can naturally reduce pest pressure.</p>
+                </div>
               </div>
             </div>
           </div>
         );
 
-      case 'Help & Support':
+      case 'Support':
         return (
           <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
             <div style={{ marginBottom: '30px' }}>
@@ -404,6 +498,13 @@ const FarmerPage = () => {
         <div className="tab-content" style={{ marginTop: activeTab === 'create' ? '0' : '20px' }}>
           {renderContent()}
         </div>
+
+        {showMapPicker && (
+          <MapPicker 
+            onSelect={(coords) => setLocation(coords)} 
+            onClose={() => setShowMapPicker(false)} 
+          />
+        )}
       </main>
     </div>
   );

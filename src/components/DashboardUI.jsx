@@ -16,7 +16,7 @@ export const Sidebar = ({ role }) => {
       { icon: <PlusCircle size={20}/>, label: 'Production Tracking', path: '/dashboard/farmer?tab=Production Tracking' },
       { icon: <BarChart3 size={20}/>, label: 'Analytics', path: '/dashboard/farmer?tab=Analytics' },
       { icon: <ShoppingCart size={20}/>, label: 'Orders', path: '/dashboard/farmer?tab=Orders' },
-      { icon: <HelpCircle size={20}/>, label: 'Help & Support', path: '/dashboard/farmer?tab=Help & Support' },
+      { icon: <HelpCircle size={20}/>, label: 'Support', path: '/dashboard/farmer?tab=Support' },
     ],
     distributor: [
       { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/distributor?tab=Overview' },
