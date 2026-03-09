@@ -3,7 +3,7 @@ import {
   LayoutDashboard, Package, Truck, Warehouse, 
   ShieldCheck, Store, Settings, LogOut, PlusCircle,
   Bell, User, Search, Home, Sprout, BarChart3,
-  ShoppingCart, HelpCircle, MapPin, CheckCircle2, Plus, Users, Box, Activity, CreditCard
+  ShoppingCart, HelpCircle, MapPin, CheckCircle2, Plus, Users, Leaf, Repeat
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -14,11 +14,12 @@ export const Sidebar = ({ role }) => {
     farmer: [
       { icon: <Sprout size={20}/>, label: 'My Batches', path: '/dashboard/farmer?tab=My Batches' },
       { icon: <PlusCircle size={20}/>, label: 'Production Tracking', path: '/dashboard/farmer?tab=Production Tracking' },
-      { icon: <BarChart3 size={20}/>, label: 'Analytics', path: '/dashboard/farmer?tab=Analytics' },
       { icon: <ShoppingCart size={20}/>, label: 'Orders', path: '/dashboard/farmer?tab=Orders' },
+      { icon: <BarChart3 size={20}/>, label: 'Analytics', path: '/dashboard/farmer?tab=Analytics' },
       { icon: <HelpCircle size={20}/>, label: 'Support', path: '/dashboard/farmer?tab=Support' },
     ],
     distributor: [
+      { icon: <Leaf size={20}/>, label: 'Farmer Sourcing', path: '/dashboard/distributor?tab=Farmer Sourcing' },
       { icon: <Package size={20}/>, label: 'Inventory', path: '/dashboard/distributor?tab=Inventory' },
       { icon: <Warehouse size={20}/>, label: 'Distribution Centers', path: '/dashboard/distributor?tab=Distribution Centers' },
       { icon: <Users size={20}/>, label: 'Retailer Network', path: '/dashboard/distributor?tab=Retailer Network' },
@@ -34,9 +35,10 @@ export const Sidebar = ({ role }) => {
       { icon: <CheckCircle2 size={20}/>, label: 'Audit History', path: '/dashboard/certifier?tab=History' },
     ],
     retailer: [
-      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/retailer?tab=Overview' },
-      { icon: <Store size={20}/>, label: 'Inventory', path: '/dashboard/retailer?tab=Inventory' },
-      { icon: <ShoppingCart size={20}/>, label: 'Store Analytics', path: '/dashboard/retailer?tab=Sales' },
+      { icon: <LayoutDashboard size={20}/>, label: 'Available Products', path: '/dashboard/retailer?tab=Available Products' },
+      { icon: <Package size={20}/>, label: 'My Inventory', path: '/dashboard/retailer?tab=My Inventory' },
+      { icon: <ShoppingCart size={20}/>, label: 'Sales', path: '/dashboard/retailer?tab=Sales' },
+      { icon: <BarChart3 size={20}/>, label: 'Analytics', path: '/dashboard/retailer?tab=Analytics' },
     ],
     consumer: [
       { icon: <LayoutDashboard size={20}/>, label: 'Journey Tracker', path: '/dashboard/consumer?tab=Overview' },
@@ -44,10 +46,10 @@ export const Sidebar = ({ role }) => {
     ],
     admin: [
       { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/admin?tab=Overview' },
-      { icon: <Users size={20}/>, label: 'Manage Users', path: '/dashboard/admin?tab=Users' },
-      { icon: <Box size={20}/>, label: 'Batches', path: '/dashboard/admin?tab=Batches' },
-      { icon: <CreditCard size={20}/>, label: 'Transactions', path: '/dashboard/admin?tab=Transactions' },
-      { icon: <Activity size={20}/>, label: 'Blockchain', path: '/dashboard/admin?tab=Blockchain' },
+      { icon: <User size={20}/>, label: 'User Management', path: '/dashboard/admin?tab=Users' },
+      { icon: <Package size={20}/>, label: 'Batch Ledger', path: '/dashboard/admin?tab=Batches' },
+      { icon: <Repeat size={20}/>, label: 'Transactions', path: '/dashboard/admin?tab=Transactions' },
+      { icon: <ShieldCheck size={20}/>, label: 'Blockchain Log', path: '/dashboard/admin?tab=Blockchain' },
       { icon: <BarChart3 size={20}/>, label: 'Reports', path: '/dashboard/admin?tab=Reports' },
       { icon: <Settings size={20}/>, label: 'System Settings', path: '/dashboard/admin?tab=Settings' },
     ]
@@ -79,12 +81,27 @@ export const Sidebar = ({ role }) => {
       <div className="sidebar-label" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', marginBottom: '15px' }}>NAVIGATION</div>
       <nav className="sidebar-nav" style={{ flex: 1 }}>
         {currentMenu.map((item, idx) => {
-          const isActive = currentPath === item.path || (item.path === '/dashboard/farmer?tab=Overview' && currentPath === '/dashboard/farmer');
+          const itemUrl = new URL(item.path, window.location.origin);
+          const itemTab = itemUrl.searchParams.get('tab');
+          
+          const currentParams = new URLSearchParams(location.search);
+          const currentTab = currentParams.get('tab');
+          
+          // Determine if active: 
+          // 1. Exact path + exactly the same tab parameter
+          // 2. Path matches and both have no tab (default view)
+          // 3. Path matches and currentTab is null, but item is the first one (default tab)
+          const isPathMatch = location.pathname === itemUrl.pathname;
+          const isTabMatch = currentTab === itemTab;
+          const isDefaultTab = !currentTab && idx === 0;
+          
+          const isActive = isPathMatch && (isTabMatch || isDefaultTab);
+
           return (
             <Link 
               key={idx} 
               to={item.path} 
-              className={isActive ? 'active' : ''}
+              className={isActive ? 'sidebar-link active' : 'sidebar-link'}
               style={{ 
                 display: 'flex', 
                 alignItems: 'center', 
@@ -94,12 +111,14 @@ export const Sidebar = ({ role }) => {
                 textDecoration: 'none',
                 color: 'white',
                 fontSize: '0.95rem',
-                fontWeight: isActive ? '600' : '400',
+                fontWeight: isActive ? '700' : '400',
+                background: isActive ? 'rgba(255,255,255,0.1)' : 'transparent',
                 opacity: isActive ? 1 : 0.7,
-                marginBottom: '4px'
+                marginBottom: '4px',
+                transition: 'all 0.2s ease'
               }}
             >
-              {item.icon} {item.label}
+              {item.icon} <span style={{ transition: 'margin 0.2s' }}>{item.label}</span>
             </Link>
           );
         })}

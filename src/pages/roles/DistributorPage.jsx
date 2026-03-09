@@ -17,7 +17,8 @@ import {
   Leaf,
   Plus,
   X,
-  ArrowRight
+  ArrowRight,
+  Sprout
 } from 'lucide-react';
 import { Sidebar, Topbar } from '../../components/DashboardUI';
 import '../../styles/dashboard.css';
@@ -36,29 +37,26 @@ const DistributorPage = () => {
     alert(`${action} functionality triggered for demo purposes.`);
   };
 
-  const stats = [
-    { label: 'Active Routes', value: '8', change: '+2 this week', icon: <Truck size={20} />, color: '#3b82f6' },
-    { label: 'Distribution Centers', value: '4', change: 'All operational', icon: <Warehouse size={20} />, color: '#a855f7' },
-    { label: 'Retailer Partners', value: '4', change: '+1 new partner', icon: <ShoppingCart size={20} />, color: '#10b981' },
-    { label: 'Monthly Growth', value: '+18%', change: 'Volume increase', icon: <TrendingUp size={20} />, color: '#22c55e' },
-  ];
+  // Demo Data (Aligned with Farmer -> Distributor -> Retailer Workflow)
+  const [inventoryBatches, setInventory] = useState([
+    { id: 'FARM-BT-220A', name: 'Oxheart Heirloom Tomatoes', quantity: '500 kg', source: 'Sun Valley Organic Farm', quality: '98%', status: 'Ready' },
+    { id: 'FARM-BT-112B', name: 'Cold-Pressed Sunflower Oil', quantity: '120 L', source: 'Golden Valley Millers', quality: '95%', status: 'Ready' },
+    { id: 'FARM-BT-005C', name: 'Wildflower Honey', quantity: '60 units', source: 'Pure Bee Apiaries', quality: '99%', status: 'Ready' },
+  ]);
 
-  const inventoryBatches = [
-    { id: 'ORG-WHT-002', name: 'Organic Wheat', quantity: '1,200 kg', source: 'Green Valley Farm', quality: '98%', status: 'Ready' },
-    { id: 'ORG-OAT-045', name: 'Rolled Oats', quantity: '850 kg', source: 'Harvest Moon Co-op', quality: '95%', status: 'Ready' },
-    { id: 'ORG-BRY-089', name: 'Dried Berries', quantity: '300 kg', source: 'Suncoast Organic', quality: '99%', status: 'Ready' },
+  const pharmaFarms = [
+    { name: 'Sun Valley Organic Farm', location: 'Mendoza Valley', certification: 'Organic A+', latestBatch: 'FARM-BT-220A' },
+    { name: 'Heritage Highland Farms', location: 'Upper Highlands', certification: 'Bio-Verified', latestBatch: 'FARM-BT-801X' },
   ];
 
   const distCenters = [
-    { name: 'North Distribution Center', location: 'Northern Region', capacity: 80, items: 124 },
-    { name: 'South Distribution Center', location: 'Southern Region', capacity: 65, items: 98 },
-    { name: 'East Distribution Center', location: 'Eastern Region', capacity: 45, items: 56 },
-    { name: 'West Distribution Center', location: 'Western Region', capacity: 30, items: 42 },
+    { name: 'Central Logistics Hub', location: 'Northern Region', capacity: 82, items: 124 },
+    { name: 'Eco-Express Hub', location: 'Southern Region', capacity: 45, items: 56 },
   ];
 
   const retailers = [
-    { name: 'Fresh Market', location: 'Downtown', orders: 15, lastOrder: '2h ago' },
-    { name: 'Organic Store', location: 'Suburb', orders: 12, lastOrder: '1d ago' },
+    { name: 'Organic Mart City Center', location: 'Downtown', orders: 15, lastOrder: '2h ago' },
+    { name: 'Nature Haven Groceries', location: 'Suburb', orders: 12, lastOrder: '1d ago' },
   ];
 
   // Modal Component
@@ -78,54 +76,79 @@ const DistributorPage = () => {
     </div>
   );
 
+  const stats = [
+    { label: 'Asset Throughput', value: '4.8k kg', change: '+12% this week', icon: <Package size={20} />, color: '#3b82f6' },
+    { label: 'Verified Farms', value: pharmaFarms.length, change: 'All active', icon: <Leaf size={20} />, color: '#22c55e' },
+    { label: 'Retailer Nodes', value: retailers.length, change: '+1 pending', icon: <Users size={20} />, color: '#10b981' },
+    { label: 'Fleet Status', value: '92%', change: 'Real-time sync', icon: <Truck size={20} />, color: '#f59e0b' },
+  ];
+
+  // Content will be rendered directly in renderContent
+
   const renderContent = () => {
     switch (activeTab) {
-      case 'Inventory':
+      case 'Farmer Sourcing':
         return (
-          <div style={{ background: 'white', borderRadius: '24px', padding: '40px', border: '1px solid #f1f5f9' }}>
+          <div style={{ background: 'white', borderRadius: '24px', padding: '40px', border: '1px solid #f1f5f9' }} className="tab-fade-in">
              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '30px' }}>
                 <div>
-                  <h3 style={{ margin: '0 0 5px 0', fontSize: '1.25rem', fontWeight: '600' }}>Available Inventory</h3>
-                  <p style={{ margin: 0, color: '#64748b', fontSize: '0.95rem' }}>Certified organic products ready for distribution</p>
+                  <h3 style={{ margin: '0 0 5px 0', fontSize: '1.25rem', fontWeight: '800' }}>Farmer Batch Sourcing</h3>
+                  <p style={{ margin: 0, color: '#64748b', fontSize: '0.95rem' }}>Purchase verified organic batches directly from certified producers.</p>
                 </div>
-                <button 
-                  onClick={() => setShowDistributeModal(true)}
-                  style={{ 
-                    background: '#0a0a0a', 
-                    color: 'white', 
-                    padding: '12px 24px', 
-                    borderRadius: '12px', 
-                    border: 'none', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '10px',
-                    fontWeight: '600',
-                    cursor: 'pointer'
-                  }}
-                >
-                  <Plus size={18} /> Distribute Product
-                </button>
              </div>
              
-             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '16px' }}>
+             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
+                {pharmaFarms.map((farm, i) => (
+                  <div key={i} style={{ padding: '25px', borderRadius: '20px', border: '1px solid #f1f5f9', background: '#f8fafc' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px' }}>
+                      <h4 style={{ margin: '0 0 4px 0', fontWeight: '700' }}>{farm.name}</h4>
+                      <span style={{ fontSize: '0.75rem', background: '#f0fdf4', color: '#166534', padding: '4px 10px', borderRadius: '100px', fontWeight: '800', height: 'fit-content' }}>{farm.certification}</span>
+                    </div>
+                    <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '0 0 20px 0' }}><MapPin size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px'}} /> {farm.location}</p>
+                    <div style={{ background: 'white', padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
+                      <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '4px' }}>Latest Harvest Available</div>
+                      <div style={{ fontWeight: '700', fontSize: '0.95rem' }}>{farm.latestBatch}</div>
+                    </div>
+                    <button 
+                      onClick={() => alert(`Buying Batch ${farm.latestBatch} from ${farm.name}`)}
+                      style={{ width: '100%', padding: '12px', background: '#2d3a2d', color: 'white', borderRadius: '10px', border: 'none', fontWeight: '700', cursor: 'pointer' }}
+                    >
+                      Buy Batch
+                    </button>
+                  </div>
+                ))}
+             </div>
+          </div>
+        );
+      case 'Inventory':
+        return (
+          <div style={{ background: 'white', borderRadius: '24px', padding: '40px', border: '1px solid #f1f5f9' }} className="tab-fade-in">
+             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '30px' }}>
+                <div>
+                  <h3 style={{ margin: '0 0 5px 0', fontSize: '1.25rem', fontWeight: '800' }}>Hub Inventory</h3>
+                  <p style={{ margin: 0, color: '#64748b', fontSize: '0.95rem' }}>Certified items in stock, ready for retailer distribution.</p>
+                </div>
+             </div>
+             
+             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {inventoryBatches.map((batch, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '20px', borderRadius: '16px', border: '1px solid #f1f5f9', gap: '20px' }}>
                     <div style={{ width: '48px', height: '48px', background: '#f0fdf4', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#22c55e' }}>
                       <Package size={24} />
                     </div>
                     <div style={{ flex: 1 }}>
-                      <h4 style={{ margin: '0 0 4px 0', fontSize: '1rem', fontWeight: '600' }}>{batch.name}</h4>
-                      <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b' }}>{batch.id} • {batch.source}</p>
+                      <h4 style={{ margin: '0 0 4px 0', fontSize: '1.05rem', fontWeight: '700' }}>{batch.name}</h4>
+                      <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b' }}><Leaf size={12} /> {batch.source} • {batch.id}</p>
                     </div>
-                    <div style={{ textAlign: 'right', minWidth: '100px' }}>
-                      <div style={{ fontWeight: '700', fontSize: '1rem' }}>{batch.quantity}</div>
-                      <div style={{ fontSize: '0.8rem', color: '#22c55e', fontWeight: '600' }}>Quality: {batch.quality}</div>
+                    <div style={{ textAlign: 'right', minWidth: '120px' }}>
+                      <div style={{ fontWeight: '800', fontSize: '1.1rem' }}>{batch.quantity}</div>
+                      <div style={{ fontSize: '0.75rem', color: '#166534', fontWeight: '700' }}>Grade: {batch.quality}</div>
                     </div>
                     <button 
                       onClick={() => setShowDistributeModal(true)}
-                      style={{ padding: '8px 16px', borderRadius: '8px', border: '1px solid #e2e8f0', background: 'white', cursor: 'pointer', fontSize: '0.85rem', fontWeight: '600' }}
+                      style={{ padding: '10px 20px', borderRadius: '10px', background: '#0a0a0a', color: 'white', border: 'none', cursor: 'pointer', fontWeight: '700', fontSize: '0.85rem' }}
                     >
-                      Process
+                      Ship to Retail
                     </button>
                   </div>
                 ))}

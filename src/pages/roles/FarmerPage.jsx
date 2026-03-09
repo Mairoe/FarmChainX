@@ -22,7 +22,8 @@ import {
   X,
   TrendingUp,
   Map as MapIcon,
-  Zap
+  Zap,
+  Truck
 } from 'lucide-react';
 import { Sidebar, Topbar } from '../../components/DashboardUI';
 import MapPicker from '../../components/MapPicker';
@@ -40,6 +41,128 @@ const FarmerPage = () => {
     { label: 'Certified Batches', value: '8', icon: <CheckCircle2 size={18} /> },
     { label: 'Total Batches', value: '24', icon: <Calendar size={18} /> },
   ];
+
+  const OrdersView = () => {
+    const [orderTab, setOrderTab] = React.useState('bulk');
+    return (
+      <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+          <div>
+            <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>Orders</h3>
+            <p style={{ color: '#666', fontSize: '0.9rem' }}>Track batches acquired by Distribution Hubs and Direct Customers</p>
+          </div>
+          <div style={{ display: 'flex', gap: '10px' }}>
+             <div className="search-pill" style={{ width: '200px' }}>
+               <Search size={16} />
+               <input type="text" placeholder="Search orders..." />
+             </div>
+             <button className="tab-btn active"><Filter size={16} /> Filter</button>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', borderBottom: '1px solid #eee', paddingBottom: '10px' }}>
+          <button 
+            className={`tab-btn ${orderTab === 'bulk' ? 'active' : ''}`}
+            onClick={() => setOrderTab('bulk')}
+            style={{ fontWeight: orderTab === 'bulk' ? 'bold' : 'normal', background: orderTab === 'bulk' ? '#f0f4f0' : 'transparent' }}
+          >
+            Bulk Orders (Distributors)
+          </button>
+          <button 
+            className={`tab-btn ${orderTab === 'direct' ? 'active' : ''}`}
+            onClick={() => setOrderTab('direct')}
+            style={{ fontWeight: orderTab === 'direct' ? 'bold' : 'normal', background: orderTab === 'direct' ? '#f0f4f0' : 'transparent' }}
+          >
+             Direct Customer Orders
+          </button>
+        </div>
+
+        <div className="table-container">
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            {orderTab === 'bulk' ? (
+              <>
+                <thead>
+                  <tr style={{ textAlign: 'left', borderBottom: '1px solid #eee' }}>
+                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Sale ID</th>
+                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Distributor Hub</th>
+                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Batch Units</th>
+                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Volume</th>
+                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Logistics Status</th>
+                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Verified</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { id: '#SL-9920', hub: 'Central Valley Logistics', product: 'Oxheart Heirloom Tomatoes', batch: 'FARM-BT-220A', qty: '500 kg', status: 'In Transit', color: '#3b82f6' },
+                    { id: '#SL-9918', hub: 'Global Fresh Hubs', product: 'Premium Idaho Potatoes', batch: 'FARM-BT-112X', qty: '1200 kg', status: 'At Hub', color: '#10b981' },
+                    { id: '#SL-9915', hub: 'Northside Distributions', product: 'Organic Crisp Cucumbers', batch: 'FARM-BT-095C', qty: '350 kg', status: 'Awaiting Pickup', color: '#f59e0b' },
+                  ].map((order, idx) => (
+                    <tr key={idx} style={{ borderBottom: '1px solid #f8f8f8' }}>
+                      <td style={{ padding: '20px 0', fontWeight: 'bold' }}>{order.id}</td>
+                      <td style={{ padding: '20px 0' }}>
+                        <div style={{ fontWeight: '600' }}>{order.hub}</div>
+                        <span style={{ fontSize: '0.75rem', color: '#999' }}>Verified Partner</span>
+                      </td>
+                      <td style={{ padding: '20px 0' }}>
+                        <div style={{ fontWeight: '500' }}>{order.product}</div>
+                        <span style={{ fontSize: '0.75rem', color: '#4a6b4a', background: '#f0f4f0', padding: '2px 6px', borderRadius: '4px' }}>{order.batch}</span>
+                      </td>
+                      <td style={{ padding: '20px 0' }}>{order.qty}</td>
+                      <td style={{ padding: '20px 0' }}>
+                        <span style={{ padding: '4px 12px', borderRadius: '100px', background: `${order.color}10`, color: order.color, fontSize: '0.75rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '6px', width: 'fit-content' }}>
+                          <Truck size={12} /> {order.status}
+                        </span>
+                      </td>
+                      <td style={{ padding: '20px 0' }}>
+                        <ShieldCheck size={18} color="#10b981" />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </>
+            ) : (
+               <>
+                <thead>
+                  <tr style={{ textAlign: 'left', borderBottom: '1px solid #eee' }}>
+                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Order ID</th>
+                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Customer</th>
+                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Product</th>
+                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Quantity</th>
+                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Amount</th>
+                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Delivery Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { id: '#DIR-102', customer: 'Sarah Miller', product: 'Fresh Strawberries', qty: '2 kg', amount: '$15.00', status: 'Delivered', color: '#10b981' },
+                    { id: '#DIR-105', customer: 'John Doe', product: 'Organic Tomatoes', qty: '5 kg', amount: '$20.00', status: 'Processing', color: '#f59e0b' },
+                    { id: '#DIR-106', customer: 'Emily Chen', product: 'Wildflower Honey', qty: '1 jar', amount: '$12.00', status: 'Shipped', color: '#3b82f6' },
+                  ].map((order, idx) => (
+                    <tr key={idx} style={{ borderBottom: '1px solid #f8f8f8' }}>
+                      <td style={{ padding: '20px 0', fontWeight: 'bold' }}>{order.id}</td>
+                      <td style={{ padding: '20px 0' }}>
+                        <div style={{ fontWeight: '600' }}>{order.customer}</div>
+                      </td>
+                      <td style={{ padding: '20px 0' }}>
+                        <div style={{ fontWeight: '500' }}>{order.product}</div>
+                      </td>
+                      <td style={{ padding: '20px 0' }}>{order.qty}</td>
+                      <td style={{ padding: '20px 0', fontWeight: '600' }}>{order.amount}</td>
+                      <td style={{ padding: '20px 0' }}>
+                        <span style={{ padding: '4px 12px', borderRadius: '100px', background: `${order.color}10`, color: order.color, fontSize: '0.75rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '6px', width: 'fit-content' }}>
+                           {order.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </>
+            )}
+          </table>
+        </div>
+      </div>
+    );
+  };
 
   const renderContent = () => {
     switch (activeTab) {
@@ -280,63 +403,7 @@ const FarmerPage = () => {
         );
       
       case 'Orders':
-        return (
-          <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
-              <div>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>Orders Management</h3>
-                <p style={{ color: '#666', fontSize: '0.9rem' }}>Track and manage your marketplace orders</p>
-              </div>
-              <div style={{ display: 'flex', gap: '10px' }}>
-                 <div className="search-pill" style={{ width: '200px' }}>
-                   <Search size={16} />
-                   <input type="text" placeholder="Search orders..." />
-                 </div>
-                 <button className="tab-btn active"><Filter size={16} /> Filter</button>
-              </div>
-            </div>
-
-            <div className="table-container">
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                  <tr style={{ textAlign: 'left', borderBottom: '1px solid #eee' }}>
-                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Order ID</th>
-                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Customer</th>
-                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Product</th>
-                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Quantity</th>
-                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Status</th>
-                    <th style={{ padding: '15px 0', color: '#999', fontSize: '0.85rem' }}>Payment</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { id: '#ORD1024', customer: 'John Smith', product: 'Organic Tomatoes', qty: '50 kg', status: 'Pending', color: '#f59e0b', paid: true },
-                    { id: '#ORD1023', customer: 'Lisa White', product: 'Fresh Strawberries', qty: '25 kg', status: 'Shipped', color: '#3b82f6', paid: true },
-                    { id: '#ORD1022', customer: 'Mark Rodriguez', product: 'Farm Fresh Spinach', qty: '100 kg', status: 'Completed', color: '#10b981', paid: true },
-                  ].map((order, idx) => (
-                    <tr key={idx} style={{ borderBottom: '1px solid #f8f8f8' }}>
-                      <td style={{ padding: '20px 0', fontWeight: 'bold' }}>{order.id}</td>
-                      <td style={{ padding: '20px 0' }}>{order.customer}</td>
-                      <td style={{ padding: '20px 0' }}>
-                        <div>{order.product}</div>
-                        <span style={{ fontSize: '0.75rem', color: '#999' }}>Batch #FG134</span>
-                      </td>
-                      <td style={{ padding: '20px 0' }}>{order.qty}</td>
-                      <td style={{ padding: '20px 0' }}>
-                        <span style={{ padding: '4px 12px', borderRadius: '100px', background: `${order.color}15`, color: order.color, fontSize: '0.75rem', fontWeight: 'bold' }}>
-                          ● {order.status}
-                        </span>
-                      </td>
-                      <td style={{ padding: '20px 0' }}>
-                        <span style={{ color: '#10b981', fontWeight: '600' }}>Paid</span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        );
+        return <OrdersView />;
 
       case 'Analytics':
         return (
