@@ -3,7 +3,7 @@ import {
   LayoutDashboard, Package, Truck, Warehouse, 
   ShieldCheck, Store, Settings, LogOut, PlusCircle,
   Bell, User, Search, Home, Sprout, BarChart3,
-  ShoppingCart, HelpCircle, MapPin, CheckCircle2, Plus, Users
+  ShoppingCart, HelpCircle, MapPin, CheckCircle2, Plus, Users, Box, Activity, CreditCard
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -30,7 +30,6 @@ export const Sidebar = ({ role }) => {
       { icon: <CheckCircle2 size={20}/>, label: 'Quality Checks', path: '/dashboard/warehouse?tab=Quality' },
     ],
     certifier: [
-      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/certifier?tab=Overview' },
       { icon: <ShieldCheck size={20}/>, label: 'Pending Reviews', path: '/dashboard/certifier?tab=Reviews' },
       { icon: <CheckCircle2 size={20}/>, label: 'Audit History', path: '/dashboard/certifier?tab=History' },
     ],
@@ -45,7 +44,11 @@ export const Sidebar = ({ role }) => {
     ],
     admin: [
       { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/admin?tab=Overview' },
-      { icon: <User size={20}/>, label: 'User Management', path: '/dashboard/admin?tab=Users' },
+      { icon: <Users size={20}/>, label: 'Manage Users', path: '/dashboard/admin?tab=Users' },
+      { icon: <Box size={20}/>, label: 'Batches', path: '/dashboard/admin?tab=Batches' },
+      { icon: <CreditCard size={20}/>, label: 'Transactions', path: '/dashboard/admin?tab=Transactions' },
+      { icon: <Activity size={20}/>, label: 'Blockchain', path: '/dashboard/admin?tab=Blockchain' },
+      { icon: <BarChart3 size={20}/>, label: 'Reports', path: '/dashboard/admin?tab=Reports' },
       { icon: <Settings size={20}/>, label: 'System Settings', path: '/dashboard/admin?tab=Settings' },
     ]
   };
