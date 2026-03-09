@@ -3,7 +3,7 @@ import {
   LayoutDashboard, Package, Truck, Warehouse, 
   ShieldCheck, Store, Settings, LogOut, PlusCircle,
   Bell, User, Search, Home, Sprout, BarChart3,
-  ShoppingCart, HelpCircle, MapPin, CheckCircle2, Plus
+  ShoppingCart, HelpCircle, MapPin, CheckCircle2, Plus, Users
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -19,9 +19,10 @@ export const Sidebar = ({ role }) => {
       { icon: <HelpCircle size={20}/>, label: 'Support', path: '/dashboard/farmer?tab=Support' },
     ],
     distributor: [
-      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/distributor?tab=Overview' },
-      { icon: <Truck size={20}/>, label: 'Shipments', path: '/dashboard/distributor?tab=Shipments' },
-      { icon: <MapPin size={20}/>, label: 'Logistics', path: '/dashboard/distributor?tab=Logistics' },
+      { icon: <Package size={20}/>, label: 'Inventory', path: '/dashboard/distributor?tab=Inventory' },
+      { icon: <Warehouse size={20}/>, label: 'Distribution Centers', path: '/dashboard/distributor?tab=Distribution Centers' },
+      { icon: <Users size={20}/>, label: 'Retailer Network', path: '/dashboard/distributor?tab=Retailer Network' },
+      { icon: <BarChart3 size={20}/>, label: 'Analytics', path: '/dashboard/distributor?tab=Analytics' },
     ],
     warehouse: [
       { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/warehouse?tab=Overview' },
@@ -39,8 +40,8 @@ export const Sidebar = ({ role }) => {
       { icon: <ShoppingCart size={20}/>, label: 'Store Analytics', path: '/dashboard/retailer?tab=Sales' },
     ],
     consumer: [
-      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/consumer?tab=Overview' },
-      { icon: <Home size={20}/>, label: 'Marketplace', path: '/shop' },
+      { icon: <LayoutDashboard size={20}/>, label: 'Journey Tracker', path: '/dashboard/consumer?tab=Overview' },
+      { icon: <ShoppingCart size={20}/>, label: 'Marketplace', path: '/shop' },
     ],
     admin: [
       { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/admin?tab=Overview' },
