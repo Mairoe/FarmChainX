@@ -122,15 +122,11 @@ const DistributorPage = () => {
         );
       case 'Inventory':
         return (
-          <div style={{ background: 'white', color: '#1e293b', borderRadius: '24px', padding: '40px', border: '1px solid #f1f5f9' }} className="tab-fade-in">
-             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '30px' }}>
-                <div>
-                  <h3 style={{ margin: '0 0 5px 0', fontSize: '1.25rem', fontWeight: '800' }}>Hub Inventory</h3>
-                  <p style={{ margin: 0, color: '#64748b', fontSize: '0.95rem' }}>Certified items in stock, ready for retailer distribution.</p>
-                </div>
-             </div>
+          <div className="glass-card" style={{ padding: '30px', marginBottom: '30px' }}>
+             <h3 style={{ margin: '0 0 5px 0', fontSize: '1.2rem' }}>Incoming Shipments</h3>
+             <p style={{ margin: '0 0 25px 0', color: '#64748b', fontSize: '0.9rem' }}>Batches assigned to your logistics network</p>
              
-             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                 {inventoryBatches.map((batch, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '20px', borderRadius: '16px', border: '1px solid #f1f5f9', gap: '20px' }}>
                     <div style={{ width: '48px', height: '48px', background: '#f0fdf4', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#22c55e' }}>
@@ -160,7 +156,7 @@ const DistributorPage = () => {
         return (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
             {distCenters.map((hub, i) => (
-              <div key={i} style={{ background: 'white', color: '#1e293b', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9' }}>
+              <div key={i} className="glass-card" style={{ padding: '30px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
                   <div>
                     <h4 style={{ margin: '0 0 8px 0', fontSize: '1.15rem' }}>{hub.name}</h4>
@@ -204,7 +200,7 @@ const DistributorPage = () => {
         return (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {retailers.map((r, i) => (
-              <div key={i} style={{ background: 'white', color: '#1e293b', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9', position: 'relative' }}>
+              <div key={i} className="glass-card" style={{ padding: '30px', position: 'relative' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                   <div>
                     <h4 style={{ margin: '0 0 5px 0', fontSize: '1.2rem' }}>{r.name}</h4>
@@ -239,7 +235,7 @@ const DistributorPage = () => {
       case 'Analytics':
         return (
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '24px' }}>
-            <div style={{ background: 'white', color: '#1e293b', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9' }}>
+            <div className="glass-card" style={{ padding: '30px' }}>
                <h3 style={{ margin: '0 0 5px 0', fontSize: '1.1rem' }}>Distribution Performance</h3>
                <p style={{ margin: '0 0 25px 0', color: '#64748b', fontSize: '0.9rem' }}>Key performance metrics</p>
                
@@ -260,7 +256,7 @@ const DistributorPage = () => {
                ))}
             </div>
 
-            <div style={{ background: 'white', color: '#1e293b', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9' }}>
+            <div className="glass-card" style={{ padding: '30px' }}>
                <h3 style={{ margin: '0 0 5px 0', fontSize: '1.1rem' }}>Regional Distribution</h3>
                <p style={{ margin: '0 0 25px 0', color: '#64748b', fontSize: '0.9rem' }}>Volume by region this month</p>
                
@@ -282,7 +278,7 @@ const DistributorPage = () => {
             </div>
 
             {/* Bottom full width Recent Activity */}
-            <div style={{ gridColumn: 'span 2', background: 'white', color: '#1e293b', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9' }}>
+            <div className="glass-card" style={{ gridColumn: 'span 2', padding: '30px' }}>
                <h3 style={{ margin: '0 0 5px 0', fontSize: '1.1rem' }}>Recent Activity</h3>
                <p style={{ margin: '0 0 25px 0', color: '#64748b', fontSize: '0.9rem' }}>Latest distribution updates</p>
                
@@ -335,21 +331,15 @@ const DistributorPage = () => {
         {/* Stats Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', marginBottom: '40px' }}>
           {stats.map((stat, i) => (
-            <div key={i} style={{ 
-              background: 'white', color: '#1e293b', 
-              padding: '24px', 
-              borderRadius: '24px', 
-              border: '1px solid #f1f5f9',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.02)',
-              transition: 'transform 0.2s ease',
-              cursor: 'default'
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                <span style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: '500' }}>{stat.label}</span>
+            <div key={i} className="minimal-stat-card">
+              <div className="stat-card-header">
+                <span className="stat-label">{stat.label}</span>
                 <div style={{ color: stat.color }}>{stat.icon}</div>
               </div>
-              <div style={{ fontSize: '1.75rem', fontWeight: '700', color: '#0a0a0a', marginBottom: '4px' }}>{stat.value}</div>
-              <div style={{ fontSize: '0.8rem', color: '#94a3b8' }}>{stat.change}</div>
+              <div className="stat-card-body">
+                <div className="stat-value">{stat.value}</div>
+                <div className="stat-trend positive">{stat.change}</div>
+              </div>
             </div>
           ))}
         </div>

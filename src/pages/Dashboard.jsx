@@ -163,7 +163,7 @@ const Dashboard = ({ role = 'admin' }) => {
                 { label: 'Smart Contract VPC', status: 'Secure', val: 100, color: '#10b981' },
                 { label: 'IPFS Storage', status: 'Optimized', val: 92, color: '#3b82f6' }
               ].map((item, idx) => (
-                <div key={idx} style={{ padding: '15px', background: '#f8fbf8', borderRadius: '12px', border: '1px solid #eef2ee', marginBottom: '12px' }}>
+                  <div key={idx} className="minimal-stat-card">
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
                     <span style={{ fontWeight: '600', fontSize: '0.9rem' }}>{item.label}</span>
                     <span style={{ color: item.color, fontSize: '0.75rem', fontWeight: 'bold' }}>{item.status}</span>
@@ -188,7 +188,7 @@ const Dashboard = ({ role = 'admin' }) => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
             {pendingUsers.length > 0 && (
-              <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b', border: '2px solid #fef3c7' }}>
+              <div className="glass-card pending-approvals-card">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
                   <div style={{ background: '#fef3c7', padding: '8px', borderRadius: '10px' }}>
                     <AlertCircle size={20} color="#d97706" />
@@ -509,7 +509,7 @@ const Dashboard = ({ role = 'admin' }) => {
               </div>
             </div>
 
-            <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
+            <div className="glass-card" style={{ padding: '30px' }}>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '20px' }}>
                 <BellRing size={20} color="#f59e0b" />
                 <h3 style={{ margin: 0 }}>Communication & Alerts</h3>
@@ -533,7 +533,7 @@ const Dashboard = ({ role = 'admin' }) => {
               </div>
             </div>
 
-            <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
+            <div className="glass-card" style={{ padding: '30px' }}>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '20px' }}>
                 <History size={20} color="#ef4444" />
                 <h3 style={{ margin: 0 }}>Policy & Compliance</h3>
@@ -575,12 +575,14 @@ const Dashboard = ({ role = 'admin' }) => {
 
         <div className="dashboard-stats-row" style={{ marginTop: '10px' }}>
           {stats.map((stat, idx) => (
-            <div key={idx} className="minimal-stat-card shadow-sm" style={{ border: '1px solid #f1f5f9' }}>
+            <div key={idx} className="minimal-stat-card">
               <div className="stat-card-header">
-                {stat.label}
+                <span className="stat-label">{stat.label}</span>
                 <div style={{ color: stat.color }}>{stat.icon}</div>
               </div>
-              <div className="stat-card-value">{stat.value}</div>
+              <div className="stat-card-body">
+                <div className="stat-value">{stat.value}</div>
+              </div>
             </div>
           ))}
         </div>

@@ -28,8 +28,8 @@
     border-radius: var(--radius-card);
     position: relative;
     overflow: hidden;
-    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.3);
-    border: var(--border-dark);
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--secondary);
 }
 
 .banner-content {
@@ -130,15 +130,16 @@
     align-items: center;
     gap: 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid #f0f0f0;
+    transition: var(--transition-normal);
+    border: 1px solid var(--secondary);
+    box-shadow: var(--shadow-subtle);
     color: var(--color-dark);
 }
 
 .category-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    border-color: #d4e0b0;
+    box-shadow: var(--shadow-medium);
+    border-color: var(--primary);
 }
 
 .category-card.active {
@@ -296,15 +297,16 @@
     background: white;
     border-radius: var(--radius-card);
     overflow: hidden;
-    border: var(--border-dark);
-    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 1px solid var(--secondary);
+    box-shadow: var(--shadow-subtle);
+    transition: var(--transition-normal);
     color: var(--text-on-light);
 }
 
 .shop-product-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 16px 16px 0px rgba(0, 0, 0, 0.25);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--primary);
 }
 
 .product-img-wrapper {

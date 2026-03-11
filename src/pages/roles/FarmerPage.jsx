@@ -45,7 +45,7 @@ const FarmerPage = () => {
   const OrdersView = () => {
     const [orderTab, setOrderTab] = React.useState('bulk');
     return (
-      <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
+      <div className="glass-card" style={{ padding: '30px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
           <div>
             <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>Orders</h3>
@@ -168,7 +168,7 @@ const FarmerPage = () => {
     switch (activeTab) {
       case 'My Batches':
         return (
-          <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
+          <div className="glass-card" style={{ padding: '30px' }}>
              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
                 <div>
                   <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>My Crop Batches</h3>
@@ -184,7 +184,7 @@ const FarmerPage = () => {
                   { name: 'Organic Tomato', batch: '123', planted: '2026-03-11', area: '2', fertilizers: '0', pestControl: '0' },
                   { name: 'Organic Potato', batch: '111', planted: '2026-03-25', area: '5', fertilizers: '0', pestControl: '0' }
                 ].map((item, idx) => (
-                  <div key={idx} className="batch-entry-card" style={{ padding: '25px', border: '1px solid #f0f0f0', borderRadius: '16px', background: '#fff' }}>
+                  <div key={idx} className="glass-card" style={{ padding: '25px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
                       <div>
                         <h4 style={{ fontSize: '1.15rem', color: '#2d3a2d', marginBottom: '4px' }}>{item.name}</h4>
@@ -222,7 +222,7 @@ const FarmerPage = () => {
       case 'Production Tracking':
         return (
           <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '20px' }}>
-             <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
+             <div className="glass-card" style={{ padding: '30px' }}>
                 <h3 style={{ fontSize: '1.1rem', marginBottom: '5px' }}>Organic Input Tracking</h3>
                 <p style={{ color: '#666', fontSize: '0.85rem', marginBottom: '25px' }}>Monitor all inputs across batches</p>
                 
@@ -249,7 +249,7 @@ const FarmerPage = () => {
                 </div>
              </div>
 
-             <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
+             <div className="glass-card" style={{ padding: '30px' }}>
                 <h3 style={{ fontSize: '1.1rem', marginBottom: '5px' }}>Harvest Calendar</h3>
                 <p style={{ color: '#666', fontSize: '0.85rem', marginBottom: '25px' }}>Upcoming harvest schedule</p>
 
@@ -277,7 +277,7 @@ const FarmerPage = () => {
       case 'create':
         return (
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh', padding: '20px' }}>
-             <div className="glass-card" style={{ padding: '40px', background: 'white', color: '#1e293b', maxWidth: '800px', width: '100%', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', borderRadius: '24px' }}>
+             <div className="glass-card" style={{ padding: '40px', maxWidth: '800px', width: '100%', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '30px' }}>
                    <div>
                       <h2 style={{ fontSize: '1.5rem', marginBottom: '5px' }}>Create New Crop Batch</h2>

@@ -61,8 +61,8 @@ ul {
 .glass-card,
 .bento-card {
     background: white;
-    border: var(--border-dark);
-    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--secondary);
+    box-shadow: var(--shadow-subtle);
     border-radius: var(--radius-card);
     color: var(--color-dark);
     transition: var(--transition-normal);
@@ -70,8 +70,9 @@ ul {
 
 .glass-card:hover,
 .bento-card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--primary);
 }
 
 .bento-card.dark {

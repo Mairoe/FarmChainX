@@ -9,17 +9,17 @@ const WarehousePage = () => {
   const activeTab = searchParams.get('tab') || 'Overview';
 
   const stats = [
-    { label: 'Capacity Used', value: '82%', icon: <Warehouse size={18} /> },
-    { label: 'Active Cold Storage', value: '12 Units', icon: <Droplets size={18} /> },
-    { label: 'Avg Storage Temp', value: '4°C', icon: <Thermometer size={18} /> },
-    { label: 'Quality Approvals', value: '150+', icon: <ShieldCheck size={18} /> },
+    { label: 'Capacity Used', value: '82%', icon: <Warehouse size={18} />, color: '#4a6b4a' },
+    { label: 'Active Cold Storage', value: '12 Units', icon: <Droplets size={18} />, color: '#4a6b4a' },
+    { label: 'Avg Storage Temp', value: '4°C', icon: <Thermometer size={18} />, color: '#4a6b4a' },
+    { label: 'Quality Approvals', value: '150+', icon: <ShieldCheck size={18} />, color: '#4a6b4a' },
   ];
 
   const renderContent = () => {
     switch (activeTab) {
       case 'Overview':
         return (
-          <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
+          <div className="glass-card" style={{ padding: '30px' }}>
             <h3>Inventory & Storage Status</h3>
             <p style={{ color: '#666', marginBottom: '20px' }}>Real-time monitoring of warehouse conditions and stock levels.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
@@ -36,7 +36,7 @@ const WarehousePage = () => {
         );
       case 'Inventory':
         return (
-          <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
+          <div className="glass-card" style={{ padding: '30px' }}>
             <h3>Inventory Management</h3>
             <div className="table-container">
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
@@ -73,17 +73,19 @@ const WarehousePage = () => {
         
         <div className="dashboard-stats-row">
           {stats.map((stat, idx) => (
-            <div key={idx} className="minimal-stat-card shadow-sm">
+            <div key={idx} className="minimal-stat-card">
               <div className="stat-card-header">
-                {stat.label}
-                <div style={{ color: '#4a6b4a' }}>{stat.icon}</div>
+                <span className="stat-label">{stat.label}</span>
+                <div style={{ color: stat.color }}>{stat.icon}</div>
               </div>
-              <div className="stat-card-value">{stat.value}</div>
+              <div className="stat-card-body">
+                <div className="stat-value">{stat.value}</div>
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="tab-content" style={{ marginTop: '20px' }}>
+        <div className="tab-content tab-content-margin-top">
           {renderContent()}
         </div>
       </main>

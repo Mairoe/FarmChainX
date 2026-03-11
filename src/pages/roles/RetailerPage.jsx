@@ -63,8 +63,8 @@ const RECENT_SALES = [
 const SourcingView = () => (
   <div className="fade-in-up">
     <div className="section-header" style={{ marginBottom: '32px' }}>
-      <h2 style={{ fontSize: '1.8rem', fontWeight: '800', color: 'white' }}>Node Sourcing Marketplace</h2>
-      <p style={{ color: 'white' }}>Connect with **Distributors** to purchase verified **Farmer Batches**.</p>
+      <h2 style={{ fontSize: '1.8rem', fontWeight: '800', color: '#1a1a1a' }}>Node Sourcing Marketplace</h2>
+      <p style={{ color: '#4a5568' }}>Connect with **Distributors** to purchase verified **Farmer Batches**.</p>
     </div>
     
     <div className="marketplace-grid">
@@ -198,7 +198,7 @@ const RevenueView = () => (
 // 4. Insights Tab (Analytics)
 const InsightsView = () => (
   <div className="fade-in-up" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px' }}>
-    <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b', borderRadius: '24px' }}>
+    <div className="glass-card" style={{ padding: '30px' }}>
       <h3 style={{ fontSize: '1.4rem', fontWeight: '800', marginBottom: '24px' }}>AI Store Assistant</h3>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         <div style={{ padding: '20px', background: '#f0fdf4', borderRadius: '16px', border: '1px solid #dcfce7' }}>

@@ -19,7 +19,7 @@
     background: var(--white);
     padding: 28px;
     border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(1, 22, 30, 0.02);
+    box-shadow: var(--shadow-subtle);
     border: 1px solid var(--secondary);
     display: flex;
     flex-direction: column;
@@ -55,14 +55,16 @@
     background: var(--white);
     border-radius: var(--radius-card);
     border: 1px solid var(--secondary);
+    box-shadow: var(--shadow-subtle);
     overflow: hidden;
     transition: var(--transition-normal);
     color: var(--text-on-light);
 }
 
 .product-card:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-    transform: scale(1.02);
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-5px);
+    border-color: var(--primary);
 }
 
 .product-image-placeholder {
@@ -91,7 +93,7 @@
 
 /* Inventory Table */
 .inventory-container {
-    background: var(--color-cream);
+    background: white;
     border-radius: 24px;
     border: 1px solid var(--accent);
     overflow: hidden;
@@ -105,13 +107,13 @@
 }
 
 .retail-table th {
-    background: var(--background);
+    background: var(--color-dark);
     padding: 20px 24px;
     text-align: left;
     font-size: 0.8rem;
     font-weight: 800;
-    color: var(--text-on-dark);
-    opacity: 0.8;
+    color: white;
+    opacity: 1;
     text-transform: uppercase;
     letter-spacing: 1.5px;
 }

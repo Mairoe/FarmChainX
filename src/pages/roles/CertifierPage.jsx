@@ -160,14 +160,16 @@ const CertifierPage = () => {
         return (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
             {/* Stats Row */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', marginBottom: '40px' }}>
               {stats.map((stat, i) => (
-                <div key={i} style={{ background: 'white', color: '#1e293b', padding: '24px', borderRadius: '16px', border: '1px solid #f1f5f9', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
-                    <span style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: '500' }}>{stat.label}</span>
+                <div key={i} className="minimal-stat-card">
+                  <div className="stat-card-header">
+                    <span className="stat-label">{stat.label}</span>
                     <div style={{ color: stat.color }}>{stat.icon}</div>
                   </div>
-                  <div style={{ fontSize: '1.5rem', fontWeight: '700' }}>{stat.value}</div>
+                  <div className="stat-card-body">
+                    <div className="stat-value">{stat.value}</div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -181,41 +183,41 @@ const CertifierPage = () => {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 {pendingBatches.map((batch, i) => (
-                  <div key={i} style={{ background: 'white', color: '#1e293b', borderRadius: '20px', padding: '24px', border: '1px solid #f1f5f9', position: 'relative' }}>
-                    <div style={{ position: 'absolute', top: '24px', right: '24px' }}>
-                      <span style={{ background: '#fffbeb', color: '#9a3412', padding: '4px 12px', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '600' }}>{batch.status}</span>
+                  <div key={i} className="glass-card" style={{ padding: '30px', position: 'relative' }}>
+                    <div style={{ position: 'absolute', top: '30px', right: '30px' }}>
+                      <span style={{ background: '#fffbeb', color: '#9a3412', padding: '5px 15px', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '700' }}>{batch.status}</span>
                     </div>
                     
-                    <h4 style={{ margin: '0 0 4px 0', fontSize: '1.1rem', fontWeight: '600' }}>{batch.name}</h4>
-                    <p style={{ margin: '0 0 20px 0', color: '#64748b', fontSize: '0.85rem' }}>Batch: {batch.id}</p>
+                    <h4 style={{ margin: '0 0 5px 0', fontSize: '1.2rem', fontWeight: '700' }}>{batch.name}</h4>
+                    <p style={{ margin: '0 0 25px 0', color: '#64748b', fontSize: '0.9rem' }}>Batch ID: {batch.id}</p>
                     
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px 40px', marginBottom: '25px' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px 60px', marginBottom: '30px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.95rem' }}>
                         <span style={{ color: '#64748b' }}>Planted Date:</span>
-                        <span style={{ fontWeight: '500' }}>{batch.plantedDate}</span>
+                        <span style={{ fontWeight: '600' }}>{batch.plantedDate}</span>
                       </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.95rem' }}>
                         <span style={{ color: '#64748b' }}>Area Size:</span>
-                        <span style={{ fontWeight: '500' }}>{batch.areaSize}</span>
+                        <span style={{ fontWeight: '600' }}>{batch.areaSize}</span>
                       </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem' }}>
-                        <span style={{ color: '#64748b' }}>Organic Fertilizers:</span>
-                        <span style={{ fontWeight: '500' }}>{batch.fertilizers}</span>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.95rem' }}>
+                        <span style={{ color: '#64748b' }}>Fertilizers:</span>
+                        <span style={{ fontWeight: '600' }}>{batch.fertilizers}</span>
                       </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem' }}>
-                        <span style={{ color: '#64748b' }}>Organic Pest Control:</span>
-                        <span style={{ fontWeight: '500' }}>{batch.pests}</span>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.95rem' }}>
+                        <span style={{ color: '#64748b' }}>Pest Control:</span>
+                        <span style={{ fontWeight: '600' }}>{batch.pests}</span>
                       </div>
                     </div>
-
+                    
                     <button 
                       onClick={() => {
                         setSelectedBatch(batch);
                         setShowReviewModal(true);
                       }}
-                      style={{ width: '100%', background: '#0a0a0a', color: 'white', padding: '12px', borderRadius: '12px', border: 'none', fontWeight: '600', cursor: 'pointer', transition: 'opacity 0.2s' }}
+                      style={{ width: '100%', background: '#0a0a0a', color: 'white', padding: '15px', borderRadius: '12px', border: 'none', fontWeight: '700', cursor: 'pointer', transition: 'var(--transition-normal)' }}
                     >
-                      Review Batch
+                      Process Certification
                     </button>
                   </div>
                 ))}
@@ -267,8 +269,8 @@ const CertifierPage = () => {
                       setSelectedBatch(batch);
                       setShowReviewModal(true);
                     }}
-                    style={{ background: 'white', color: '#1e293b', padding: '20px', borderRadius: '16px', border: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', transition: 'transform 0.2s ease' }}
-                    className="history-card"
+                    className="glass-card"
+                    style={{ padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}
                    >
                      <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                         <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: batch.status === 'Approved' ? '#f0fdf4' : '#fef2f2', display: 'flex', alignItems: 'center', justifyContent: 'center', color: batch.status === 'Approved' ? '#22c55e' : '#ef4444' }}>

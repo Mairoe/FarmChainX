@@ -64,7 +64,7 @@ const ConsumerDashboard = () => {
             {date}
           </div>
         )}
-        <div style={{ background: '#111', padding: '15px', borderRadius: '12px' }}>
+        <div style={{ background: '#f8fafc', padding: '15px', borderRadius: '12px' }}>
           {children}
         </div>
       </div>
@@ -106,11 +106,8 @@ const ConsumerDashboard = () => {
           <div className="batch-header" style={{ marginBottom: '30px' }}>
             <p style={{ color: '#aaa', margin: '0 0 5px 0' }}>Batch: {selectedBatch.id}</p>
             
-            <div style={{ 
-              background: 'black', color: 'white', 
+            <div className="glass-card" style={{ 
               padding: '40px', 
-              borderRadius: '24px', 
-              boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -122,12 +119,7 @@ const ConsumerDashboard = () => {
               <p style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Scan for quick access</p>
             </div>
 
-            <div style={{ 
-              background: 'black', color: 'white', 
-              padding: '40px', 
-              borderRadius: '24px', 
-              boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
-            }}>
+            <div className="glass-card" style={{ padding: '40px' }}>
               <h3 style={{ fontSize: '1.25rem', marginBottom: '10px' }}>Product Journey</h3>
               <p style={{ color: '#aaa', fontSize: '0.95rem', marginBottom: '40px' }}>Complete traceability from farm to you</p>
 
@@ -168,20 +160,20 @@ const ConsumerDashboard = () => {
                 </JourneyItem>
 
                 <JourneyItem icon={<CheckCircle2 size={20} />} title="Organic Certification" color="#10b981">
-                   <div style={{ background: '#111', padding: '15px', borderRadius: '12px', border: '1px solid #d1fae5' }}>
+                   <div style={{ background: '#f8fafc', padding: '15px', borderRadius: '12px', border: '1px solid #d1fae5' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-                        <h4 style={{ margin: 0, fontSize: '0.95rem' }}>Organic Certification Board</h4>
+                        <h4 style={{ margin: 0, fontSize: '0.95rem', color: '#1e293b' }}>Organic Certification Board</h4>
                         <span style={{ fontSize: '0.75rem', color: '#059669', fontWeight: '600' }}>approved</span>
                       </div>
-                      <p style={{ margin: '0 0 8px 0', fontSize: '0.85rem', color: '#aaa' }}>2026-03-10</p>
+                      <p style={{ margin: '0 0 8px 0', fontSize: '0.85rem', color: '#64748b' }}>2026-03-10</p>
                       <p style={{ margin: 0, fontSize: '0.85rem', fontStyle: 'italic', color: '#10b981' }}>"Meets all organic standards"</p>
                    </div>
                 </JourneyItem>
               </div>
             </div>
 
-            <div style={{ marginTop: '30px', background: '#111', padding: '30px', borderRadius: '24px', border: '1px solid #dcfce7' }}>
-              <h3 style={{ fontSize: '1.2rem', color: '#4ade80', marginBottom: '20px' }}>Why Choose Organic?</h3>
+            <div style={{ marginTop: '30px', background: 'white', padding: '30px', borderRadius: '24px', border: '1px solid #dcfce7' }}>
+              <h3 style={{ fontSize: '1.2rem', color: '#166534', marginBottom: '20px' }}>Why Choose Organic?</h3>
               {[
                 'No synthetic pesticides or fertilizers used in production',
                 'Better for soil health and biodiversity',
@@ -190,7 +182,7 @@ const ConsumerDashboard = () => {
               ].map((text, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
                   <CheckCircle2 size={18} color="#22c55e" />
-                  <p style={{ margin: 0, fontSize: '0.95rem', color: 'white' }}>{text}</p>
+                  <p style={{ margin: 0, fontSize: '0.95rem', color: '#374151' }}>{text}</p>
                 </div>
               ))}
             </div>
@@ -204,7 +196,7 @@ const ConsumerDashboard = () => {
         <h1 style={{ fontSize: '2.5rem', color: '#1a202c', marginBottom: '16px', fontWeight: '700' }}>Track Your Organic Product Journey</h1>
         <p style={{ color: '#4a5568', fontSize: '1.1rem', marginBottom: '60px' }}>Scan the QR code or enter the batch number to see the complete farm-to-table story</p>
 
-        <div style={{ background: 'white', color: '#1e293b', padding: '40px', borderRadius: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', textAlign: 'left', marginBottom: '40px' }}>
+        <div className="glass-card" style={{ padding: '40px', textAlign: 'left', marginBottom: '40px' }}>
           <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>Enter Batch Number</h3>
           <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '24px' }}>Find the batch number on your product packaging</p>
           
@@ -227,31 +219,17 @@ const ConsumerDashboard = () => {
           </div>
         </div>
 
-        <div style={{ background: 'white', color: '#1e293b', padding: '40px', borderRadius: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', textAlign: 'left' }}>
+        <div className="glass-card" style={{ padding: '40px', textAlign: 'left' }}>
           <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>Try Demo Batches</h3>
           <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '32px' }}>Click on a batch to see its complete journey</p>
           
           <div 
             onClick={handleDemoClick}
+            className="glass-card"
             style={{ 
-              border: '1px solid #f1f5f9', 
               padding: '24px', 
-              borderRadius: '20px', 
               cursor: 'pointer',
-              maxWidth: '350px',
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              background: '#f8fafc',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.02)'
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.transform = 'translateY(-4px)';
-              e.currentTarget.style.boxShadow = '0 10px 25px rgba(0,0,0,0.05)';
-              e.currentTarget.style.borderColor = '#d1fae5';
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.02)';
-              e.currentTarget.style.borderColor = '#f1f5f9';
+              maxWidth: '350px'
             }}
           >
             <h4 style={{ margin: '0 0 5px 0', fontSize: '1.1rem', color: '#1a1a1a' }}>Organic Wheat</h4>

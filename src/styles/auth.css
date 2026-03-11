@@ -55,10 +55,17 @@
     padding: 50px;
     width: 100%;
     max-width: 500px;
-    border: var(--border-dark);
-    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--secondary);
+    box-shadow: var(--shadow-subtle);
     border-radius: var(--radius-card);
     color: var(--color-dark);
+    transition: var(--transition-normal);
+}
+
+.auth-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--primary);
 }
 
 .auth-header {

@@ -25,9 +25,9 @@
   /* Styling Tokens */
   --radius-cta: 4px;
   --radius-card: 24px;
-  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.3);
-  --shadow-medium: 0 10px 40px rgba(0, 0, 0, 0.5);
-  --border-app: 1px solid rgba(242, 232, 221, 0.1);
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
+  --shadow-medium: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --border-app: 1px solid var(--secondary);
   --border-dark: 2px solid var(--color-dark);
 
   /* Glassmorphism */
