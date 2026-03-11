@@ -21,8 +21,8 @@ const products = [
   { 
     id: 1, 
     name: 'Oxheart Heirloom Tomatoes', 
-    price: 3.99, 
-    unit: '/lb',
+    price: 330, 
+    unit: '/kg',
     farmer: 'Sun Valley Organic Farm', 
     aiScore: 98,
     category: 'Vegetables',
@@ -33,7 +33,7 @@ const products = [
   { 
     id: 2, 
     name: 'Farm-Fresh Brown Eggs', 
-    price: 5.95, 
+    price: 495, 
     unit: '/dozen',
     farmer: 'Heritage Highland Farms', 
     aiScore: 95,
@@ -45,7 +45,7 @@ const products = [
   { 
     id: 3, 
     name: 'Crisp English Cucumbers', 
-    price: 1.99, 
+    price: 165, 
     unit: 'each',
     farmer: 'Hilltop Acres', 
     aiScore: 94,
@@ -57,8 +57,8 @@ const products = [
   { 
     id: 4, 
     name: 'Wild Organic Strawberries', 
-    price: 4.99, 
-    unit: '/lb',
+    price: 415, 
+    unit: '/kg',
     farmer: 'Sun Valley Organic Farm', 
     aiScore: 99,
     category: 'Fruits',
@@ -69,8 +69,8 @@ const products = [
   { 
     id: 5, 
     name: 'Pure Wildflower Honey', 
-    price: 15.80, 
-    unit: '12oz jar',
+    price: 1310, 
+    unit: '340g jar',
     farmer: 'Pure Bee Apiaries', 
     aiScore: 97,
     category: 'Natural Swts',
@@ -81,7 +81,7 @@ const products = [
   { 
     id: 6, 
     name: 'Valencia Juicy Oranges', 
-    price: 4.49, 
+    price: 370, 
     unit: '/bag',
     farmer: 'Riverbend Farms', 
     aiScore: 96,
@@ -170,7 +170,7 @@ const ProductDetailPage = () => {
                 <span style={{ fontSize: '1rem', color: '#7a6e5d', fontWeight: 600 }}>{product.farmer}</span>
                 <h1 style={{ fontSize: '3.5rem', fontWeight: 900, letterSpacing: '-2px', color: '#1e291e', margin: '10px 0' }}>{product.name}</h1>
                 <div className="detail-pricing" style={{ fontSize: '2.5rem', fontWeight: 900, color: '#2d3a2d', marginTop: '20px' }}>
-                  <span>${product.price.toFixed(2)}</span>
+                  <span>₹{product.price.toFixed(2)}</span>
                   <span style={{ fontSize: '1.2rem', color: '#94a3b8', fontWeight: 500, marginLeft: '8px' }}>{product.unit}</span>
                 </div>
               </div>

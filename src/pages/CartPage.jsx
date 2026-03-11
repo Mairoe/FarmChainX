@@ -42,7 +42,7 @@ const CartPage = () => {
   };
 
   const subtotal = cart.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
-  const deliveryFee = cart.length > 0 ? 5.00 : 0.00;
+  const deliveryFee = cart.length > 0 ? 400.00 : 0.00;
   const total = subtotal + deliveryFee;
 
   const handleCheckout = () => {
@@ -140,11 +140,11 @@ const CartPage = () => {
                           <span style={{ padding: '0 15px', fontWeight: 700 }}>{item.quantity || 1}</span>
                           <button onClick={() => updateQuantity(item.cartId, 1)} style={{ width: '32px', height: '32px', borderRadius: '8px', border: 'none', background: 'white', cursor: 'pointer', fontWeight: 800 }}>+</button>
                         </div>
-                        <span style={{ fontSize: '0.9rem', color: '#94a3b8' }}>x ${item.price.toFixed(2)}</span>
+                        <span style={{ fontSize: '0.9rem', color: '#94a3b8' }}>x ₹{item.price.toFixed(2)}</span>
                       </div>
                     </div>
                     <div className="cart-item-price" style={{ fontSize: '1.6rem', fontWeight: 900, color: '#2d3a2d', minWidth: '120px', textAlign: 'right' }}>
-                      ${(item.price * (item.quantity || 1)).toFixed(2)}
+                      ₹{(item.price * (item.quantity || 1)).toFixed(2)}
                     </div>
                     <button 
                       className="remove-item" 
@@ -164,16 +164,16 @@ const CartPage = () => {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   <div className="summary-row" style={{ display: 'flex', justifyContent: 'space-between', color: '#64748b' }}>
                     <span>Verified Subtotal</span>
-                    <span style={{ fontWeight: 700, color: '#2d3a2d' }}>${subtotal.toFixed(2)}</span>
+                    <span style={{ fontWeight: 700, color: '#2d3a2d' }}>₹{subtotal.toFixed(2)}</span>
                   </div>
                   <div className="summary-row" style={{ display: 'flex', justifyContent: 'space-between', color: '#64748b' }}>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><Truck size={16}/> Certified Logistics</span>
-                    <span style={{ fontWeight: 700, color: '#2d3a2d' }}>${deliveryFee.toFixed(2)}</span>
+                    <span style={{ fontWeight: 700, color: '#2d3a2d' }}>₹{deliveryFee.toFixed(2)}</span>
                   </div>
                   <div className="summary-divider" style={{ height: '1px', background: '#f0f0f0', margin: '10px 0' }}></div>
                   <div className="summary-row total" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.5rem', fontWeight: 900 }}>
                     <span>Total Amount</span>
-                    <span style={{ color: '#2d3a2d' }}>${total.toFixed(2)}</span>
+                    <span style={{ color: '#2d3a2d' }}>₹{total.toFixed(2)}</span>
                   </div>
                 </div>
 

@@ -16,25 +16,25 @@ const CORE_PRODUCTS = {
     name: 'Oxheart Heirloom Tomatoes', 
     producer: 'Sun Valley Organic Farm',
     distributor: 'Central Logistics Hub',
-    price: '$4.50/kg' 
+    price: '₹370/kg' 
   },
   OIL: { 
     name: 'Cold-Pressed Sunflower Oil', 
     producer: 'Golden Valley Millers',
     distributor: 'Eco-Express Distributors',
-    price: '$12.00/L' 
+    price: '₹990/L' 
   },
   WHEAT: { 
     name: 'Ancient Spelt Grain', 
     producer: 'Heritage Highland Farms',
     distributor: 'Northern Bulk Distributors',
-    price: '$3.20/kg' 
+    price: '₹265/kg' 
   },
   HONEY: { 
     name: 'Wildflower Honey', 
     producer: 'Pure Bee Apiaries',
     distributor: 'Direct Logistics Co.',
-    price: '$15.80/u' 
+    price: '₹1310/u' 
   },
 };
 
@@ -52,9 +52,9 @@ const MY_STOCK = [
 ];
 
 const RECENT_SALES = [
-  { id: 'TX-101', item: CORE_PRODUCTS.TOMATOES.name, qty: '5kg', total: '$22.50', time: '10 mins ago', distributor: 'Central Logistics Hub' },
-  { id: 'TX-102', item: CORE_PRODUCTS.OIL.name, qty: '2L', total: '$24.00', time: '1 hour ago', distributor: 'Eco-Express Distributors' },
-  { id: 'TX-103', item: CORE_PRODUCTS.WHEAT.name, qty: '20kg', total: '$64.00', time: 'Yesterday', distributor: 'Northern Bulk Distributors' },
+  { id: 'TX-101', item: CORE_PRODUCTS.TOMATOES.name, qty: '5kg', total: '₹1860', time: '10 mins ago', distributor: 'Central Logistics Hub' },
+  { id: 'TX-102', item: CORE_PRODUCTS.OIL.name, qty: '2L', total: '₹1990', time: '1 hour ago', distributor: 'Eco-Express Distributors' },
+  { id: 'TX-103', item: CORE_PRODUCTS.WHEAT.name, qty: '20kg', total: '₹5300', time: 'Yesterday', distributor: 'Northern Bulk Distributors' },
 ];
 
 // --- SUB-VIEWS ---
@@ -174,7 +174,7 @@ const RevenueView = () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div className="glass-card" style={{ padding: '30px', background: '#2d3a2d', color: 'white', borderRadius: '24px' }}>
         <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '10px' }}>Today's Revenue</h3>
-        <div style={{ fontSize: '2.8rem', fontWeight: '900' }}>$1,240.00</div>
+        <div style={{ fontSize: '2.8rem', fontWeight: '900' }}>₹102,900.00</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#10b981', marginTop: '10px', fontWeight: '700' }}>
           <TrendingUp size={18} /> +12% vs Yesterday
         </div>
@@ -229,7 +229,7 @@ const RetailerPage = () => {
   const STATS = [
     { label: 'Purchasable Items', val: MARKET_LIST.length, trend: '4 Suppliers', icon: <Package size={20} color="#3b82f6" />, bg: '#eff6ff' },
     { label: 'My Inventory Items', val: MY_STOCK.length, trend: '1 Low Stock', icon: <ShoppingCart size={20} color="#a855f7" />, bg: '#faf5ff' },
-    { label: 'Today\'s Sales', val: '$1,240', trend: '+12%', icon: <TrendingUp size={20} color="#22c55e" />, bg: '#f0fdf4' },
+    { label: 'Today\'s Sales', val: '₹102,900', trend: '+12%', icon: <TrendingUp size={20} color="#22c55e" />, bg: '#f0fdf4' },
     { label: 'Verified Status', val: 'Active', trend: 'Blockchain Sync', icon: <CheckCircle2 size={20} color="#f59e0b" />, bg: '#fffbeb' },
   ];
 

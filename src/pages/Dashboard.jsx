@@ -53,7 +53,7 @@ const Dashboard = ({ role = 'admin' }) => {
   const [showTxnModal, setShowTxnModal] = useState(false);
   const [selectedTxn, setSelectedTxn] = useState(null);
   const [txnSearchQuery, setTxnSearchQuery] = useState('');
-  const [appCurrency, setAppCurrency] = useState('USD ($)');
+  const [appCurrency, setAppCurrency] = useState('INR (₹)');
   const [appLanguage, setAppLanguage] = useState('English (US)');
   const [isLiveMode, setIsLiveMode] = useState(false);
 
@@ -119,10 +119,10 @@ const Dashboard = ({ role = 'admin' }) => {
   ];
 
   const demoFinancialTransactions = [
-    { id: 'FT-1002', date: '2024-03-08', payer: 'EcoRetail Market', recipient: 'Smith Logistics', amount: '$4,250.00', status: 'Completed', method: 'Smart Contract Escrow' },
-    { id: 'FT-1003', date: '2024-03-08', payer: 'Smith Logistics', recipient: 'Greenfield Farm', amount: '$12,800.00', status: 'Completed', method: 'USDC Transfer' },
-    { id: 'FT-1004', date: '2024-03-09', payer: 'Global Fleet Inc', recipient: 'Greenfield Farm', amount: '$1,500.00', status: 'Pending', method: 'Platform Wallet' },
-    { id: 'FT-1005', date: '2024-03-09', payer: 'Consumer Sarah', recipient: 'EcoRetail Market', amount: '$45.20', status: 'Completed', method: 'Direct Payment' }
+    { id: 'FT-1002', date: '2024-03-08', payer: 'EcoRetail Market', recipient: 'Smith Logistics', amount: '₹340,000.00', status: 'Completed', method: 'Smart Contract Escrow' },
+    { id: 'FT-1003', date: '2024-03-08', payer: 'Smith Logistics', recipient: 'Greenfield Farm', amount: '₹1,024,000.00', status: 'Completed', method: 'USDC Transfer' },
+    { id: 'FT-1004', date: '2024-03-09', payer: 'Global Fleet Inc', recipient: 'Greenfield Farm', amount: '₹120,000.00', status: 'Pending', method: 'Platform Wallet' },
+    { id: 'FT-1005', date: '2024-03-09', payer: 'Consumer Sarah', recipient: 'EcoRetail Market', amount: '₹3,616.00', status: 'Completed', method: 'Direct Payment' }
   ];
 
   const handleAction = (msg) => { alert(`${msg} processed for demo.`); };
@@ -568,10 +568,9 @@ const Dashboard = ({ role = 'admin' }) => {
                     onChange={(e) => setAppCurrency(e.target.value)}
                     style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #e2e8f0', background: 'white', fontWeight: '600' }}
                   >
-                    <option>USD ($)</option>
+                    <option>INR (₹)</option>
                     <option>EUR (€)</option>
-                    <option>ETH (Ξ)</option>
-                    <option>BTC (₿)</option>
+                    <option>USD ($)</option>
                     <option>USDC (S)</option>
                   </select>
                   <p style={{ margin: '10px 0 0 0', fontSize: '0.75rem', color: '#94a3b8' }}>Sets the default pricing and transaction currency.</p>

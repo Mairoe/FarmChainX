@@ -134,9 +134,9 @@ const FarmerPage = () => {
                 </thead>
                 <tbody>
                   {[
-                    { id: '#DIR-102', customer: 'Sarah Miller', product: 'Fresh Strawberries', qty: '2 kg', amount: '$15.00', status: 'Delivered', color: '#10b981' },
-                    { id: '#DIR-105', customer: 'John Doe', product: 'Organic Tomatoes', qty: '5 kg', amount: '$20.00', status: 'Processing', color: '#f59e0b' },
-                    { id: '#DIR-106', customer: 'Emily Chen', product: 'Wildflower Honey', qty: '1 jar', amount: '$12.00', status: 'Shipped', color: '#3b82f6' },
+                    { id: '#DIR-102', customer: 'Sarah Miller', product: 'Fresh Strawberries', qty: '2 kg', amount: '₹1245.00', status: 'Delivered', color: '#10b981' },
+                    { id: '#DIR-105', customer: 'John Doe', product: 'Organic Tomatoes', qty: '5 kg', amount: '₹1660.00', status: 'Processing', color: '#f59e0b' },
+                    { id: '#DIR-106', customer: 'Emily Chen', product: 'Wildflower Honey', qty: '1 jar', amount: '₹990.00', status: 'Shipped', color: '#3b82f6' },
                   ].map((order, idx) => (
                     <tr key={idx} style={{ borderBottom: '1px solid #f8f8f8' }}>
                       <td style={{ padding: '20px 0', fontWeight: 'bold' }}>{order.id}</td>
@@ -351,7 +351,7 @@ const FarmerPage = () => {
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '25px' }}>
                   <div className="input-group">
-                      <label style={{ fontSize: '0.9rem', color: '#2d3a2d', fontWeight: '600', marginBottom: '10px', display: 'block' }}>Area Size (Acres/Units)</label>
+                      <label style={{ fontSize: '0.9rem', color: '#2d3a2d', fontWeight: '600', marginBottom: '10px', display: 'block' }}>Area Size (Hectares/Units)</label>
                       <input type="text" placeholder="e.g. 23" style={{ background: '#f5f5f0', border: 'none', padding: '15px', borderRadius: '12px', width: '100%' }} />
                    </div>
                    <div className="input-group">
