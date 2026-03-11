@@ -26,7 +26,7 @@ const products = [
     farmer: 'Sun Valley Organic Farm', 
     aiScore: 98,
     category: 'Vegetables',
-    image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1561136594-7f68413baa99?q=80&w=1000&auto=format&fit=crop',
     description: 'Our Oxheart Heirloom Tomatoes are hand-picked at peak ripeness. Grown in nutrient-rich volcanic soil, these tomatoes offer a complex, sweet flavor and a meaty texture perfect for salads and gourmet sauces.',
     batchId: 'FARM-BT-220A'
   },
@@ -38,7 +38,7 @@ const products = [
     farmer: 'Heritage Highland Farms', 
     aiScore: 95,
     category: 'Protein',
-    image: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e34ef?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1506976785307-8732e854ad03?q=80&w=1000&auto=format&fit=crop',
     description: 'Sourced from free-roaming hens that enjoy an organic diet. These eggs have deep orange yolks and superior flavor, packed with natural Omega-3s.',
     batchId: 'FARM-BT-112X'
   },
@@ -50,7 +50,7 @@ const products = [
     farmer: 'Hilltop Acres', 
     aiScore: 94,
     category: 'Vegetables',
-    image: 'https://images.unsplash.com/photo-1449300079323-02e209d9d02e?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1587411768638-ec71f8e33b78?q=80&w=1000&auto=format&fit=crop',
     description: 'Incredibly crisp and refreshing English cucumbers, grown in climate-controlled organic greenhouses to ensure consistent quality and flavor.',
     batchId: 'FARM-BT-095C'
   },
@@ -62,7 +62,7 @@ const products = [
     farmer: 'Sun Valley Organic Farm', 
     aiScore: 99,
     category: 'Fruits',
-    image: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1518635017498-87f514b751ba?q=80&w=1000&auto=format&fit=crop',
     description: 'Tiny bursts of pure summer sweetness. Our wild organic strawberries are grown without synthetic fertilizers and are picked when they reach deep ruby perfection.',
     batchId: 'FARM-BT-101S'
   },
@@ -74,7 +74,7 @@ const products = [
     farmer: 'Pure Bee Apiaries', 
     aiScore: 97,
     category: 'Natural Swts',
-    image: 'https://images.unsplash.com/photo-1587049352846-4a222e70c262?q=80&w=1000&auto=format&fit=crop',
+    image: '/images/honey.jpg',
     description: 'Raw, unfiltered honey collected from bees foraging in wild flower meadows. Rich in enzymes and local pollen, this honey is a natural powerhouse of health.',
     batchId: 'FARM-BT-005H'
   },
@@ -86,7 +86,7 @@ const products = [
     farmer: 'Riverbend Farms', 
     aiScore: 96,
     category: 'Fruits',
-    image: 'https://images.unsplash.com/photo-1547514701-42782101795e?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?q=80&w=1000&auto=format&fit=crop',
     description: 'Sweet, thin-skinned Valencia oranges perfect for fresh juice or snacking. Sustainably grown in coastal orchards.',
     batchId: 'FARM-BT-V88'
   }
