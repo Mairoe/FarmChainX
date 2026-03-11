@@ -107,7 +107,8 @@ const ConsumerDashboard = () => {
             <p style={{ color: '#666', margin: '0 0 5px 0' }}>Batch: {selectedBatch.id}</p>
             
             <div style={{ 
-              background: 'white', 
+              background: 'white', color: '#1e293b',
+              color: '#1e293b', 
               padding: '40px', 
               borderRadius: '24px', 
               boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
@@ -123,7 +124,8 @@ const ConsumerDashboard = () => {
             </div>
 
             <div style={{ 
-              background: 'white', 
+              background: 'white', color: '#1e293b',
+              color: '#1e293b', 
               padding: '40px', 
               borderRadius: '24px', 
               boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
@@ -204,7 +206,7 @@ const ConsumerDashboard = () => {
         <h1 style={{ fontSize: '2.5rem', color: '#1a202c', marginBottom: '16px', fontWeight: '700' }}>Track Your Organic Product Journey</h1>
         <p style={{ color: '#4a5568', fontSize: '1.1rem', marginBottom: '60px' }}>Scan the QR code or enter the batch number to see the complete farm-to-table story</p>
 
-        <div style={{ background: 'white', padding: '40px', borderRadius: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', textAlign: 'left', marginBottom: '40px' }}>
+        <div style={{ background: 'white', color: '#1e293b', color: '#1e293b', padding: '40px', borderRadius: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', textAlign: 'left', marginBottom: '40px' }}>
           <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>Enter Batch Number</h3>
           <p style={{ color: '#94a3b8', fontSize: '0.95rem', marginBottom: '24px' }}>Find the batch number on your product packaging</p>
           
@@ -227,7 +229,7 @@ const ConsumerDashboard = () => {
           </div>
         </div>
 
-        <div style={{ background: 'white', padding: '40px', borderRadius: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', textAlign: 'left' }}>
+        <div style={{ background: 'white', color: '#1e293b', color: '#1e293b', padding: '40px', borderRadius: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', textAlign: 'left' }}>
           <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>Try Demo Batches</h3>
           <p style={{ color: '#94a3b8', fontSize: '0.95rem', marginBottom: '32px' }}>Click on a batch to see its complete journey</p>
           

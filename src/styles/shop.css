@@ -3,6 +3,7 @@
     --market-primary: var(--primary);
     --market-light: var(--background);
     --market-secondary: var(--secondary);
+    --market-green: #10b981;
     --text-dark: var(--text-main);
 }
 
@@ -127,6 +128,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     border: 1px solid #f0f0f0;
+    color: var(--text-on-light);
 }
 
 .category-card:hover {
@@ -163,6 +165,10 @@
     font-size: 1.1rem;
     font-weight: 800;
     margin-bottom: 2px;
+    color: var(--text-on-light);
+}
+.category-card.active .cat-info h4 {
+    color: var(--white);
 }
 
 /* Main Content Layout */
@@ -182,6 +188,11 @@
     padding: 32px;
     border-radius: 32px;
     border: 1px solid #f0f0f0;
+    color: var(--text-on-light);
+}
+
+.shop-sidebar h1, .shop-sidebar h2, .shop-sidebar h3, .shop-sidebar h4, .shop-sidebar h5, .shop-sidebar h6 {
+    color: var(--text-on-light);
 }
 
 .search-minimal-v2 {
@@ -208,7 +219,7 @@
     width: 100%;
     font-family: inherit;
     font-size: 0.95rem;
-    color: #1e293b;
+    color: var(--text-on-dark);
     outline: none;
 }
 
@@ -279,6 +290,7 @@
     border: var(--border-dark);
     box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    color: var(--text-on-light);
 }
 
 .shop-product-card:hover {
@@ -352,7 +364,7 @@
 .current-price {
     font-size: 1.8rem;
     font-weight: 900;
-    color: var(--color-primary);
+    color: var(--primary);
 }
 
 .unit-label {

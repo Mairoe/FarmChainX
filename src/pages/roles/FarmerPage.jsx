@@ -45,7 +45,7 @@ const FarmerPage = () => {
   const OrdersView = () => {
     const [orderTab, setOrderTab] = React.useState('bulk');
     return (
-      <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+      <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
           <div>
             <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>Orders</h3>
@@ -168,7 +168,7 @@ const FarmerPage = () => {
     switch (activeTab) {
       case 'My Batches':
         return (
-          <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+          <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
                 <div>
                   <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>My Crop Batches</h3>
@@ -222,7 +222,7 @@ const FarmerPage = () => {
       case 'Production Tracking':
         return (
           <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '20px' }}>
-             <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+             <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
                 <h3 style={{ fontSize: '1.1rem', marginBottom: '5px' }}>Organic Input Tracking</h3>
                 <p style={{ color: '#666', fontSize: '0.85rem', marginBottom: '25px' }}>Monitor all inputs across batches</p>
                 
@@ -249,7 +249,7 @@ const FarmerPage = () => {
                 </div>
              </div>
 
-             <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+             <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
                 <h3 style={{ fontSize: '1.1rem', marginBottom: '5px' }}>Harvest Calendar</h3>
                 <p style={{ color: '#666', fontSize: '0.85rem', marginBottom: '25px' }}>Upcoming harvest schedule</p>
 
@@ -277,7 +277,7 @@ const FarmerPage = () => {
       case 'create':
         return (
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh', padding: '20px' }}>
-             <div className="glass-card" style={{ padding: '40px', background: 'white', maxWidth: '800px', width: '100%', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', borderRadius: '24px' }}>
+             <div className="glass-card" style={{ padding: '40px', background: 'white', color: '#1e293b', maxWidth: '800px', width: '100%', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', borderRadius: '24px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '30px' }}>
                    <div>
                       <h2 style={{ fontSize: '1.5rem', marginBottom: '5px' }}>Create New Crop Batch</h2>
@@ -319,7 +319,7 @@ const FarmerPage = () => {
                             padding: '0 15px', 
                             borderRadius: '12px', 
                             border: '1px solid #4a6b4a', 
-                            background: 'white', 
+                            background: 'white', color: '#1e293b', 
                             color: '#4a6b4a', 
                             cursor: 'pointer',
                             display: 'flex',
@@ -383,7 +383,7 @@ const FarmerPage = () => {
                    </div>
 
                    <div className="blockchain-qr-section" style={{ background: '#f8fbf8', border: '1px solid #eef2ee', borderRadius: '24px', padding: '25px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-                      <div style={{ background: 'white', padding: '15px', borderRadius: '16px', boxShadow: '0 10px 20px rgba(0,0,0,0.05)', marginBottom: '20px' }}>
+                      <div style={{ background: 'white', color: '#1e293b', padding: '15px', borderRadius: '16px', boxShadow: '0 10px 20px rgba(0,0,0,0.05)', marginBottom: '20px' }}>
                          <QrCode size={80} color="#4a6b4a" strokeWidth={1.5} />
                       </div>
                       <h4 style={{ fontSize: '1rem', color: '#2d3a2d', marginBottom: '10px' }}>Generate QR Code</h4>
@@ -408,7 +408,7 @@ const FarmerPage = () => {
       case 'Analytics':
         return (
           <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '20px' }}>
-            <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+            <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
               <div style={{ marginBottom: '30px' }}>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>Production Statistics</h3>
                 <p style={{ color: '#666', fontSize: '0.9rem' }}>Overview of your farming operations</p>
@@ -444,7 +444,7 @@ const FarmerPage = () => {
               </div>
             </div>
 
-            <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+            <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
               <div style={{ marginBottom: '30px' }}>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>AI Advisory Panel</h3>
                 <p style={{ color: '#666', fontSize: '0.9rem' }}>Smart farming insights and recommendations</p>
@@ -489,7 +489,7 @@ const FarmerPage = () => {
 
       case 'Support':
         return (
-          <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+          <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
             <div style={{ marginBottom: '30px' }}>
               <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>Help & Support</h3>
               <p style={{ color: '#666', fontSize: '0.9rem' }}>Get assistance and view frequently asked questions</p>

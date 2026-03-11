@@ -89,7 +89,7 @@
     padding: 10px;
     border-radius: 8px;
     font-weight: 600;
-    color: var(--text-muted);
+    color: var(--white);
     transition: var(--transition-normal);
 }
 

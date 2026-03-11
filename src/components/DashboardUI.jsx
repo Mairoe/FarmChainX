@@ -76,7 +76,7 @@ export const Sidebar = ({ role }) => {
         </div>
       </div>
       
-      <div className="sidebar-label" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', marginBottom: '15px' }}>NAVIGATION</div>
+      <div className="sidebar-label" style={{ fontSize: '0.7rem', color: 'white', marginBottom: '15px' }}>NAVIGATION</div>
       <nav className="sidebar-nav" style={{ flex: 1 }}>
         {currentMenu.map((item, idx) => {
           const itemUrl = new URL(item.path, window.location.origin);
@@ -119,7 +119,7 @@ export const Sidebar = ({ role }) => {
 
         {currentActions.length > 0 && (
           <>
-            <div className="sidebar-label" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', margin: '30px 0 15px 0' }}>ACTIONS</div>
+            <div className="sidebar-label" style={{ fontSize: '0.7rem', color: 'white', margin: '30px 0 15px 0' }}>ACTIONS</div>
             {currentActions.map((action, idx) => (
               <button 
                 key={idx}
@@ -158,7 +158,7 @@ export const Sidebar = ({ role }) => {
           <div className="avatar-circle" style={{ width: '36px', height: '36px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyCenter: 'center', fontSize: '0.8rem' }}>A</div>
           <div className="user-name">
             <h4 style={{ fontSize: '0.9rem', margin: 0 }}>a</h4>
-            <span style={{ fontSize: '0.75rem', opacity: 0.5 }}>{role}</span>
+            <span style={{ fontSize: '0.75rem', color: 'white' }}>{role}</span>
           </div>
           <Link to="/auth" style={{ marginLeft: 'auto', color: 'rgba(255,255,255,0.5)' }}><LogOut size={18}/></Link>
         </div>
@@ -171,7 +171,7 @@ export const Topbar = ({ title, subtitle }) => {
   return (
     <header className="dashboard-header-clean" style={{ padding: '0 0 30px 0' }}>
       <div className="header-info">
-        <h1 style={{ fontSize: '1.75rem', fontWeight: '700', color: '#2d3a2d' }}>{title}</h1>
+        <h1 style={{ fontSize: '1.75rem', fontWeight: '700', color: 'white' }}>{title}</h1>
         <p style={{ color: '#999', fontSize: '0.9rem' }}>{subtitle}</p>
       </div>
       <div className="header-actions" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>

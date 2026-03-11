@@ -137,7 +137,7 @@ const CertifierPage = () => {
   // Modal Component
   const Modal = ({ title, onClose, children }) => (
     <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1100, animation: 'fadeIn 0.3s ease' }}>
-      <div style={{ background: 'white', borderRadius: '24px', width: '90%', maxWidth: '550px', maxHeight: '90vh', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}>
+      <div style={{ background: 'white', color: '#1e293b', borderRadius: '24px', width: '90%', maxWidth: '550px', maxHeight: '90vh', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}>
         <div style={{ padding: '24px 30px', borderBottom: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h3 style={{ margin: 0, fontSize: '1.25rem', fontWeight: '700' }}>{title}</h3>
@@ -162,7 +162,7 @@ const CertifierPage = () => {
             {/* Stats Row */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
               {stats.map((stat, i) => (
-                <div key={i} style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #f1f5f9', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
+                <div key={i} style={{ background: 'white', color: '#1e293b', padding: '24px', borderRadius: '16px', border: '1px solid #f1f5f9', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
                     <span style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: '500' }}>{stat.label}</span>
                     <div style={{ color: stat.color }}>{stat.icon}</div>
@@ -181,7 +181,7 @@ const CertifierPage = () => {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 {pendingBatches.map((batch, i) => (
-                  <div key={i} style={{ background: 'white', borderRadius: '20px', padding: '24px', border: '1px solid #f1f5f9', position: 'relative' }}>
+                  <div key={i} style={{ background: 'white', color: '#1e293b', borderRadius: '20px', padding: '24px', border: '1px solid #f1f5f9', position: 'relative' }}>
                     <div style={{ position: 'absolute', top: '24px', right: '24px' }}>
                       <span style={{ background: '#fffbeb', color: '#9a3412', padding: '4px 12px', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '600' }}>{batch.status}</span>
                     </div>
@@ -267,7 +267,7 @@ const CertifierPage = () => {
                       setSelectedBatch(batch);
                       setShowReviewModal(true);
                     }}
-                    style={{ background: 'white', padding: '20px', borderRadius: '16px', border: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', transition: 'transform 0.2s ease' }}
+                    style={{ background: 'white', color: '#1e293b', padding: '20px', borderRadius: '16px', border: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', transition: 'transform 0.2s ease' }}
                     className="history-card"
                    >
                      <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
@@ -297,7 +297,7 @@ const CertifierPage = () => {
                    </div>
                  ))
                ) : (
-                 <div style={{ padding: '60px', textAlign: 'center', background: 'white', borderRadius: '24px', border: '1px dashed #e2e8f0', color: '#94a3b8' }}>
+                 <div style={{ padding: '60px', textAlign: 'center', background: 'white', color: '#1e293b', borderRadius: '24px', border: '1px dashed #e2e8f0', color: '#94a3b8' }}>
                    No {historyFilter.toLowerCase()} batches found in history.
                  </div>
                )}
@@ -405,7 +405,7 @@ const CertifierPage = () => {
                         handleAction(`Batch ${selectedBatch.id} Flagged`);
                         setShowReviewModal(false);
                       }}
-                      style={{ flex: 1, background: 'white', color: '#ef4444', padding: '14px', borderRadius: '12px', border: '1px solid #fee2e2', fontWeight: '600', cursor: 'pointer' }}
+                      style={{ flex: 1, background: 'white', color: '#1e293b', color: '#ef4444', padding: '14px', borderRadius: '12px', border: '1px solid #fee2e2', fontWeight: '600', cursor: 'pointer' }}
                     >
                       Flag Batch
                     </button>

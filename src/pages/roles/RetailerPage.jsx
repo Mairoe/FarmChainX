@@ -63,8 +63,8 @@ const RECENT_SALES = [
 const SourcingView = () => (
   <div className="fade-in-up">
     <div className="section-header" style={{ marginBottom: '32px' }}>
-      <h2 style={{ fontSize: '1.8rem', fontWeight: '800', color: '#1e293b' }}>Node Sourcing Marketplace</h2>
-      <p style={{ color: '#64748b' }}>Connect with **Distributors** to purchase verified **Farmer Batches**.</p>
+      <h2 style={{ fontSize: '1.8rem', fontWeight: '800', color: 'white' }}>Node Sourcing Marketplace</h2>
+      <p style={{ color: 'white' }}>Connect with **Distributors** to purchase verified **Farmer Batches**.</p>
     </div>
     
     <div className="marketplace-grid">
@@ -149,7 +149,7 @@ const InventoryView = () => (
 const RevenueView = () => (
   <div className="sales-split fade-in-up">
     <div>
-      <div className="glass-card" style={{ padding: '30px', background: 'white', borderRadius: '24px' }}>
+      <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b', borderRadius: '24px' }}>
         <h3 style={{ fontSize: '1.4rem', fontWeight: '800', marginBottom: '25px' }}>Direct Consumer Sales</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {RECENT_SALES.map(sale => (
@@ -180,7 +180,7 @@ const RevenueView = () => (
         </div>
       </div>
       
-      <div className="glass-card" style={{ padding: '30px', background: 'white', borderRadius: '24px', border: '1px solid #f1f5f9' }}>
+      <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b', borderRadius: '24px', border: '1px solid #f1f5f9' }}>
         <h4 style={{ fontWeight: '800', marginBottom: '15px' }}>Best Sellers</h4>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           {['Oxheart Tomatoes', 'Wildflower Honey'].map((p, i) => (
@@ -198,7 +198,7 @@ const RevenueView = () => (
 // 4. Insights Tab (Analytics)
 const InsightsView = () => (
   <div className="fade-in-up" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px' }}>
-    <div className="glass-card" style={{ padding: '30px', background: 'white', borderRadius: '24px' }}>
+    <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b', borderRadius: '24px' }}>
       <h3 style={{ fontSize: '1.4rem', fontWeight: '800', marginBottom: '24px' }}>AI Store Assistant</h3>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         <div style={{ padding: '20px', background: '#f0fdf4', borderRadius: '16px', border: '1px solid #dcfce7' }}>

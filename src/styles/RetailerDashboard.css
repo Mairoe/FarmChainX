@@ -26,6 +26,7 @@
     justify-content: space-between;
     min-height: 160px;
     transition: var(--transition-normal);
+    color: var(--text-on-light);
 }
 
 .retail-stat-card:hover {
@@ -56,6 +57,7 @@
     border: 1px solid var(--secondary);
     overflow: hidden;
     transition: var(--transition-normal);
+    color: var(--text-on-light);
 }
 
 .product-card:hover {
@@ -94,6 +96,7 @@
     border: 1px solid var(--accent);
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+    color: var(--text-on-light);
 }
 
 .retail-table {
@@ -107,7 +110,7 @@
     text-align: left;
     font-size: 0.8rem;
     font-weight: 800;
-    color: var(--text-on-light);
+    color: var(--text-on-dark);
     opacity: 0.8;
     text-transform: uppercase;
     letter-spacing: 1.5px;

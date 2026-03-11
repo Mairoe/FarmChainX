@@ -121,7 +121,7 @@ const Dashboard = ({ role = 'admin' }) => {
 
   const Modal = ({ title, onClose, children }) => (
     <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1100 }}>
-      <div style={{ background: 'white', borderRadius: '24px', width: '90%', maxWidth: '500px', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', overflow: 'hidden' }}>
+      <div style={{ background: 'white', color: '#1e293b', borderRadius: '24px', width: '90%', maxWidth: '500px', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', overflow: 'hidden' }}>
         <div style={{ padding: '24px 30px', borderBottom: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h3 style={{ margin: 0 }}>{title}</h3>
           <button onClick={onClose} style={{ border: 'none', background: '#f8fafc', padding: '8px', borderRadius: '50%', cursor: 'pointer' }}><X size={20}/></button>
@@ -137,7 +137,7 @@ const Dashboard = ({ role = 'admin' }) => {
       case 'Overview':
         return (
           <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '20px' }}>
-            <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+            <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                 <h3>System Activity</h3>
                 <button onClick={() => handleAction('Refresh logs')} style={{ background: 'transparent', border: 'none', color: '#4f46e5', cursor: 'pointer', fontSize: '0.85rem' }}>Refresh Feed</button>
@@ -155,7 +155,7 @@ const Dashboard = ({ role = 'admin' }) => {
               </div>
             </div>
 
-            <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+            <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
               <h3 style={{ marginBottom: '20px' }}>System Status</h3>
               {[
                 { label: 'API Gateway', status: 'Online', val: 98, color: '#10b981' },
@@ -188,7 +188,7 @@ const Dashboard = ({ role = 'admin' }) => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
             {pendingUsers.length > 0 && (
-              <div className="glass-card" style={{ padding: '30px', background: 'white', border: '2px solid #fef3c7' }}>
+              <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b', border: '2px solid #fef3c7' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
                   <div style={{ background: '#fef3c7', padding: '8px', borderRadius: '10px' }}>
                     <AlertCircle size={20} color="#d97706" />
@@ -235,7 +235,7 @@ const Dashboard = ({ role = 'admin' }) => {
               </div>
             )}
 
-            <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+            <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
                 <div>
                   <h3 style={{ margin: 0 }}>Active Users</h3>
@@ -310,13 +310,13 @@ const Dashboard = ({ role = 'admin' }) => {
                           <td style={{ padding: '15px', color: '#64748b', fontSize: '0.9rem' }}>{user.joined}</td>
                           <td style={{ padding: '15px' }}>
                             <div style={{ display: 'flex', gap: '8px' }}>
-                              <button onClick={() => { setSelectedUser(user); setShowUserModal(true); }} style={{ padding: '8px', borderRadius: '8px', border: '1px solid #e2e8f0', background: 'white', cursor: 'pointer' }} title="View Full Profile">
+                              <button onClick={() => { setSelectedUser(user); setShowUserModal(true); }} style={{ padding: '8px', borderRadius: '8px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b', cursor: 'pointer' }} title="View Full Profile">
                                 <Eye size={16} />
                               </button>
                               <button onClick={() => toggleLock(user.id)} style={{ padding: '8px', borderRadius: '8px', border: '1px solid #e2e8f0', background: isLocked ? '#fff1f2' : 'white', color: isLocked ? '#ef4444' : '#64748b', cursor: 'pointer' }} title={isLocked ? 'Unlock' : 'Suspend Account'}>
                                 {isLocked ? <Unlock size={16} /> : <Lock size={16} />}
                               </button>
-                              <button onClick={() => handleAction('Permanent Delete')} style={{ padding: '8px', borderRadius: '8px', border: '1px solid #fee2e2', background: 'white', color: '#ef4444', cursor: 'pointer' }}><Trash2 size={16} /></button>
+                              <button onClick={() => handleAction('Permanent Delete')} style={{ padding: '8px', borderRadius: '8px', border: '1px solid #fee2e2', background: 'white', color: '#1e293b', color: '#ef4444', cursor: 'pointer' }}><Trash2 size={16} /></button>
                             </div>
                           </td>
                         </tr>
@@ -332,7 +332,7 @@ const Dashboard = ({ role = 'admin' }) => {
 
       case 'Batches':
         return (
-          <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+          <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
               <div>
                 <h3 style={{ margin: 0 }}>Global Batch Ledger</h3>
@@ -372,7 +372,7 @@ const Dashboard = ({ role = 'admin' }) => {
                         <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>Updated {batch.time}</div>
                       </td>
                       <td style={{ padding: '15px' }}>
-                        <button onClick={() => { setSelectedBatch(batch); setShowBatchModal(true); }} style={{ padding: '6px 12px', border: '1px solid #e2e8f0', background: 'white', borderRadius: '6px', cursor: 'pointer', fontSize: '0.8rem' }}>
+                        <button onClick={() => { setSelectedBatch(batch); setShowBatchModal(true); }} style={{ padding: '6px 12px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b', borderRadius: '6px', cursor: 'pointer', fontSize: '0.8rem' }}>
                           Track
                         </button>
                       </td>
@@ -391,7 +391,7 @@ const Dashboard = ({ role = 'admin' }) => {
           t.type.toLowerCase().includes(txnSearchQuery.toLowerCase())
         );
         return (
-          <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+          <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
               <div>
                 <h3 style={{ margin: 0 }}>Audit Log</h3>
@@ -411,7 +411,7 @@ const Dashboard = ({ role = 'admin' }) => {
               {filteredEvents.map((txn, i) => (
                 <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '20px', background: '#f8fafc', borderRadius: '12px', marginBottom: '12px', border: '1px solid #f1f5f9' }}>
                   <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
-                    <div style={{ background: 'white', padding: '10px', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}><Activity size={20} color="#3b82f6" /></div>
+                    <div style={{ background: 'white', color: '#1e293b', padding: '10px', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}><Activity size={20} color="#3b82f6" /></div>
                     <div>
                       <div style={{ fontWeight: '600', fontSize: '0.95rem' }}>{txn.type} <span style={{ color: '#64748b', fontWeight: '400' }}>#{txn.id}</span></div>
                       <div style={{ fontSize: '0.8rem', color: '#94a3b8', fontFamily: 'monospace' }}>HASH: {txn.hash}</div>
@@ -424,7 +424,7 @@ const Dashboard = ({ role = 'admin' }) => {
                       </div>
                       <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{txn.time}</div>
                     </div>
-                    <button onClick={() => { setSelectedTxn(txn); setShowTxnModal(true); }} style={{ padding: '8px 15px', borderRadius: '8px', background: 'white', border: '1px solid #e2e8f0', color: '#4f46e5', fontWeight: '600', fontSize: '0.8rem', cursor: 'pointer' }}>
+                    <button onClick={() => { setSelectedTxn(txn); setShowTxnModal(true); }} style={{ padding: '8px 15px', borderRadius: '8px', background: 'white', color: '#1e293b', border: '1px solid #e2e8f0', color: '#4f46e5', fontWeight: '600', fontSize: '0.8rem', cursor: 'pointer' }}>
                       Audit
                     </button>
                   </div>
@@ -438,7 +438,7 @@ const Dashboard = ({ role = 'admin' }) => {
       case 'Settings':
         return (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-            <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+            <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '20px' }}>
                 <Monitor size={20} color="#4f46e5" />
                 <h3 style={{ margin: 0 }}>Platform Experience</h3>
@@ -450,7 +450,7 @@ const Dashboard = ({ role = 'admin' }) => {
                     <Coins size={18} color="#94a3b8" />
                     <span style={{ fontWeight: '600', fontSize: '0.95rem' }}>Master Currency</span>
                   </div>
-                  <select value={appCurrency} onChange={(e) => setAppCurrency(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #e2e8f0', background: 'white', fontWeight: '600' }}>
+                  <select value={appCurrency} onChange={(e) => setAppCurrency(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b', fontWeight: '600' }}>
                     <option>INR (₹)</option>
                     <option>EUR (€)</option>
                     <option>USD ($)</option>
@@ -463,7 +463,7 @@ const Dashboard = ({ role = 'admin' }) => {
                     <Globe size={18} color="#94a3b8" />
                     <span style={{ fontWeight: '600', fontSize: '0.95rem' }}>Regional Language</span>
                   </div>
-                  <select value={appLanguage} onChange={(e) => setAppLanguage(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #e2e8f0', background: 'white', fontWeight: '600' }}>
+                  <select value={appLanguage} onChange={(e) => setAppLanguage(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b', fontWeight: '600' }}>
                     <option>English (US)</option>
                     <option>Spanish (ES)</option>
                     <option>French (FR)</option>
@@ -474,7 +474,7 @@ const Dashboard = ({ role = 'admin' }) => {
               </div>
             </div>
 
-            <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+            <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '20px' }}>
                 <Shield size={20} color="#10b981" />
                 <h3 style={{ margin: 0 }}>Network & Security</h3>
@@ -495,7 +495,7 @@ const Dashboard = ({ role = 'admin' }) => {
                       <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>{setting.desc}</p>
                     </div>
                     <div onClick={setting.action || (() => handleAction('Toggling Setting'))} style={{ width: '50px', height: '26px', background: setting.enabled ? '#10b981' : '#cbd5e1', borderRadius: '13px', position: 'relative', cursor: 'pointer', transition: 'all 0.3s ease' }}>
-                      <div style={{ width: '20px', height: '20px', background: 'white', borderRadius: '50%', position: 'absolute', top: '3px', left: setting.enabled ? '27px' : '3px', transition: 'all 0.3s ease', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}></div>
+                      <div style={{ width: '20px', height: '20px', background: 'white', color: '#1e293b', borderRadius: '50%', position: 'absolute', top: '3px', left: setting.enabled ? '27px' : '3px', transition: 'all 0.3s ease', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}></div>
                     </div>
                   </div>
                 ))}
@@ -509,7 +509,7 @@ const Dashboard = ({ role = 'admin' }) => {
               </div>
             </div>
 
-            <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+            <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '20px' }}>
                 <BellRing size={20} color="#f59e0b" />
                 <h3 style={{ margin: 0 }}>Communication & Alerts</h3>
@@ -526,14 +526,14 @@ const Dashboard = ({ role = 'admin' }) => {
                       <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>{setting.desc}</p>
                     </div>
                     <div onClick={() => handleAction('Toggle Alert')} style={{ width: '44px', height: '22px', background: setting.enabled ? '#f59e0b' : '#cbd5e1', borderRadius: '11px', position: 'relative', cursor: 'pointer' }}>
-                      <div style={{ width: '16px', height: '16px', background: 'white', borderRadius: '50%', position: 'absolute', top: '3px', left: setting.enabled ? '25px' : '3px', transition: 'left 0.2s' }}></div>
+                      <div style={{ width: '16px', height: '16px', background: 'white', color: '#1e293b', borderRadius: '50%', position: 'absolute', top: '3px', left: setting.enabled ? '25px' : '3px', transition: 'left 0.2s' }}></div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+            <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '20px' }}>
                 <History size={20} color="#ef4444" />
                 <h3 style={{ margin: 0 }}>Policy & Compliance</h3>
@@ -541,7 +541,7 @@ const Dashboard = ({ role = 'admin' }) => {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                 <div style={{ padding: '20px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #f1f5f9' }}>
                   <div style={{ fontWeight: '600', fontSize: '0.95rem', marginBottom: '8px' }}>History Retention</div>
-                  <select style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #e2e8f0', background: 'white' }}>
+                  <select style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b' }}>
                     <option>1 Year (Standard)</option>
                     <option>5 Years (Enterprise)</option>
                     <option>Indefinite (Full Ledger)</option>
@@ -550,7 +550,7 @@ const Dashboard = ({ role = 'admin' }) => {
                 </div>
                 <div style={{ padding: '20px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #f1f5f9' }}>
                   <div style={{ fontWeight: '600', fontSize: '0.95rem', marginBottom: '8px' }}>Onboarding Policy</div>
-                  <select style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #e2e8f0', background: 'white' }}>
+                  <select style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b' }}>
                     <option>Manual Review Only</option>
                     <option>Auto-approve Verified ID</option>
                     <option>Invite Only</option>
@@ -684,7 +684,7 @@ const Dashboard = ({ role = 'admin' }) => {
                   <span>Event Payload</span>
                   <span style={{ color: '#4f46e5', fontSize: '0.7rem' }}>JSON</span>
                 </div>
-                <pre style={{ margin: 0, fontSize: '0.8rem', color: '#334155', background: 'white', padding: '10px', borderRadius: '8px', overflow: 'auto' }}>
+                <pre style={{ margin: 0, fontSize: '0.8rem', color: '#334155', background: 'white', color: '#1e293b', padding: '10px', borderRadius: '8px', overflow: 'auto' }}>
                   {JSON.stringify(selectedTxn.payload, null, 2)}
                 </pre>
               </div>
@@ -724,7 +724,7 @@ const Dashboard = ({ role = 'admin' }) => {
                 <select
                   value={assignedRole}
                   onChange={(e) => setAssignedRole(e.target.value)}
-                  style={{ width: '100%', padding: '12px', borderRadius: '10px', border: '1px solid #e2e8f0', background: 'white', fontWeight: '600', outline: 'none' }}
+                  style={{ width: '100%', padding: '12px', borderRadius: '10px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b', fontWeight: '600', outline: 'none' }}
                 >
                   <option value="Farmer">Farmer</option>
                   <option value="Distributor">Distributor</option>

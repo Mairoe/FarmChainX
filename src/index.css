@@ -32,19 +32,19 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--text-headers);
+  color: inherit;
   font-weight: 900;
   letter-spacing: -1px;
 }
 
-.bento-card h1, .bento-card h2, .bento-card h3,
-.glass-card h1, .glass-card h2, .glass-card h3,
+.bento-card h1, .bento-card h2, .bento-card h3, .bento-card h4, .bento-card h5, .bento-card h6,
+.glass-card h1, .glass-card h2, .glass-card h3, .glass-card h4, .glass-card h5, .glass-card h6,
 .bento-card p, .glass-card p,
 .bento-card span, .glass-card span {
   color: var(--text-on-light);
 }
 
-.bento-card.dark h1, .bento-card.dark h2, .bento-card.dark h3,
+.bento-card.dark h1, .bento-card.dark h2, .bento-card.dark h3, .bento-card.dark h4, .bento-card.dark h5, .bento-card.dark h6,
 .bento-card.dark p, .bento-card.dark span {
   color: var(--text-on-dark);
 }
@@ -84,6 +84,6 @@ button:hover {
   }
   
   h1, h2, h3, h4, h5, h6 {
-    color: var(--white);
+    color: inherit;
   }
 }

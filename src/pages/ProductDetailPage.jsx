@@ -141,7 +141,7 @@ const ProductDetailPage = () => {
           Back to Marketplace
         </Link>
         
-        <div className="product-detail-content glass-card" style={{ marginTop: '30px', padding: '60px', background: 'white', borderRadius: '40px', border: '1px solid #f0f0f0' }}>
+        <div className="product-detail-content glass-card" style={{ marginTop: '30px', padding: '60px', background: 'white', color: '#1e293b', borderRadius: '40px', border: '1px solid #f0f0f0' }}>
           <div className="detail-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
             <div className="detail-image-section">
               <motion.img 
@@ -221,9 +221,9 @@ const ProductDetailPage = () => {
 
               <div className="detail-actions" style={{ marginTop: '60px', display: 'flex', gap: '20px' }}>
                 <div className="qty-picker" style={{ display: 'flex', alignItems: 'center', background: '#f1f5f9', borderRadius: '20px', padding: '8px' }}>
-                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} style={{ width: '48px', height: '48px', borderRadius: '16px', border: 'none', background: 'white', cursor: 'pointer', fontWeight: 800 }}>-</button>
+                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} style={{ width: '48px', height: '48px', borderRadius: '16px', border: 'none', background: 'white', color: '#1e293b', cursor: 'pointer', fontWeight: 800 }}>-</button>
                   <span style={{ padding: '0 24px', fontWeight: 900, fontSize: '1.2rem' }}>{quantity}</span>
-                  <button onClick={() => setQuantity(quantity + 1)} style={{ width: '48px', height: '48px', borderRadius: '16px', border: 'none', background: 'white', cursor: 'pointer', fontWeight: 800 }}>+</button>
+                  <button onClick={() => setQuantity(quantity + 1)} style={{ width: '48px', height: '48px', borderRadius: '16px', border: 'none', background: 'white', color: '#1e293b', cursor: 'pointer', fontWeight: 800 }}>+</button>
                 </div>
                 <button 
                   id="add-btn"

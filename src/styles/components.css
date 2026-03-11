@@ -44,7 +44,7 @@
 
 .nav-links a {
     font-weight: 500;
-    color: var(--text-muted);
+    color: black;
     position: relative;
 }
 

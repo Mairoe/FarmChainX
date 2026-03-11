@@ -19,7 +19,7 @@ const WarehousePage = () => {
     switch (activeTab) {
       case 'Overview':
         return (
-          <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+          <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
             <h3>Inventory & Storage Status</h3>
             <p style={{ color: '#666', marginBottom: '20px' }}>Real-time monitoring of warehouse conditions and stock levels.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
@@ -36,7 +36,7 @@ const WarehousePage = () => {
         );
       case 'Inventory':
         return (
-          <div className="glass-card" style={{ padding: '30px', background: 'white' }}>
+          <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b' }}>
             <h3>Inventory Management</h3>
             <div className="table-container">
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>

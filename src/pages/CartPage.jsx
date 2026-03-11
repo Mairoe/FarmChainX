@@ -60,7 +60,7 @@ const CartPage = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className="payment-success-card glass-card"
-            style={{ maxWidth: '600px', margin: '0 auto', padding: '60px', background: 'white', borderRadius: '40px' }}
+            style={{ maxWidth: '600px', margin: '0 auto', padding: '60px', background: 'white', color: '#1e293b', borderRadius: '40px' }}
           >
             <div style={{ width: '100px', height: '100px', background: '#f0fdf4', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 30px' }}>
               <ShieldCheck size={48} color="#10b981" />
@@ -124,7 +124,7 @@ const CartPage = () => {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
                     className="cart-item glass-card" 
-                    style={{ padding: '30px', background: 'white', borderRadius: '24px', display: 'flex', gap: '30px', alignItems: 'center', marginBottom: '20px', border: '1px solid #f0f0f0' }}
+                    style={{ padding: '30px', background: 'white', color: '#1e293b', borderRadius: '24px', display: 'flex', gap: '30px', alignItems: 'center', marginBottom: '20px', border: '1px solid #f0f0f0' }}
                   >
                     <img src={item.image} alt={item.name} style={{ width: '120px', height: '120px', borderRadius: '16px', objectFit: 'cover' }} />
                     <div className="cart-item-info" style={{ flex: 1 }}>
@@ -136,9 +136,9 @@ const CartPage = () => {
                       
                       <div className="quantity-controls" style={{ display: 'flex', alignItems: 'center', gap: '15px', marginTop: '15px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', background: '#f8fafc', borderRadius: '12px', padding: '4px' }}>
-                          <button onClick={() => updateQuantity(item.cartId, -1)} style={{ width: '32px', height: '32px', borderRadius: '8px', border: 'none', background: 'white', cursor: 'pointer', fontWeight: 800 }}>-</button>
+                          <button onClick={() => updateQuantity(item.cartId, -1)} style={{ width: '32px', height: '32px', borderRadius: '8px', border: 'none', background: 'white', color: '#1e293b', cursor: 'pointer', fontWeight: 800 }}>-</button>
                           <span style={{ padding: '0 15px', fontWeight: 700 }}>{item.quantity || 1}</span>
-                          <button onClick={() => updateQuantity(item.cartId, 1)} style={{ width: '32px', height: '32px', borderRadius: '8px', border: 'none', background: 'white', cursor: 'pointer', fontWeight: 800 }}>+</button>
+                          <button onClick={() => updateQuantity(item.cartId, 1)} style={{ width: '32px', height: '32px', borderRadius: '8px', border: 'none', background: 'white', color: '#1e293b', cursor: 'pointer', fontWeight: 800 }}>+</button>
                         </div>
                         <span style={{ fontSize: '0.9rem', color: '#94a3b8' }}>x ₹{item.price.toFixed(2)}</span>
                       </div>
@@ -159,7 +159,7 @@ const CartPage = () => {
             </div>
 
             <aside className="order-summary-section" style={{ position: 'sticky', top: '40px' }}>
-              <div className="glass-card summary-card" style={{ padding: '40px', background: 'white', borderRadius: '32px', border: '1px solid #f0f0f0' }}>
+              <div className="glass-card summary-card" style={{ padding: '40px', background: 'white', color: '#1e293b', borderRadius: '32px', border: '1px solid #f0f0f0' }}>
                 <h3 style={{ marginBottom: '30px', fontSize: '1.5rem', fontWeight: 800 }}>Order Summary</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   <div className="summary-row" style={{ display: 'flex', justifyContent: 'space-between', color: '#64748b' }}>

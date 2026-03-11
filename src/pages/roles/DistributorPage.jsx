@@ -62,7 +62,7 @@ const DistributorPage = () => {
   // Modal Component
   const Modal = ({ title, onClose, children }) => (
     <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, animation: 'fadeIn 0.3s ease' }}>
-      <div style={{ background: 'white', borderRadius: '24px', width: '90%', maxWidth: '600px', maxHeight: '90vh', overflow: 'hidden', boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }}>
+      <div style={{ background: 'white', color: '#1e293b', borderRadius: '24px', width: '90%', maxWidth: '600px', maxHeight: '90vh', overflow: 'hidden', boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }}>
         <div style={{ padding: '24px 30px', borderBottom: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h3 style={{ margin: 0, fontSize: '1.25rem', fontWeight: '700' }}>{title}</h3>
           <button onClick={onClose} style={{ border: 'none', background: '#f8fafc', padding: '8px', borderRadius: '50%', cursor: 'pointer', color: '#64748b' }}>
@@ -89,7 +89,7 @@ const DistributorPage = () => {
     switch (activeTab) {
       case 'Farmer Sourcing':
         return (
-          <div style={{ background: 'white', borderRadius: '24px', padding: '40px', border: '1px solid #f1f5f9' }} className="tab-fade-in">
+          <div style={{ background: 'white', color: '#1e293b', borderRadius: '24px', padding: '40px', border: '1px solid #f1f5f9' }} className="tab-fade-in">
              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '30px' }}>
                 <div>
                   <h3 style={{ margin: '0 0 5px 0', fontSize: '1.25rem', fontWeight: '800' }}>Farmer Batch Sourcing</h3>
@@ -105,7 +105,7 @@ const DistributorPage = () => {
                       <span style={{ fontSize: '0.75rem', background: '#f0fdf4', color: '#166534', padding: '4px 10px', borderRadius: '100px', fontWeight: '800', height: 'fit-content' }}>{farm.certification}</span>
                     </div>
                     <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '0 0 20px 0' }}><MapPin size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px'}} /> {farm.location}</p>
-                    <div style={{ background: 'white', padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
+                    <div style={{ background: 'white', color: '#1e293b', padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
                       <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '4px' }}>Latest Harvest Available</div>
                       <div style={{ fontWeight: '700', fontSize: '0.95rem' }}>{farm.latestBatch}</div>
                     </div>
@@ -122,7 +122,7 @@ const DistributorPage = () => {
         );
       case 'Inventory':
         return (
-          <div style={{ background: 'white', borderRadius: '24px', padding: '40px', border: '1px solid #f1f5f9' }} className="tab-fade-in">
+          <div style={{ background: 'white', color: '#1e293b', borderRadius: '24px', padding: '40px', border: '1px solid #f1f5f9' }} className="tab-fade-in">
              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '30px' }}>
                 <div>
                   <h3 style={{ margin: '0 0 5px 0', fontSize: '1.25rem', fontWeight: '800' }}>Hub Inventory</h3>
@@ -160,7 +160,7 @@ const DistributorPage = () => {
         return (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
             {distCenters.map((hub, i) => (
-              <div key={i} style={{ background: 'white', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9' }}>
+              <div key={i} style={{ background: 'white', color: '#1e293b', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
                   <div>
                     <h4 style={{ margin: '0 0 8px 0', fontSize: '1.15rem' }}>{hub.name}</h4>
@@ -184,13 +184,13 @@ const DistributorPage = () => {
                 <div style={{ display: 'flex', gap: '12px' }}>
                   <button 
                     onClick={() => setViewingCenter(hub)}
-                    style={{ flex: 1, padding: '12px', borderRadius: '12px', border: '1px solid #f1f5f9', background: 'white', cursor: 'pointer', fontSize: '0.9rem', fontWeight: '500' }}
+                    style={{ flex: 1, padding: '12px', borderRadius: '12px', border: '1px solid #f1f5f9', background: 'white', color: '#1e293b', cursor: 'pointer', fontSize: '0.9rem', fontWeight: '500' }}
                   >
                     View Inventory
                   </button>
                   <button 
                     onClick={() => setViewingRoute({ from: hub.name, to: 'Regional Markets' })}
-                    style={{ flex: 1, padding: '12px', borderRadius: '12px', border: '1px solid #f1f5f9', background: 'white', cursor: 'pointer', fontSize: '0.9rem', fontWeight: '500' }}
+                    style={{ flex: 1, padding: '12px', borderRadius: '12px', border: '1px solid #f1f5f9', background: 'white', color: '#1e293b', cursor: 'pointer', fontSize: '0.9rem', fontWeight: '500' }}
                   >
                     Route Planning
                   </button>
@@ -204,7 +204,7 @@ const DistributorPage = () => {
         return (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {retailers.map((r, i) => (
-              <div key={i} style={{ background: 'white', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9', position: 'relative' }}>
+              <div key={i} style={{ background: 'white', color: '#1e293b', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9', position: 'relative' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                   <div>
                     <h4 style={{ margin: '0 0 5px 0', fontSize: '1.2rem' }}>{r.name}</h4>
@@ -220,13 +220,13 @@ const DistributorPage = () => {
                 <div style={{ display: 'flex', gap: '15px' }}>
                   <button 
                     onClick={() => setShowOrderModal(r)}
-                    style={{ flex: 1, padding: '14px', borderRadius: '12px', border: '1px solid #f1f5f9', background: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'center', fontWeight: '500' }}
+                    style={{ flex: 1, padding: '14px', borderRadius: '12px', border: '1px solid #f1f5f9', background: 'white', color: '#1e293b', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'center', fontWeight: '500' }}
                   >
                     <Box size={18} /> Send Order
                   </button>
                   <button 
                     onClick={() => handleAction(`Partner Analytics for ${r.name}`)}
-                    style={{ flex: 1, padding: '14px', borderRadius: '12px', border: '1px solid #f1f5f9', background: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'center', fontWeight: '500' }}
+                    style={{ flex: 1, padding: '14px', borderRadius: '12px', border: '1px solid #f1f5f9', background: 'white', color: '#1e293b', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'center', fontWeight: '500' }}
                   >
                     <BarChart3 size={18} /> View Analytics
                   </button>
@@ -239,7 +239,7 @@ const DistributorPage = () => {
       case 'Analytics':
         return (
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '24px' }}>
-            <div style={{ background: 'white', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9' }}>
+            <div style={{ background: 'white', color: '#1e293b', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9' }}>
                <h3 style={{ margin: '0 0 5px 0', fontSize: '1.1rem' }}>Distribution Performance</h3>
                <p style={{ margin: '0 0 25px 0', color: '#64748b', fontSize: '0.9rem' }}>Key performance metrics</p>
                
@@ -260,7 +260,7 @@ const DistributorPage = () => {
                ))}
             </div>
 
-            <div style={{ background: 'white', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9' }}>
+            <div style={{ background: 'white', color: '#1e293b', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9' }}>
                <h3 style={{ margin: '0 0 5px 0', fontSize: '1.1rem' }}>Regional Distribution</h3>
                <p style={{ margin: '0 0 25px 0', color: '#64748b', fontSize: '0.9rem' }}>Volume by region this month</p>
                
@@ -282,13 +282,13 @@ const DistributorPage = () => {
             </div>
 
             {/* Bottom full width Recent Activity */}
-            <div style={{ gridColumn: 'span 2', background: 'white', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9' }}>
+            <div style={{ gridColumn: 'span 2', background: 'white', color: '#1e293b', borderRadius: '24px', padding: '30px', border: '1px solid #f1f5f9' }}>
                <h3 style={{ margin: '0 0 5px 0', fontSize: '1.1rem' }}>Recent Activity</h3>
                <p style={{ margin: '0 0 25px 0', color: '#64748b', fontSize: '0.9rem' }}>Latest distribution updates</p>
                
                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                   <div style={{ padding: '20px', borderRadius: '16px', background: '#f0fdf4', border: '1px solid #dcfce7', display: 'flex', gap: '15px', alignItems: 'center' }}>
-                    <div style={{ width: '40px', height: '40px', background: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#22c55e' }}>
+                    <div style={{ width: '40px', height: '40px', background: 'white', color: '#1e293b', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#22c55e' }}>
                       <CheckCircle2 size={20} />
                     </div>
                     <div>
@@ -298,7 +298,7 @@ const DistributorPage = () => {
                   </div>
 
                   <div style={{ padding: '20px', borderRadius: '16px', background: '#eff6ff', border: '1px solid #dbeafe', display: 'flex', gap: '15px', alignItems: 'center' }}>
-                    <div style={{ width: '40px', height: '40px', background: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6' }}>
+                    <div style={{ width: '40px', height: '40px', background: 'white', color: '#1e293b', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6' }}>
                       <Clock size={20} />
                     </div>
                     <div>
@@ -308,7 +308,7 @@ const DistributorPage = () => {
                   </div>
 
                   <div style={{ padding: '20px', borderRadius: '16px', background: '#f5f3ff', border: '1px solid #ede9fe', display: 'flex', gap: '15px', alignItems: 'center' }}>
-                    <div style={{ width: '40px', height: '40px', background: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#8b5cf6' }}>
+                    <div style={{ width: '40px', height: '40px', background: 'white', color: '#1e293b', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#8b5cf6' }}>
                       <Box size={20} />
                     </div>
                     <div>
@@ -336,7 +336,7 @@ const DistributorPage = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', marginBottom: '40px' }}>
           {stats.map((stat, i) => (
             <div key={i} style={{ 
-              background: 'white', 
+              background: 'white', color: '#1e293b', 
               padding: '24px', 
               borderRadius: '24px', 
               border: '1px solid #f1f5f9',
@@ -454,7 +454,7 @@ const DistributorPage = () => {
                 <div style={{ fontSize: '0.85rem', color: '#64748b', marginBottom: '10px' }}>Select Product to Send</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {inventoryBatches.map(b => (
-                    <div key={b.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', background: 'white', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+                    <div key={b.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', background: 'white', color: '#1e293b', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
                       <span style={{ fontSize: '0.9rem' }}>{b.name}</span>
                       <input type="checkbox" />
                     </div>
