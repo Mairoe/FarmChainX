@@ -12,13 +12,17 @@
 
 .badge {
     display: inline-block;
-    padding: 6px 16px;
-    background: var(--accent);
-    color: var(--primary);
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 0.875rem;
+    padding: 8px 18px;
+    background: var(--primary);
+    color: var(--color-dark);
+    border-radius: var(--radius-cta);
+    font-weight: 900;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     margin-bottom: var(--spacing-md);
+    border: var(--border-dark);
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
 }
 
 .hero-text h1 {
@@ -27,7 +31,11 @@
 }
 
 .hero-text h1 span {
-    color: var(--secondary);
+    color: var(--primary);
+    background: linear-gradient(120deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero-text p {
@@ -50,21 +58,24 @@
     width: 100%;
     height: 500px;
     object-fit: cover;
-    border-radius: var(--radius-xl);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-card);
+    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.3);
+    border: var(--border-dark);
     position: relative;
     z-index: 1;
 }
 
 .hero-blob {
     position: absolute;
-    top: -20px;
-    right: -20px;
+    top: -30px;
+    right: -30px;
     width: 100%;
     height: 100%;
-    background: var(--accent);
-    border-radius: var(--radius-xl);
-    opacity: 0.3;
+    background: var(--color-light);
+    border: var(--border-dark);
+    border-radius: var(--radius-card);
+    opacity: 1;
+    z-index: 0;
 }
 
 .features {
@@ -103,15 +114,18 @@
     justify-content: center;
     margin: 0 auto var(--spacing-lg);
     color: var(--primary);
-    box-shadow: 0 10px 20px rgba(45, 58, 45, 0.05);
+    box-shadow: var(--shadow-subtle);
+    border: 1px solid var(--secondary);
 }
 
 .feature-card h3 {
     margin-bottom: var(--spacing-sm);
+    color: var(--text-on-light);
 }
 
 .feature-card p {
-    color: var(--text-muted);
+    color: var(--text-on-light);
+    opacity: 0.8;
     font-size: 0.95rem;
 }
 
@@ -146,7 +160,7 @@
 
 /* Product Detail Page */
 .product-detail-container {
-    background: #fdfaf5;
+    background: var(--background);
     min-height: 100vh;
 }
 
@@ -154,7 +168,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #7a6e5d;
+    color: var(--text-muted);
     font-weight: 500;
 }
 
@@ -187,11 +201,11 @@
 }
 
 .small-thumb-grid img.active {
-    border-color: #2d3a2d;
+    border-color: var(--primary);
 }
 
 .farmer-detail {
-    color: #7a6e5d;
+    color: var(--text-muted);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -209,7 +223,7 @@
 .detail-price {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #2d3a2d;
+    color: var(--primary);
 }
 
 .detail-unit {
@@ -234,13 +248,13 @@
 }
 
 .ai-score-banner {
-    background: #d4e0b0;
-    color: #2d3a2d;
+    background: var(--accent);
+    color: var(--white);
 }
 
 .blockchain-banner {
-    background: #f0f4f0;
-    color: #4a6b4a;
+    background: var(--secondary);
+    color: var(--text-headers);
 }
 
 .spec-grid {
@@ -265,8 +279,8 @@
 }
 
 .spec-text span {
-    font-weight: 600;
-    color: #2d3a2d;
+    font-weight: 700;
+    color: var(--text-on-light);
 }
 
 .detail-description h3 {
@@ -274,7 +288,8 @@
 }
 
 .detail-description p {
-    color: #777;
+    color: var(--text-on-light);
+    opacity: 0.8;
     line-height: 1.6;
     margin-bottom: 40px;
 }
@@ -288,7 +303,8 @@
 .qty-picker {
     display: flex;
     align-items: center;
-    background: #f0f0f0;
+    background: var(--accent);
+    opacity: 0.3;
     border-radius: 12px;
     padding: 5px;
 }
@@ -341,7 +357,7 @@
 .summary-row.total {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #2d3a2d;
+    color: var(--primary);
 }
 
 .checkout-btn {

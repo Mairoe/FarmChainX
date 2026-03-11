@@ -1,21 +1,40 @@
 :root {
-  /* Color Palette */
-  --primary: #2d3a2d;
-  --primary-hover: #1e2a1e;
-  --secondary: #8a9a5b;
-  --accent: #d4e0b0;
-  --background: #fdfaf5;
-  --surface: rgba(255, 255, 255, 0.7);
-  --surface-border: rgba(255, 255, 255, 0.3);
-  --text-main: #2c2520;
-  --text-muted: #6b635c;
-  --white: #ffffff;
+  /* Cyber-Retro Refined Palette */
+  --color-dark: #111b1d;
+  --color-cream: #f2e8dd;
+  --color-accent: #e57e51;
   
+  --primary: var(--color-accent);
+  --primary-hover: #cf6d42;
+  --secondary: #2a3a3d;
+  --accent: var(--color-accent);
+  --background: var(--color-dark);
+  
+  /* Background Surfaces */
+  --white: var(--color-cream); /* Transforming literal white to cream per request */
+  --color-light: var(--color-cream);
+  
+  /* Text Contrast System */
+  --text-on-dark: var(--color-cream);
+  --text-on-light: var(--color-dark);
+  
+  --text-main: var(--text-on-dark); /* Default for dark app background */
+  --text-headers: var(--text-on-dark);
+  --text-contrast: var(--text-on-light);
+  
+  /* Styling Tokens */
+  --radius-cta: 4px;
+  --radius-card: 24px;
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0 10px 40px rgba(0, 0, 0, 0.5);
+  --border-app: 1px solid rgba(242, 232, 221, 0.1);
+  --border-dark: 2px solid var(--color-dark);
+
   /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.5);
-  --glass-blur: blur(12px);
-  --glass-shadow: 0 8px 32px 0 rgba(45, 58, 45, 0.08);
+  --glass-bg: rgba(239, 246, 224, 0.85);
+  --glass-border: rgba(174, 195, 176, 0.5);
+  --glass-blur: blur(16px);
+  --glass-shadow: 0 12px 40px 0 rgba(1, 22, 30, 0.08);
 
   /* Spacing */
   --spacing-xs: 0.25rem;

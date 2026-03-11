@@ -16,22 +16,22 @@
 }
 
 .retail-stat-card {
-    background: white;
+    background: var(--white);
     padding: 28px;
     border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 20px rgba(1, 22, 30, 0.02);
+    border: 1px solid var(--secondary);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 160px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition-normal);
 }
 
 .retail-stat-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    border-color: #e2e8f0;
+    box-shadow: var(--shadow-medium);
+    border-color: var(--primary);
 }
 
 .stat-icon-box {
@@ -51,11 +51,11 @@
 }
 
 .product-card {
-    background: white;
-    border-radius: 24px;
-    border: 1px solid #f1f5f9;
+    background: var(--white);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--secondary);
     overflow: hidden;
-    transition: all 0.4s ease;
+    transition: var(--transition-normal);
 }
 
 .product-card:hover {
@@ -65,7 +65,7 @@
 
 .product-image-placeholder {
     height: 180px;
-    background: #f8fafc;
+    background: var(--background);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,21 +77,21 @@
     position: absolute;
     top: 15px;
     right: 15px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(4px);
+    background: var(--accent);
     padding: 6px 14px;
     border-radius: 100px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #4a6b4a;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(1, 22, 30, 0.2);
 }
 
 /* Inventory Table */
 .inventory-container {
     background: white;
     border-radius: 24px;
-    border: 1px solid #f1f5f9;
+    border: 1px solid var(--accent);
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
 }
@@ -102,19 +102,20 @@
 }
 
 .retail-table th {
-    background: #f8fafc;
+    background: var(--background);
     padding: 20px 24px;
     text-align: left;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #64748b;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--text-on-light);
+    opacity: 0.8;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1.5px;
 }
 
 .retail-table td {
     padding: 24px;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--accent);
     vertical-align: middle;
 }
 
@@ -127,14 +128,15 @@
 
 .category-card {
     padding: 15px;
-    background: #f8fafc;
+    background: var(--background);
     border-radius: 16px;
     margin-bottom: 12px;
 }
 
 .progress-bar-container {
     height: 10px;
-    background: #eef2f6;
+    background: var(--accent);
+    opacity: 0.3;
     border-radius: 20px;
     overflow: hidden;
 }
@@ -142,6 +144,7 @@
 .progress-bar-fill {
     height: 100%;
     border-radius: 20px;
+    background: var(--primary);
     transition: width 1s ease-in-out;
 }
 

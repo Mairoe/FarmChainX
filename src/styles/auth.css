@@ -39,20 +39,26 @@
 }
 
 .auth-info h1 {
-    font-size: 3rem;
-    color: #2c2520;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--text-headers);
 }
 
 .tagline {
     font-size: 1.5rem;
-    color: #7a6e5d;
+    color: var(--text-muted);
     font-weight: 500;
 }
 
 .auth-card {
-    padding: 40px;
+    background: var(--color-light);
+    padding: 50px;
     width: 100%;
     max-width: 500px;
+    border: var(--border-dark);
+    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.4);
+    border-radius: var(--radius-card);
+    color: var(--color-dark);
 }
 
 .auth-header {
@@ -62,17 +68,19 @@
 .auth-header h2 {
     font-size: 1.75rem;
     margin-bottom: 8px;
+    color: var(--text-on-light);
 }
 
 .auth-header p {
-    color: var(--text-muted);
+    color: var(--text-on-light);
+    opacity: 0.7;
 }
 
 .auth-toggle {
     display: flex;
-    background: #e9e5d9;
+    background: var(--secondary);
     padding: 5px;
-    border-radius: 12px;
+    border-radius: 14px;
     margin-bottom: 30px;
 }
 
@@ -98,19 +106,21 @@
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 0.9rem;
+    color: var(--text-on-light);
 }
 
 .form-group input,
 .role-select {
     width: 100%;
     padding: 14px 20px;
-    border-radius: 12px;
-    border: 1px solid transparent;
-    background: #f0ede4;
+    border-radius: var(--radius-cta);
+    border: 2px solid var(--color-dark);
+    background: var(--white);
     font-family: inherit;
     font-size: 1rem;
+    color: var(--color-dark);
     transition: var(--transition-normal);
 }
 
@@ -118,7 +128,7 @@
 .role-select:focus {
     outline: none;
     border-color: var(--primary);
-    background: var(--white);
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 .role-select {
@@ -142,9 +152,9 @@
 }
 
 .login-btn:hover {
-    background: #1e2a1e;
+    background: var(--primary-hover);
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(45, 58, 45, 0.15);
+    box-shadow: var(--shadow-medium);
 }
 
 @media (max-width: 900px) {

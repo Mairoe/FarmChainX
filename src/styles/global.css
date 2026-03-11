@@ -22,14 +22,14 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--primary);
-    font-weight: 600;
-    line-height: 1.2;
+    color: var(--text-headers);
+    font-weight: 800;
+    line-height: 1.1;
 }
 
 a {
     text-decoration: none;
-    color: inherit;
+    color: var(--primary);
     transition: var(--transition-fast);
 }
 
@@ -51,24 +51,37 @@ ul {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: radial-gradient(circle at 0% 0%, #f0ede4 0%, transparent 50%),
-        radial-gradient(circle at 100% 0%, #e8e4d9 0%, transparent 50%),
-        radial-gradient(circle at 100% 100%, #f5f2e8 0%, transparent 50%),
-        radial-gradient(circle at 0% 100%, #ece8dd 0%, transparent 50%);
-    filter: blur(80px);
+    background: 
+        radial-gradient(circle at 10% 10%, #1a2a2d 0%, transparent 40%),
+        radial-gradient(circle at 90% 10%, var(--primary) 0%, transparent 10%),
+        radial-gradient(circle at 50% 100%, #1a2a2d 0%, transparent 50%);
+    opacity: 0.8;
 }
 
-.glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
-    border-radius: var(--radius-lg);
+.glass-card,
+.bento-card {
+    background: var(--color-light);
+    border: var(--border-dark);
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-card);
+    color: var(--color-dark);
+    transition: var(--transition-normal);
+}
+
+.glass-card:hover,
+.bento-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.3);
+}
+
+.bento-card.dark {
+    background: var(--color-dark);
+    border: 1px solid rgba(242, 232, 221, 0.2);
+    color: var(--color-light);
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    padding: 0 var(--spacing-xl);
 }

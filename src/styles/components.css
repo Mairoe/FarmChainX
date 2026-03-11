@@ -5,9 +5,9 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(253, 250, 245, 0.8);
+    background: var(--glass-bg);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(45, 58, 45, 0.05);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .nav-content {
@@ -27,14 +27,14 @@
 }
 
 .logo-icon {
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-darkest));
     width: 40px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(45, 58, 45, 0.2);
+    box-shadow: 0 8px 20px rgba(1, 22, 30, 0.2);
 }
 
 .nav-links {
@@ -86,22 +86,26 @@
 .btn-primary {
     background: var(--primary);
     color: var(--white);
+    border-radius: var(--radius-cta);
+    box-shadow: var(--shadow-subtle);
 }
 
 .btn-primary:hover {
     background: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(45, 58, 45, 0.2);
+    transform: translateY(-1.5px);
+    box-shadow: var(--shadow-medium);
 }
 
 .btn-outline {
     border: 1px solid var(--primary);
     color: var(--primary);
+    background: transparent;
+    border-radius: var(--radius-cta);
 }
 
 .btn-outline:hover {
-    background: var(--primary);
-    color: var(--white);
+    background: rgba(89, 131, 146, 0.05);
+    color: var(--primary);
 }
 
 .mobile-menu-btn {

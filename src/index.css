@@ -1,11 +1,11 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--text-main);
+  background-color: var(--background);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,54 +15,75 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--primary);
   text-decoration: inherit;
+  transition: var(--transition-fast);
 }
+
 a:hover {
-  color: #535bf2;
+  color: var(--primary-hover);
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  display: block; 
   min-width: 320px;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-headers);
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.bento-card h1, .bento-card h2, .bento-card h3,
+.glass-card h1, .glass-card h2, .glass-card h3,
+.bento-card p, .glass-card p,
+.bento-card span, .glass-card span {
+  color: var(--text-on-light);
+}
+
+.bento-card.dark h1, .bento-card.dark h2, .bento-card.dark h3,
+.bento-card.dark p, .bento-card.dark span {
+  color: var(--text-on-dark);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+  border-radius: var(--radius-cta);
+  border: 2px solid var(--color-dark);
+  padding: 0.6rem 1.4rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-light);
+  color: var(--color-dark);
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-@media (prefers-color-scheme: light) {
+button:hover {
+  background-color: var(--primary);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--white);
+  border-color: var(--color-dark);
+}
+
+@media (prefers-color-scheme: dark) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: var(--color-lightest);
+    background-color: var(--color-darkest);
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--white);
   }
 }
