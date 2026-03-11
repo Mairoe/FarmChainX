@@ -45,6 +45,7 @@
     font-weight: 900;
     margin-bottom: 24px;
     letter-spacing: -3px;
+    color: white;
 }
 
 .banner-content p {
@@ -53,6 +54,7 @@
     max-width: 500px;
     margin-bottom: 40px;
     line-height: 1.6;
+    color: white;
 }
 
 .banner-stats {
@@ -65,12 +67,14 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     opacity: 0.5;
+    color: white;
 }
 
 .banner-stat h3 {
     font-size: 2rem;
     font-weight: 800;
     margin-top: 4px;
+    color: white;
 }
 
 .cart-badge-btn {
@@ -92,7 +96,7 @@
 }
 
 .cart-badge-btn:hover {
-    background: white;
+    background: var(--color-cream);
     color: var(--market-green);
     transform: translateY(-2px);
 }
@@ -128,7 +132,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     border: 1px solid #f0f0f0;
-    color: var(--text-on-light);
+    color: var(--color-dark);
 }
 
 .category-card:hover {
@@ -165,10 +169,10 @@
     font-size: 1.1rem;
     font-weight: 800;
     margin-bottom: 2px;
-    color: var(--text-on-light);
+    color: var(--color-dark);
 }
 .category-card.active .cat-info h4 {
-    color: var(--white);
+    color: var(--primary);
 }
 
 /* Main Content Layout */
@@ -184,7 +188,7 @@
 .shop-sidebar {
     position: sticky;
     top: 40px;
-    background: white;
+    background: var(--color-cream);
     padding: 32px;
     border-radius: 32px;
     border: 1px solid #f0f0f0;
@@ -196,18 +200,19 @@
 }
 
 .search-minimal-v2 {
-    background: var(--background);
-    border-radius: 16px;
-    padding: 4px 20px;
     display: flex;
     align-items: center;
     gap: 12px;
-    border: 1px solid #e2e8f0;
-    transition: all 0.2s ease;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 8px;
+    transition: all 0.3s ease;
+    background: var(--primary);
+    padding: 10px 15px;
+    border-radius: 12px;
 }
 
 .search-minimal-v2:focus-within {
-    background: white;
+    background: var(--color-cream);
     border-color: #3b82f6;
     box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.05);
 }
@@ -219,8 +224,12 @@
     width: 100%;
     font-family: inherit;
     font-size: 0.95rem;
-    color: var(--text-on-dark);
+    color: white;
     outline: none;
+}
+
+.search-minimal-v2 input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .checkbox-container {
@@ -271,7 +280,7 @@
 }
 
 .view-toggle button.active {
-    background: white;
+    background: var(--color-cream);
     color: var(--market-green);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
@@ -284,7 +293,7 @@
 }
 
 .shop-product-card {
-    background: var(--color-light);
+    background: white;
     border-radius: var(--radius-card);
     overflow: hidden;
     border: var(--border-dark);

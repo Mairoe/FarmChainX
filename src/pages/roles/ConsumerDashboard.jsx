@@ -57,14 +57,14 @@ const ConsumerDashboard = () => {
         {icon}
       </div>
       <div style={{ flex: 1 }}>
-        <h4 style={{ margin: '0 0 5px 0', fontSize: '1.1rem', fontWeight: '600', color: '#1a1a1a' }}>{title}</h4>
+        <h4 style={{ margin: '0 0 5px 0', fontSize: '1.1rem', fontWeight: '600', color: 'white' }}>{title}</h4>
         {date && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#666', fontSize: '0.85rem', marginBottom: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#aaa', fontSize: '0.85rem', marginBottom: '10px' }}>
             <Calendar size={14} />
             {date}
           </div>
         )}
-        <div style={{ background: '#f8fafc', padding: '15px', borderRadius: '12px' }}>
+        <div style={{ background: '#111', padding: '15px', borderRadius: '12px' }}>
           {children}
         </div>
       </div>
@@ -93,7 +93,7 @@ const ConsumerDashboard = () => {
               gap: '8px', 
               background: 'none', 
               border: 'none', 
-              color: '#4a5568', 
+              color: '#ccc', 
               cursor: 'pointer',
               marginBottom: '20px',
               padding: '0',
@@ -104,11 +104,10 @@ const ConsumerDashboard = () => {
           </button>
 
           <div className="batch-header" style={{ marginBottom: '30px' }}>
-            <p style={{ color: '#666', margin: '0 0 5px 0' }}>Batch: {selectedBatch.id}</p>
+            <p style={{ color: '#aaa', margin: '0 0 5px 0' }}>Batch: {selectedBatch.id}</p>
             
             <div style={{ 
-              background: 'white', color: '#1e293b',
-              color: '#1e293b', 
+              background: 'black', color: 'white', 
               padding: '40px', 
               borderRadius: '24px', 
               boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
@@ -124,14 +123,13 @@ const ConsumerDashboard = () => {
             </div>
 
             <div style={{ 
-              background: 'white', color: '#1e293b',
-              color: '#1e293b', 
+              background: 'black', color: 'white', 
               padding: '40px', 
               borderRadius: '24px', 
               boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
             }}>
               <h3 style={{ fontSize: '1.25rem', marginBottom: '10px' }}>Product Journey</h3>
-              <p style={{ color: '#666', fontSize: '0.95rem', marginBottom: '40px' }}>Complete traceability from farm to you</p>
+              <p style={{ color: '#aaa', fontSize: '0.95rem', marginBottom: '40px' }}>Complete traceability from farm to you</p>
 
               <div className="timeline">
                 <JourneyItem icon={<Leaf size={20} />} title="Planted" date="2025-11-01">
@@ -143,7 +141,7 @@ const ConsumerDashboard = () => {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
                       <p style={{ margin: '0 0 2px 0', fontSize: '0.9rem' }}><strong>Green Manure</strong> - 1000 kg</p>
-                      <p style={{ margin: 0, fontSize: '0.85rem', color: '#666' }}>2025-11-10</p>
+                      <p style={{ margin: 0, fontSize: '0.85rem', color: '#aaa' }}>2025-11-10</p>
                     </div>
                     <CheckCircle2 size={16} color="#22c55e" />
                   </div>
@@ -153,12 +151,12 @@ const ConsumerDashboard = () => {
                   <div style={{ marginBottom: '15px' }}>
                     <p style={{ margin: '0 0 2px 0', fontSize: '0.91rem' }}><strong>From:</strong> farmer_001</p>
                     <p style={{ margin: '0 0 2px 0', fontSize: '0.91rem' }}><strong>To:</strong> warehouse_001</p>
-                    <p style={{ margin: 0, fontSize: '0.85rem', color: '#666' }}>2026-03-05</p>
+                    <p style={{ margin: 0, fontSize: '0.85rem', color: '#aaa' }}>2026-03-05</p>
                   </div>
                   <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '15px' }}>
                     <p style={{ margin: '0 0 2px 0', fontSize: '0.91rem' }}><strong>From:</strong> user_1772793726336</p>
                     <p style={{ margin: '0 0 2px 0', fontSize: '0.91rem' }}><strong>To:</strong> retailer_004</p>
-                    <p style={{ margin: 0, fontSize: '0.85rem', color: '#666' }}>2026-03-06</p>
+                    <p style={{ margin: 0, fontSize: '0.85rem', color: '#aaa' }}>2026-03-06</p>
                   </div>
                 </JourneyItem>
 
@@ -166,24 +164,24 @@ const ConsumerDashboard = () => {
                   <p style={{ margin: '0 0 5px 0', fontSize: '0.9rem' }}><strong>Facility:</strong> Central Organic Storage</p>
                   <p style={{ margin: '0 0 5px 0', fontSize: '0.9rem' }}><strong>Conditions:</strong> Cool & Dry</p>
                   <p style={{ margin: '0 0 5px 0', fontSize: '0.9rem' }}><strong>Temperature:</strong> 15°C</p>
-                  <p style={{ margin: 0, fontSize: '0.85rem', color: '#666' }}>From 2026-03-05</p>
+                  <p style={{ margin: 0, fontSize: '0.85rem', color: '#aaa' }}>From 2026-03-05</p>
                 </JourneyItem>
 
                 <JourneyItem icon={<CheckCircle2 size={20} />} title="Organic Certification" color="#10b981">
-                   <div style={{ background: '#f0fdf4', padding: '15px', borderRadius: '12px', border: '1px solid #d1fae5' }}>
+                   <div style={{ background: '#111', padding: '15px', borderRadius: '12px', border: '1px solid #d1fae5' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
                         <h4 style={{ margin: 0, fontSize: '0.95rem' }}>Organic Certification Board</h4>
                         <span style={{ fontSize: '0.75rem', color: '#059669', fontWeight: '600' }}>approved</span>
                       </div>
-                      <p style={{ margin: '0 0 8px 0', fontSize: '0.85rem', color: '#666' }}>2026-03-10</p>
+                      <p style={{ margin: '0 0 8px 0', fontSize: '0.85rem', color: '#aaa' }}>2026-03-10</p>
                       <p style={{ margin: 0, fontSize: '0.85rem', fontStyle: 'italic', color: '#10b981' }}>"Meets all organic standards"</p>
                    </div>
                 </JourneyItem>
               </div>
             </div>
 
-            <div style={{ marginTop: '30px', background: '#f0fdf4', padding: '30px', borderRadius: '24px', border: '1px solid #dcfce7' }}>
-              <h3 style={{ fontSize: '1.2rem', color: '#166534', marginBottom: '20px' }}>Why Choose Organic?</h3>
+            <div style={{ marginTop: '30px', background: '#111', padding: '30px', borderRadius: '24px', border: '1px solid #dcfce7' }}>
+              <h3 style={{ fontSize: '1.2rem', color: '#4ade80', marginBottom: '20px' }}>Why Choose Organic?</h3>
               {[
                 'No synthetic pesticides or fertilizers used in production',
                 'Better for soil health and biodiversity',
@@ -192,7 +190,7 @@ const ConsumerDashboard = () => {
               ].map((text, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
                   <CheckCircle2 size={18} color="#22c55e" />
-                  <p style={{ margin: 0, fontSize: '0.95rem', color: '#374151' }}>{text}</p>
+                  <p style={{ margin: 0, fontSize: '0.95rem', color: 'white' }}>{text}</p>
                 </div>
               ))}
             </div>
@@ -206,9 +204,9 @@ const ConsumerDashboard = () => {
         <h1 style={{ fontSize: '2.5rem', color: '#1a202c', marginBottom: '16px', fontWeight: '700' }}>Track Your Organic Product Journey</h1>
         <p style={{ color: '#4a5568', fontSize: '1.1rem', marginBottom: '60px' }}>Scan the QR code or enter the batch number to see the complete farm-to-table story</p>
 
-        <div style={{ background: 'white', color: '#1e293b', color: '#1e293b', padding: '40px', borderRadius: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', textAlign: 'left', marginBottom: '40px' }}>
+        <div style={{ background: 'white', color: '#1e293b', padding: '40px', borderRadius: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', textAlign: 'left', marginBottom: '40px' }}>
           <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>Enter Batch Number</h3>
-          <p style={{ color: '#94a3b8', fontSize: '0.95rem', marginBottom: '24px' }}>Find the batch number on your product packaging</p>
+          <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '24px' }}>Find the batch number on your product packaging</p>
           
           <div style={{ display: 'flex', gap: '16px' }}>
             <input 
@@ -216,7 +214,7 @@ const ConsumerDashboard = () => {
               placeholder="e.g., ORG-WHT-002" 
               value={batchNumber}
               onChange={(e) => setBatchNumber(e.target.value)}
-              style={{ flex: 1, padding: '16px 20px', background: '#f1f5f9', border: 'none', borderRadius: '12px', fontSize: '1rem', outline: 'none' }}
+              style={{ flex: 1, padding: '16px 20px', background: '#f1f5f9', border: 'none', borderRadius: '12px', fontSize: '1rem', outline: 'none', color: '#1e293b' }}
             />
             <button 
               onClick={handleSearch}
@@ -229,9 +227,9 @@ const ConsumerDashboard = () => {
           </div>
         </div>
 
-        <div style={{ background: 'white', color: '#1e293b', color: '#1e293b', padding: '40px', borderRadius: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', textAlign: 'left' }}>
+        <div style={{ background: 'white', color: '#1e293b', padding: '40px', borderRadius: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', textAlign: 'left' }}>
           <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>Try Demo Batches</h3>
-          <p style={{ color: '#94a3b8', fontSize: '0.95rem', marginBottom: '32px' }}>Click on a batch to see its complete journey</p>
+          <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '32px' }}>Click on a batch to see its complete journey</p>
           
           <div 
             onClick={handleDemoClick}
@@ -242,7 +240,7 @@ const ConsumerDashboard = () => {
               cursor: 'pointer',
               maxWidth: '350px',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              background: '#ffffff',
+              background: '#f8fafc',
               boxShadow: '0 2px 10px rgba(0,0,0,0.02)'
             }}
             onMouseOver={(e) => {
@@ -256,8 +254,8 @@ const ConsumerDashboard = () => {
               e.currentTarget.style.borderColor = '#f1f5f9';
             }}
           >
-            <h4 style={{ margin: '0 0 5px 0', fontSize: '1.1rem' }}>Organic Wheat</h4>
-            <p style={{ margin: '0 0 20px 0', color: '#94a3b8', fontSize: '0.9rem' }}>ORG-WHT-002</p>
+            <h4 style={{ margin: '0 0 5px 0', fontSize: '1.1rem', color: '#1a1a1a' }}>Organic Wheat</h4>
+            <p style={{ margin: '0 0 20px 0', color: '#64748b', fontSize: '0.9rem' }}>ORG-WHT-002</p>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#f0fdf4', color: '#166534', padding: '6px 12px', borderRadius: '100px', fontSize: '0.8rem', fontWeight: '600' }}>
               <ShieldCheck size={14} /> Certified
             </div>
@@ -270,7 +268,7 @@ const ConsumerDashboard = () => {
   return (
     <div className="dashboard-layout dark-sidebar">
       <Sidebar role="consumer" />
-      <main className="dashboard-main light-bg" style={{ background: 'radial-gradient(circle, #f0fdf4 0%, #ffffff 100%)' }}>
+      <main className="dashboard-main" style={{ background: "var(--color-cream)", color: "var(--color-dark)" }}>
         <Topbar title="Customer Dashboard" subtitle="Track your organic product journey" />
         <div style={{ paddingBottom: '60px' }}>
           {renderContent()}

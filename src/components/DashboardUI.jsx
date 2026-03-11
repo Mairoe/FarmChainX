@@ -171,7 +171,7 @@ export const Topbar = ({ title, subtitle }) => {
   return (
     <header className="dashboard-header-clean" style={{ padding: '0 0 30px 0' }}>
       <div className="header-info">
-        <h1 style={{ fontSize: '1.75rem', fontWeight: '700', color: 'white' }}>{title}</h1>
+        <h1 style={{ fontSize: '1.75rem', fontWeight: '700', color: ['Customer Dashboard', 'Nexus Control Center', 'Distributor Dashboard', 'Store Manager Terminal', 'Warehouse Dashboard', 'Certifier Dashboard'].includes(title) ? '#1a1a1a' : 'white' }}>{title}</h1>
         <p style={{ color: '#999', fontSize: '0.9rem' }}>{subtitle}</p>
       </div>
       <div className="header-actions" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>

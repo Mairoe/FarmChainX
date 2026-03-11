@@ -8,19 +8,19 @@
   --primary-hover: #cf6d42;
   --secondary: #2a3a3d;
   --accent: var(--color-accent);
-  --background: var(--color-dark);
+  --background: var(--color-cream);
   
   /* Background Surfaces */
-  --white: var(--color-cream); /* Transforming literal white to cream per request */
+  --white: #ffffff;
   --color-light: var(--color-cream);
   
   /* Text Contrast System */
   --text-on-dark: var(--color-cream);
   --text-on-light: var(--color-dark);
   
-  --text-main: var(--text-on-dark); /* Default for dark app background */
-  --text-headers: var(--text-on-dark);
-  --text-contrast: var(--text-on-light);
+  --text-main: var(--text-on-light);
+  --text-headers: var(--text-on-light);
+  --text-contrast: var(--text-on-dark);
   
   /* Styling Tokens */
   --radius-cta: 4px;
@@ -31,10 +31,10 @@
   --border-dark: 2px solid var(--color-dark);
 
   /* Glassmorphism */
-  --glass-bg: rgba(239, 246, 224, 0.85);
-  --glass-border: rgba(174, 195, 176, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.5);
   --glass-blur: blur(16px);
-  --glass-shadow: 0 12px 40px 0 rgba(1, 22, 30, 0.08);
+  --glass-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.05);
 
   /* Spacing */
   --spacing-xs: 0.25rem;

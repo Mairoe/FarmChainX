@@ -194,7 +194,7 @@ const ShopPage = () => {
 
             <div className="filter-group">
               <div className="search-minimal-v2">
-                <Search size={18} color="#94a3b8" />
+                <Search size={18} color="black" />
                 <input
                   type="text"
                   placeholder="Seach farm/product..."
