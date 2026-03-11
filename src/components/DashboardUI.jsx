@@ -3,7 +3,7 @@ import {
   LayoutDashboard, Package, Truck, Warehouse, 
   ShieldCheck, Store, Settings, LogOut, PlusCircle,
   Bell, User, Search, Home, Sprout, BarChart3,
-  ShoppingCart, HelpCircle, MapPin, CheckCircle2, Plus, Users, Leaf, Repeat
+  ShoppingCart, HelpCircle, MapPin, CheckCircle2, Plus, Users, Leaf
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -48,9 +48,7 @@ export const Sidebar = ({ role }) => {
       { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/admin?tab=Overview' },
       { icon: <User size={20}/>, label: 'User Management', path: '/dashboard/admin?tab=Users' },
       { icon: <Package size={20}/>, label: 'Batch Ledger', path: '/dashboard/admin?tab=Batches' },
-      { icon: <Repeat size={20}/>, label: 'Transactions', path: '/dashboard/admin?tab=Transactions' },
-      { icon: <ShieldCheck size={20}/>, label: 'Blockchain Log', path: '/dashboard/admin?tab=Blockchain' },
-      { icon: <BarChart3 size={20}/>, label: 'Reports', path: '/dashboard/admin?tab=Reports' },
+      { icon: <ShieldCheck size={20}/>, label: 'Audit Log', path: '/dashboard/admin?tab=Blockchain' },
       { icon: <Settings size={20}/>, label: 'System Settings', path: '/dashboard/admin?tab=Settings' },
     ]
   };
@@ -87,10 +85,6 @@ export const Sidebar = ({ role }) => {
           const currentParams = new URLSearchParams(location.search);
           const currentTab = currentParams.get('tab');
           
-          // Determine if active: 
-          // 1. Exact path + exactly the same tab parameter
-          // 2. Path matches and both have no tab (default view)
-          // 3. Path matches and currentTab is null, but item is the first one (default tab)
           const isPathMatch = location.pathname === itemUrl.pathname;
           const isTabMatch = currentTab === itemTab;
           const isDefaultTab = !currentTab && idx === 0;
