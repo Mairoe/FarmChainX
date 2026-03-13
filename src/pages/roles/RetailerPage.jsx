@@ -149,11 +149,11 @@ const InventoryView = () => (
 const RevenueView = () => (
   <div className="sales-split fade-in-up">
     <div>
-      <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b', borderRadius: '24px' }}>
+      <div className="glass-card sub-box" style={{ padding: '30px', background: 'white', color: '#1e293b', borderRadius: '24px' }}>
         <h3 style={{ fontSize: '1.4rem', fontWeight: '800', marginBottom: '25px' }}>Direct Consumer Sales</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {RECENT_SALES.map(sale => (
-            <div key={sale.id} style={{ display: 'flex', justifyContent: 'space-between', background: '#f8fafc', padding: '20px', borderRadius: '16px', border: '1px solid #f1f5f9' }}>
+            <div key={sale.id} className="sub-box" style={{ display: 'flex', justifyContent: 'space-between', background: '#f8fafc', padding: '20px', borderRadius: '16px' }}>
                <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                   <div style={{ width: '40px', height: '40px', background: '#fff', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}><ShoppingCart size={20} color="#64748b" /></div>
                   <div>
@@ -172,7 +172,7 @@ const RevenueView = () => (
     </div>
     
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-      <div className="glass-card" style={{ padding: '30px', background: '#2d3a2d', color: 'white', borderRadius: '24px' }}>
+      <div className="glass-card sub-box" style={{ padding: '30px', background: '#2d3a2d', color: 'white', borderRadius: '24px' }}>
         <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '10px' }}>Today's Revenue</h3>
         <div style={{ fontSize: '2.8rem', fontWeight: '900' }}>₹102,900.00</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#10b981', marginTop: '10px', fontWeight: '700' }}>
@@ -180,7 +180,7 @@ const RevenueView = () => (
         </div>
       </div>
       
-      <div className="glass-card" style={{ padding: '30px', background: 'white', color: '#1e293b', borderRadius: '24px', border: '1px solid #f1f5f9' }}>
+      <div className="glass-card sub-box" style={{ padding: '30px', background: 'white', color: '#1e293b', borderRadius: '24px' }}>
         <h4 style={{ fontWeight: '800', marginBottom: '15px' }}>Best Sellers</h4>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           {['Oxheart Tomatoes', 'Wildflower Honey'].map((p, i) => (
@@ -198,21 +198,21 @@ const RevenueView = () => (
 // 4. Insights Tab (Analytics)
 const InsightsView = () => (
   <div className="fade-in-up" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px' }}>
-    <div className="glass-card" style={{ padding: '30px' }}>
+    <div className="glass-card sub-box" style={{ padding: '30px' }}>
       <h3 style={{ fontSize: '1.4rem', fontWeight: '800', marginBottom: '24px' }}>AI Store Assistant</h3>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <div style={{ padding: '20px', background: '#f0fdf4', borderRadius: '16px', border: '1px solid #dcfce7' }}>
+        <div className="sub-box" style={{ padding: '20px', background: '#f0fdf4', borderRadius: '16px' }}>
           <h4 style={{ color: '#166534', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '8px' }}><Star size={16} /> Restock Recommendation</h4>
           <p style={{ fontSize: '0.85rem', color: '#166534', marginTop: '4px' }}>Honey inventory is critical. Current demand is up 40% this weekend. Restock 20 units now.</p>
         </div>
-        <div style={{ padding: '20px', background: '#eff6ff', borderRadius: '16px', border: '1px solid #dbeafe' }}>
+        <div className="sub-box" style={{ padding: '20px', background: '#eff6ff', borderRadius: '16px' }}>
           <h4 style={{ color: '#1e40af', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '8px' }}><TrendingUp size={16} /> Market Trend</h4>
           <p style={{ fontSize: '0.85rem', color: '#1e40af', marginTop: '4px' }}>Tomato prices are expected to rise by 15% next week due to regional weather. Buy bulk now to save.</p>
         </div>
       </div>
     </div>
     
-    <div className="glass-card" style={{ padding: '40px', background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)', color: 'white', borderRadius: '24px', textAlign: 'center' }}>
+    <div className="glass-card sub-box" style={{ padding: '40px', background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)', color: 'white', borderRadius: '24px', textAlign: 'center' }}>
       <div style={{ width: '70px', height: '70px', borderRadius: '20px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px auto' }}><BarChart3 size={36} /></div>
       <h3 style={{ fontSize: '1.6rem', fontWeight: '800', marginBottom: '12px' }}>Forecasting Model Active</h3>
       <p style={{ opacity: 0.7, fontSize: '0.95rem', marginBottom: '32px' }}>Your store efficiency is currently 92%. Applying AI suggestions can boost this to 98%.</p>

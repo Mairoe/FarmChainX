@@ -231,7 +231,7 @@ const FarmerPage = () => {
                      { id: '123', crop: 'tomato', apps: 0, pest: 0, irr: 0 },
                      { id: '111', crop: 'potato', apps: 0, pest: 0, irr: 0 }
                    ].map((log, idx) => (
-                     <div key={idx} style={{ padding: '20px', border: '1px solid #f0f0f0', borderRadius: '12px' }}>
+                     <div key={idx} className="sub-box" style={{ padding: '20px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                            <div>
                               <div style={{ fontWeight: '700', fontSize: '1rem' }}>{log.id}</div>
@@ -258,7 +258,7 @@ const FarmerPage = () => {
                      { crop: 'tomato', id: '123', days: '18 days', date: '2026-03-26' },
                      { crop: 'potato', id: '111', days: '52 days', date: '2026-04-29' }
                    ].map((h, idx) => (
-                     <div key={idx} style={{ padding: '15px', borderRadius: '12px', background: idx === 0 ? '#f0f4f0' : '#f8f8f8', border: '1px solid #eee' }}>
+                     <div key={idx} className="sub-box" style={{ padding: '15px', borderRadius: '12px', background: idx === 0 ? '#f0f4f0' : '#f8f8f8' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
                            <span style={{ fontWeight: '600' }}>{h.crop}</span>
                            <span style={{ color: idx === 0 ? '#4a6b4a' : '#666', fontWeight: '700', fontSize: '0.85rem' }}>{h.days}</span>
@@ -420,7 +420,7 @@ const FarmerPage = () => {
                   { label: 'Certification Success Rate', value: '0/0', color: '#3b82f6' },
                   { label: 'Active Production', value: '0/0', color: '#f59e0b' }
                 ].map((item, idx) => (
-                  <div key={idx} style={{ padding: '20px', border: '1px solid #f0f0f0', borderRadius: '12px' }}>
+                  <div key={idx} className="sub-box" style={{ padding: '20px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                       <span style={{ fontWeight: '600', color: '#2d3a2d' }}>{item.label}</span>
                       <span style={{ fontWeight: '700', color: item.color }}>{item.value}</span>
@@ -451,7 +451,7 @@ const FarmerPage = () => {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                <div style={{ padding: '15px', background: '#eff6ff', borderRadius: '12px', border: '1px solid #dbeafe' }}>
+                <div className="sub-box" style={{ padding: '15px', background: '#eff6ff', borderRadius: '12px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', color: '#1e40af' }}>
                     <Droplets size={18} />
                     <span style={{ fontWeight: '700', fontSize: '0.95rem' }}>Weather Alert</span>
@@ -459,7 +459,7 @@ const FarmerPage = () => {
                   <p style={{ fontSize: '0.85rem', color: '#3b82f6', margin: 0 }}>Heavy rain expected next week. Consider adjusting irrigation schedule for active batches.</p>
                 </div>
 
-                <div style={{ padding: '15px', background: '#f0fdf4', borderRadius: '12px', border: '1px solid #dcfce7' }}>
+                <div className="sub-box" style={{ padding: '15px', background: '#f0fdf4', borderRadius: '12px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', color: '#166534' }}>
                     <CheckCircle2 size={18} />
                     <span style={{ fontWeight: '700', fontSize: '0.95rem' }}>Harvest Reminder</span>
@@ -467,7 +467,7 @@ const FarmerPage = () => {
                   <p style={{ fontSize: '0.85rem', color: '#10b981', margin: 0 }}>0 batch(es) approaching harvest date this week.</p>
                 </div>
 
-                <div style={{ padding: '15px', background: '#faf5ff', borderRadius: '12px', border: '1px solid #f3e8ff' }}>
+                <div className="sub-box" style={{ padding: '15px', background: '#faf5ff', borderRadius: '12px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', color: '#6b21a8' }}>
                     <TrendingUp size={18} />
                     <span style={{ fontWeight: '700', fontSize: '0.95rem' }}>Market Trend</span>
@@ -475,7 +475,7 @@ const FarmerPage = () => {
                   <p style={{ fontSize: '0.85rem', color: '#a855f7', margin: 0 }}>Organic tomatoes showing 15% price increase. Good time to harvest and sell.</p>
                 </div>
 
-                <div style={{ padding: '15px', background: '#fff7ed', borderRadius: '12px', border: '1px solid #ffedd5' }}>
+                <div className="sub-box" style={{ padding: '15px', background: '#fff7ed', borderRadius: '12px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', color: '#9a3412' }}>
                     <Zap size={18} />
                     <span style={{ fontWeight: '700', fontSize: '0.95rem' }}>Organic Tip</span>
@@ -509,7 +509,7 @@ const FarmerPage = () => {
                     "How to generate a blockchain trace code?",
                     "What documents are required for organic certification?"
                   ].map((q, i) => (
-                    <div key={i} style={{ padding: '20px', background: '#fdfaf5', borderRadius: '12px', border: '1px solid #f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div key={i} className="sub-box" style={{ padding: '20px', background: '#fdfaf5', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                        <span style={{ fontWeight: '600', color: '#2d3a2d' }}>{q}</span>
                        <Plus size={18} color="#999" />
                     </div>

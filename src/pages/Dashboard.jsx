@@ -200,7 +200,7 @@ const Dashboard = ({ role = 'admin' }) => {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   {pendingUsers.map(user => (
-                    <div key={user.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', background: '#fffbeb', borderRadius: '14px', border: '1px solid #fde68a' }}>
+                    <div key={user.id} className="sub-box" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', background: '#fffbeb', borderRadius: '14px' }}>
                       <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
                         <div style={{ width: '42px', height: '42px', borderRadius: '12px', background: '#fef3c7', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '700', fontSize: '1rem', color: '#d97706' }}>
                           {user.name.charAt(0)}
@@ -409,7 +409,7 @@ const Dashboard = ({ role = 'admin' }) => {
             </div>
             <div className="activity-list">
               {filteredEvents.map((txn, i) => (
-                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '20px', background: '#f8fafc', borderRadius: '12px', marginBottom: '12px', border: '1px solid #f1f5f9' }}>
+                <div key={i} className="sub-box" style={{ display: 'flex', justifyContent: 'space-between', padding: '20px', background: '#f8fafc', borderRadius: '12px', marginBottom: '12px' }}>
                   <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                     <div style={{ background: 'white', color: '#1e293b', padding: '10px', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}><Activity size={20} color="#3b82f6" /></div>
                     <div>
@@ -445,7 +445,7 @@ const Dashboard = ({ role = 'admin' }) => {
               </div>
               <p style={{ color: '#64748b', fontSize: '0.9rem', marginBottom: '25px' }}>Configure the global look and feel of the FarmChainX ecosystem.</p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                <div style={{ padding: '20px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #f1f5f9' }}>
+                <div className="sub-box" style={{ padding: '20px', background: '#f8fafc', borderRadius: '16px' }}>
                   <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '15px' }}>
                     <Coins size={18} color="#94a3b8" />
                     <span style={{ fontWeight: '600', fontSize: '0.95rem' }}>Master Currency</span>
@@ -458,7 +458,7 @@ const Dashboard = ({ role = 'admin' }) => {
                   </select>
                   <p style={{ margin: '10px 0 0 0', fontSize: '0.75rem', color: '#94a3b8' }}>Sets the default pricing and transaction currency.</p>
                 </div>
-                <div style={{ padding: '20px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #f1f5f9' }}>
+                <div className="sub-box" style={{ padding: '20px', background: '#f8fafc', borderRadius: '16px' }}>
                   <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '15px' }}>
                     <Globe size={18} color="#94a3b8" />
                     <span style={{ fontWeight: '600', fontSize: '0.95rem' }}>Regional Language</span>
@@ -486,7 +486,7 @@ const Dashboard = ({ role = 'admin' }) => {
                   { label: 'Real-time Audit Logging', enabled: true, desc: 'Saves every system mutation to an immutable IPFS log.' },
                   { label: 'Automatic Smart Verification', enabled: false, desc: 'If enabled, batches auto-verify via IoT sensor data.' },
                 ].map((setting, id) => (
-                  <div key={id} style={{ display: 'flex', justifyContent: 'space-between', padding: '20px', background: '#f8fafc', borderRadius: '16px', alignItems: 'center', border: '1px solid #f1f5f9' }}>
+                  <div key={id} className="sub-box" style={{ display: 'flex', justifyContent: 'space-between', padding: '20px', background: '#f8fafc', borderRadius: '16px', alignItems: 'center' }}>
                     <div style={{ flex: 1 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4px' }}>
                         <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: setting.enabled ? '#10b981' : '#cbd5e1' }}></div>
@@ -499,7 +499,7 @@ const Dashboard = ({ role = 'admin' }) => {
                     </div>
                   </div>
                 ))}
-                <div style={{ padding: '20px', background: '#fffbeb', borderRadius: '16px', border: '1px solid #fef3c7', marginTop: '10px' }}>
+                <div className="sub-box" style={{ padding: '20px', background: '#fffbeb', borderRadius: '16px', marginTop: '10px' }}>
                   <div style={{ display: 'flex', gap: '10px', alignItems: 'center', color: '#9a3412', marginBottom: '8px' }}>
                     <AlertCircle size={18} />
                     <span style={{ fontWeight: '700', fontSize: '0.9rem' }}>Governance Action Required</span>
@@ -539,7 +539,7 @@ const Dashboard = ({ role = 'admin' }) => {
                 <h3 style={{ margin: 0 }}>Policy & Compliance</h3>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                <div style={{ padding: '20px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #f1f5f9' }}>
+                <div className="sub-box" style={{ padding: '20px', background: '#f8fafc', borderRadius: '16px' }}>
                   <div style={{ fontWeight: '600', fontSize: '0.95rem', marginBottom: '8px' }}>History Retention</div>
                   <select style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b' }}>
                     <option>1 Year (Standard)</option>
@@ -548,7 +548,7 @@ const Dashboard = ({ role = 'admin' }) => {
                   </select>
                   <p style={{ margin: '8px 0 0 0', fontSize: '0.75rem', color: '#94a3b8' }}>How long non-blockchain data is kept active.</p>
                 </div>
-                <div style={{ padding: '20px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #f1f5f9' }}>
+                <div className="sub-box" style={{ padding: '20px', background: '#f8fafc', borderRadius: '16px' }}>
                   <div style={{ fontWeight: '600', fontSize: '0.95rem', marginBottom: '8px' }}>Onboarding Policy</div>
                   <select style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b' }}>
                     <option>Manual Review Only</option>

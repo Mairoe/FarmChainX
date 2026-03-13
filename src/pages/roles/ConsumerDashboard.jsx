@@ -113,7 +113,7 @@ const ConsumerDashboard = () => {
               alignItems: 'center',
               marginBottom: '30px'
             }}>
-              <div style={{ padding: '20px', border: '1px solid #f1f5f9', borderRadius: '16px', marginBottom: '15px' }}>
+              <div className="sub-box" style={{ padding: '20px', borderRadius: '16px', marginBottom: '15px', background: 'white' }}>
                 <img src="/qr_code.png" alt="QR Code" style={{ width: '150px', height: '150px' }} />
               </div>
               <p style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Scan for quick access</p>
@@ -160,7 +160,7 @@ const ConsumerDashboard = () => {
                 </JourneyItem>
 
                 <JourneyItem icon={<CheckCircle2 size={20} />} title="Organic Certification" color="#10b981">
-                   <div style={{ background: '#f8fafc', padding: '15px', borderRadius: '12px', border: '1px solid #d1fae5' }}>
+                   <div className="sub-box" style={{ background: '#f8fafc', padding: '15px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
                         <h4 style={{ margin: 0, fontSize: '0.95rem', color: '#1e293b' }}>Organic Certification Board</h4>
                         <span style={{ fontSize: '0.75rem', color: '#059669', fontWeight: '600' }}>approved</span>
@@ -172,7 +172,7 @@ const ConsumerDashboard = () => {
               </div>
             </div>
 
-            <div style={{ marginTop: '30px', background: 'white', padding: '30px', borderRadius: '24px', border: '1px solid #dcfce7' }}>
+            <div className="sub-box" style={{ marginTop: '30px', background: 'white', padding: '30px' }}>
               <h3 style={{ fontSize: '1.2rem', color: '#166534', marginBottom: '20px' }}>Why Choose Organic?</h3>
               {[
                 'No synthetic pesticides or fertilizers used in production',

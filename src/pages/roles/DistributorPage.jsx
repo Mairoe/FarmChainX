@@ -99,13 +99,13 @@ const DistributorPage = () => {
              
              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
                 {pharmaFarms.map((farm, i) => (
-                  <div key={i} style={{ padding: '25px', borderRadius: '20px', border: '1px solid #f1f5f9', background: '#f8fafc' }}>
+                  <div key={i} className="sub-box" style={{ padding: '25px', background: '#f8fafc' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px' }}>
                       <h4 style={{ margin: '0 0 4px 0', fontWeight: '700' }}>{farm.name}</h4>
                       <span style={{ fontSize: '0.75rem', background: '#f0fdf4', color: '#166534', padding: '4px 10px', borderRadius: '100px', fontWeight: '800', height: 'fit-content' }}>{farm.certification}</span>
                     </div>
                     <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '0 0 20px 0' }}><MapPin size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px'}} /> {farm.location}</p>
-                    <div style={{ background: 'white', color: '#1e293b', padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
+                    <div className="sub-box" style={{ background: 'white', color: '#1e293b', padding: '15px' }}>
                       <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '4px' }}>Latest Harvest Available</div>
                       <div style={{ fontWeight: '700', fontSize: '0.95rem' }}>{farm.latestBatch}</div>
                     </div>
@@ -128,7 +128,7 @@ const DistributorPage = () => {
              
              <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                 {inventoryBatches.map((batch, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '20px', borderRadius: '16px', border: '1px solid #f1f5f9', gap: '20px' }}>
+                  <div key={i} className="sub-box" style={{ display: 'flex', alignItems: 'center', padding: '20px', gap: '20px' }}>
                     <div style={{ width: '48px', height: '48px', background: '#f0fdf4', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#22c55e' }}>
                       <Package size={24} />
                     </div>
@@ -283,7 +283,7 @@ const DistributorPage = () => {
                <p style={{ margin: '0 0 25px 0', color: '#64748b', fontSize: '0.9rem' }}>Latest distribution updates</p>
                
                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                  <div style={{ padding: '20px', borderRadius: '16px', background: '#f0fdf4', border: '1px solid #dcfce7', display: 'flex', gap: '15px', alignItems: 'center' }}>
+                  <div className="sub-box" style={{ padding: '20px', background: '#f0fdf4', display: 'flex', gap: '15px', alignItems: 'center' }}>
                     <div style={{ width: '40px', height: '40px', background: 'white', color: '#1e293b', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#22c55e' }}>
                       <CheckCircle2 size={20} />
                     </div>
@@ -293,7 +293,7 @@ const DistributorPage = () => {
                     </div>
                   </div>
 
-                  <div style={{ padding: '20px', borderRadius: '16px', background: '#eff6ff', border: '1px solid #dbeafe', display: 'flex', gap: '15px', alignItems: 'center' }}>
+                  <div className="sub-box" style={{ padding: '20px', background: '#eff6ff', display: 'flex', gap: '15px', alignItems: 'center' }}>
                     <div style={{ width: '40px', height: '40px', background: 'white', color: '#1e293b', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6' }}>
                       <Clock size={20} />
                     </div>
@@ -303,7 +303,7 @@ const DistributorPage = () => {
                     </div>
                   </div>
 
-                  <div style={{ padding: '20px', borderRadius: '16px', background: '#f5f3ff', border: '1px solid #ede9fe', display: 'flex', gap: '15px', alignItems: 'center' }}>
+                  <div className="sub-box" style={{ padding: '20px', background: '#f5f3ff', display: 'flex', gap: '15px', alignItems: 'center' }}>
                     <div style={{ width: '40px', height: '40px', background: 'white', color: '#1e293b', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#8b5cf6' }}>
                       <Box size={20} />
                     </div>
@@ -366,7 +366,7 @@ const DistributorPage = () => {
                   {distCenters.map(c => <option key={c.name}>{c.name}</option>)}
                 </select>
               </div>
-              <div style={{ background: '#f0fdf4', padding: '15px', borderRadius: '12px', border: '1px solid #dcfce7' }}>
+              <div className="sub-box" style={{ background: '#f0fdf4', padding: '15px', borderRadius: '12px' }}>
                 <div style={{ display: 'flex', gap: '10px', color: '#166534', fontSize: '0.85rem' }}>
                   <Leaf size={16} />
                   <span>Only organic-certified transportation partners will be assigned.</span>
@@ -410,7 +410,7 @@ const DistributorPage = () => {
         {viewingRoute && (
           <Modal title="Route Planning" onClose={() => setViewingRoute(null)}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '20px', background: '#f0f9ff', borderRadius: '16px', border: '1px solid #e0f2fe' }}>
+              <div className="sub-box" style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '20px', background: '#f0f9ff', borderRadius: '16px' }}>
                 <div style={{ fontWeight: '600' }}>{viewingRoute.from}</div>
                 <ArrowRight size={18} color="#3b82f6" />
                 <div style={{ fontWeight: '600' }}>{viewingRoute.to}</div>

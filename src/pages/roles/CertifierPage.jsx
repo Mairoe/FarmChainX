@@ -269,7 +269,7 @@ const CertifierPage = () => {
                       setSelectedBatch(batch);
                       setShowReviewModal(true);
                     }}
-                    className="glass-card"
+                    className="glass-card sub-box"
                     style={{ padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}
                    >
                      <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
@@ -329,7 +329,7 @@ const CertifierPage = () => {
               {/* Batch Info Section */}
               <section>
                 <h4 style={{ margin: '0 0 15px 0', fontSize: '1rem', fontWeight: '600' }}>Batch Information</h4>
-                <div style={{ background: '#f8fafc', borderRadius: '16px', padding: '15px' }}>
+                <div className="sub-box" style={{ background: '#f8fafc', borderRadius: '16px', padding: '15px' }}>
                    {[
                      { l: 'Crop Type:', v: selectedBatch.details.cropType },
                      { l: 'Area Size:', v: selectedBatch.areaSize },
@@ -347,7 +347,7 @@ const CertifierPage = () => {
               {/* Fertilizers Section */}
               <section>
                 <h4 style={{ margin: '0 0 12px 0', fontSize: '0.95rem', fontWeight: '600' }}>Fertilizers Applied</h4>
-                <div style={{ background: '#f8fafc', borderRadius: '12px', padding: '12px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div className="sub-box" style={{ background: '#f8fafc', borderRadius: '12px', padding: '12px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ fontSize: '0.9rem' }}>{selectedBatch.details.fertilizersApplied}</span>
                   <span style={{ background: '#dcfce7', color: '#166534', padding: '2px 10px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600' }}>Organic</span>
                 </div>
@@ -356,7 +356,7 @@ const CertifierPage = () => {
               {/* Pest Control Section */}
               <section>
                 <h4 style={{ margin: '0 0 12px 0', fontSize: '0.95rem', fontWeight: '600' }}>Pest Control Methods</h4>
-                <div style={{ background: '#f8fafc', borderRadius: '12px', padding: '12px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div className="sub-box" style={{ background: '#f8fafc', borderRadius: '12px', padding: '12px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ fontSize: '0.9rem' }}>{selectedBatch.details.pestControlMethods}</span>
                   <span style={{ background: '#dcfce7', color: '#166534', padding: '2px 10px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600' }}>Organic</span>
                 </div>

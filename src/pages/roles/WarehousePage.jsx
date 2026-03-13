@@ -23,11 +23,11 @@ const WarehousePage = () => {
             <h3>Inventory & Storage Status</h3>
             <p style={{ color: '#666', marginBottom: '20px' }}>Real-time monitoring of warehouse conditions and stock levels.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
-               <div style={{ padding: '20px', background: '#f8fbf8', borderRadius: '12px', textAlign: 'center' }}>
+               <div className="sub-box" style={{ padding: '20px', background: '#f8fbf8', textAlign: 'center' }}>
                   <Thermometer size={30} color="#4a6b4a" />
                   <p style={{ marginTop: '10px', fontWeight: 'bold' }}>Temperature Stable</p>
                </div>
-               <div style={{ padding: '20px', background: '#f8fbf8', borderRadius: '12px', textAlign: 'center' }}>
+               <div className="sub-box" style={{ padding: '20px', background: '#f8fbf8', textAlign: 'center' }}>
                   <Droplets size={30} color="#4a6b4a" />
                   <p style={{ marginTop: '10px', fontWeight: 'bold' }}>Humidity 45%</p>
                </div>

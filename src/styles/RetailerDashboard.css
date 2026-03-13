@@ -19,8 +19,8 @@
     background: var(--white);
     padding: 28px;
     border-radius: 20px;
-    box-shadow: var(--shadow-subtle);
-    border: 1px solid var(--secondary);
+    border: 2px solid var(--color-dark);
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -30,8 +30,8 @@
 }
 
 .retail-stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-medium);
+    transform: translateY(-5px) translateX(-2px);
+    box-shadow: 8px 8px 0px var(--color-dark);
     border-color: var(--primary);
 }
 
@@ -54,16 +54,16 @@
 .product-card {
     background: var(--white);
     border-radius: var(--radius-card);
-    border: 1px solid var(--secondary);
-    box-shadow: var(--shadow-subtle);
+    border: 2px solid var(--color-dark);
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: var(--transition-normal);
     color: var(--text-on-light);
 }
 
 .product-card:hover {
-    box-shadow: var(--shadow-medium);
-    transform: translateY(-5px);
+    box-shadow: 8px 8px 0px var(--color-dark);
+    transform: translateY(-5px) translateX(-2px);
     border-color: var(--primary);
 }
 
