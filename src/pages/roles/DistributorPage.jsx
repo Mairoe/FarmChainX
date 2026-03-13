@@ -25,7 +25,7 @@ import '../../styles/dashboard.css';
 
 const DistributorPage = () => {
   const [searchParams] = useSearchParams();
-  const activeTab = searchParams.get('tab') || 'Inventory';
+  const activeTab = searchParams.get('tab') || 'Farmer Sourcing';
 
   // Demo States
   const [showDistributeModal, setShowDistributeModal] = useState(false);
@@ -89,7 +89,7 @@ const DistributorPage = () => {
     switch (activeTab) {
       case 'Farmer Sourcing':
         return (
-          <div style={{ background: 'white', color: '#1e293b', borderRadius: '24px', padding: '40px', border: '1px solid #f1f5f9' }} className="tab-fade-in">
+          <div className="sub-box tab-fade-in" style={{ background: 'white', color: '#1e293b', padding: '40px' }}>
              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '30px' }}>
                 <div>
                   <h3 style={{ margin: '0 0 5px 0', fontSize: '1.25rem', fontWeight: '800' }}>Farmer Batch Sourcing</h3>
@@ -393,13 +393,18 @@ const DistributorPage = () => {
                 <span style={{ fontWeight: '700' }}>{viewingCenter.items} Batches</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                {[1,2,3].map(i => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', borderBottom: '1px solid #f1f5f9' }}>
-                    <Box size={18} color="#64748b" />
+                {[
+                  { name: 'Oxheart Heirloom Tomatoes', batch: 'FARM-BT-220A', qty: '500kg', status: 'Organic A+' },
+                  { name: 'Cold-Pressed Sunflower Oil', batch: 'FARM-BT-112B', qty: '120L', status: 'Eco-Cert' },
+                  { name: 'Organic Wheat', batch: 'FARM-BT-801X', qty: '400kg', status: 'Bio-Verified' }
+                ].map((item, i) => (
+                  <div key={i} className="sub-box" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '15px' }}>
+                    <Box size={24} color="#4a6b4a" />
                     <div style={{ flex: 1 }}>
-                      <h5 style={{ margin: '0 0 2px 0', fontSize: '0.9rem', fontWeight: '600' }}>Organic Wheat Batch #{i * 102}</h5>
-                      <p style={{ margin: 0, fontSize: '0.75rem', color: '#94a3b8' }}>Verified Organic • 400kg</p>
+                      <h5 style={{ margin: '0 0 2px 0', fontSize: '0.95rem', fontWeight: '700' }}>{item.name}</h5>
+                      <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>Batch: {item.batch} • {item.status}</p>
                     </div>
+                    <div style={{ fontWeight: '800', color: '#2d3a2d' }}>{item.qty}</div>
                   </div>
                 ))}
               </div>
@@ -408,28 +413,53 @@ const DistributorPage = () => {
         )}
 
         {viewingRoute && (
-          <Modal title="Route Planning" onClose={() => setViewingRoute(null)}>
+          <Modal title="Advanced Route Planning" onClose={() => setViewingRoute(null)}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              <div className="sub-box" style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '20px', background: '#f0f9ff', borderRadius: '16px' }}>
-                <div style={{ fontWeight: '600' }}>{viewingRoute.from}</div>
-                <ArrowRight size={18} color="#3b82f6" />
-                <div style={{ fontWeight: '600' }}>{viewingRoute.to}</div>
+              <div className="sub-box" style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '20px', background: '#f0f9ff' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.7rem', color: '#3b82f6', fontWeight: '800' }}>ORIGIN</div>
+                  <div style={{ fontWeight: '700' }}>{viewingRoute.from}</div>
+                </div>
+                <div style={{ flex: 1, height: '2px', background: 'repeating-linear-gradient(90deg, #3b82f6 0, #3b82f6 5px, transparent 5px, transparent 10px)' }}></div>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.7rem', color: '#166534', fontWeight: '800' }}>DESTINATION</div>
+                  <div style={{ fontWeight: '700' }}>{viewingRoute.to}</div>
+                </div>
               </div>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
-                  <div style={{ width: '10px', height: '100px', background: 'linear-gradient(#22c55e, #333)', borderRadius: '5px' }} />
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-                    <div style={{ fontSize: '0.85rem' }}><strong>Pickup:</strong> Center Dispatch <span style={{ color: '#94a3b8' }}>(10:00 AM)</span></div>
-                    <div style={{ fontSize: '0.85rem' }}><strong>Transit:</strong> HWY-402 Route <span style={{ color: '#3b82f6' }}>(Tracking Enabled)</span></div>
-                    <div style={{ fontSize: '0.85rem' }}><strong>Destination:</strong> Urban Retail Hub <span style={{ color: '#94a3b8' }}>(Estimated: 4:00 PM)</span></div>
+                <div style={{ display: 'flex', gap: '15px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
+                    <div style={{ width: '12px', height: '12px', background: '#3b82f6', borderRadius: '50%' }}></div>
+                    <div style={{ width: '2px', flex: 1, background: '#e2e8f0' }}></div>
+                    <div style={{ width: '12px', height: '12px', background: '#f59e0b', borderRadius: '50%' }}></div>
+                    <div style={{ width: '2px', flex: 1, background: '#e2e8f0' }}></div>
+                    <div style={{ width: '12px', height: '12px', background: '#22c55e', borderRadius: '50%' }}></div>
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '25px', paddingBottom: '10px' }}>
+                    <div style={{ fontSize: '0.85rem' }}>
+                      <div style={{ fontWeight: '700' }}>Warehouse Dispatch</div>
+                      <div style={{ color: '#64748b' }}>Scheduled: 09:00 AM • Dock Bay 4</div>
+                    </div>
+                    <div style={{ fontSize: '0.85rem' }}>
+                      <div style={{ fontWeight: '700' }}>In Transit (HWY-402)</div>
+                      <div style={{ color: '#3b82f6' }}>GPS Tracking Active • ETA: 12:30 PM</div>
+                    </div>
+                    <div style={{ fontSize: '0.85rem' }}>
+                      <div style={{ fontWeight: '700' }}>Retail Delivery</div>
+                      <div style={{ color: '#64748b' }}>City Center Hub • Verification Required</div>
+                    </div>
                   </div>
                 </div>
               </div>
               
               <button 
-                onClick={() => setViewingRoute(null)}
-                style={{ width: '100%', background: '#0a0a0a', color: 'white', padding: '15px', borderRadius: '12px', border: 'none', fontWeight: '700', cursor: 'pointer' }}
+                onClick={() => {
+                  alert("Logistics route confirmed and synced to blockchain!");
+                  setViewingRoute(null);
+                }}
+                className="sub-box"
+                style={{ width: '100%', background: '#0a0a0a', color: 'white', padding: '15px', border: 'none', fontWeight: '700', cursor: 'pointer' }}
               >
                 Confirm Optimized Route
               </button>
