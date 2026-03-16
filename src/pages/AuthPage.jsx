@@ -86,7 +86,6 @@ const AuthPage = () => {
                 <option value="retailer">Retailer</option>
                 <option value="warehouse">Warehouse</option>
                 <option value="certifier">Certifier</option>
-                <option value="admin">Admin</option>
               </select>
             </div>
 

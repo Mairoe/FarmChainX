@@ -6,7 +6,6 @@ import AuthPage from './pages/AuthPage';
 import ShopPage from './pages/ShopPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CartPage from './pages/CartPage';
-import Dashboard from './pages/Dashboard';
 import ConsumerDashboard from './pages/roles/ConsumerDashboard';
 import FarmerPage from './pages/roles/FarmerPage';
 import DistributorPage from './pages/roles/DistributorPage';
@@ -34,7 +33,6 @@ function App() {
           <Route path="/dashboard/distributor" element={<DistributorPage />} />
           <Route path="/dashboard/retailer" element={<RetailerPage />} />
           <Route path="/dashboard/warehouse" element={<WarehousePage />} />
-          <Route path="/dashboard/admin" element={<Dashboard role="admin" />} />
           
           {/* Default to landing if not found */}
           <Route path="*" element={<><Navbar /><LandingPage /></>} />

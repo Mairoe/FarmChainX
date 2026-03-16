@@ -16,7 +16,7 @@ import '../styles/pages.css';
 const CartPage = () => {
   const [cart, setCart] = useState([]);
 
-  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [checkoutStep, setCheckoutStep] = useState(0); // 0: Cart, 1: Checkout Form, 2: Success
 
   useEffect(() => {
     const saved = localStorage.getItem('farmchain_cart');
@@ -42,16 +42,22 @@ const CartPage = () => {
   };
 
   const subtotal = cart.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
-  const deliveryFee = cart.length > 0 ? 400.00 : 0.00;
+  const deliveryFee = cart.length > 0 ? 40.00 : 0.00;
   const total = subtotal + deliveryFee;
 
-  const handleCheckout = () => {
-    setPaymentSuccess(true);
+  const handleProceedToCheckout = () => {
+    setCheckoutStep(1);
+  };
+
+  const handleProcessPayment = (e) => {
+    e.preventDefault();
+    // Simulate redirecting to third-party like Stripe
+    setCheckoutStep(2);
     localStorage.removeItem('farmchain_cart');
     window.dispatchEvent(new Event('farmchain_cart_updated'));
   };
 
-  if (paymentSuccess) {
+  if (checkoutStep === 2) {
     return (
       <div className="cart-page-container" style={{ background: '#fdfaf5', minHeight: '100vh' }}>
         <Navbar />
@@ -83,6 +89,87 @@ const CartPage = () => {
               <button onClick={() => window.print()} className="btn" style={{ padding: '20px', borderRadius: '20px', border: '2px solid #e2e8f0', color: '#64748b', fontWeight: 800 }}>Print Receipt</button>
             </div>
           </motion.div>
+        </div>
+      </div>
+    );
+  }
+
+  if (checkoutStep === 1) {
+    return (
+      <div className="cart-page-container" style={{ background: '#fdfaf5', minHeight: '100vh' }}>
+        <Navbar />
+        <div className="container" style={{ padding: '40px 0', maxWidth: '800px', margin: '0 auto' }}>
+          <button onClick={() => setCheckoutStep(0)} style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#2d3a2d', textDecoration: 'none', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', marginBottom: '20px' }}>
+            <ChevronLeft size={18} />
+            Back to Cart
+          </button>
+          <div className="glass-card" style={{ padding: '40px', background: 'white', borderRadius: '32px', color: '#1e293b' }}>
+            <h2 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '30px' }}>Billing & Payment Details</h2>
+            <form onSubmit={handleProcessPayment} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <label style={{ fontWeight: 600 }}>First Name</label>
+                  <input type="text" required placeholder="John" style={{ padding: '16px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b' }} />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <label style={{ fontWeight: 600 }}>Last Name</label>
+                  <input type="text" required placeholder="Doe" style={{ padding: '16px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b' }} />
+                </div>
+              </div>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <label style={{ fontWeight: 600 }}>Email Address</label>
+                <input type="email" required placeholder="john@example.com" style={{ padding: '16px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b' }} />
+              </div>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <label style={{ fontWeight: 600 }}>Shipping Address</label>
+                <input type="text" required placeholder="123 Farm Lane" style={{ padding: '16px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b' }} />
+              </div>
+
+              <div style={{ borderTop: '2px solid #f0f0f0', margin: '20px 0' }}></div>
+              
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 700 }}>Payment Method</h3>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', border: '2px solid #2d3a2d', borderRadius: '12px', background: '#fdfaf5', cursor: 'pointer', color: '#1e293b' }}>
+                  <input type="radio" name="paymentMethod" defaultChecked />
+                  <CreditCard size={24} />
+                  <span style={{ fontWeight: 700 }}>Credit / Debit Card (Stripe)</span>
+                </label>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', border: '2px solid #e2e8f0', borderRadius: '12px', cursor: 'pointer', color: '#1e293b' }}>
+                  <input type="radio" name="paymentMethod" />
+                  <ShieldCheck size={24} />
+                  <span style={{ fontWeight: 600 }}>Crypto Wallet (Blockchain)</span>
+                </label>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '10px' }}>
+                <label style={{ fontWeight: 600 }}>Card Number</label>
+                <input type="text" placeholder="0000 0000 0000 0000" style={{ padding: '16px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b' }} />
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <label style={{ fontWeight: 600 }}>Expiry Date</label>
+                  <input type="text" placeholder="MM/YY" style={{ padding: '16px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b' }} />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <label style={{ fontWeight: 600 }}>CVC</label>
+                  <input type="text" placeholder="123" style={{ padding: '16px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1e293b' }} />
+                </div>
+              </div>
+
+              <div className="summary-row total" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.25rem', fontWeight: 900, marginTop: '10px', padding: '20px', background: '#f8fafc', borderRadius: '16px' }}>
+                <span>Amount to Pay</span>
+                <span style={{ color: '#2d3a2d' }}>₹{total.toFixed(2)}</span>
+              </div>
+
+              <button type="submit" className="btn btn-primary checkout-btn" style={{ marginTop: '10px', padding: '20px', borderRadius: '20px', fontSize: '1.1rem', fontWeight: 800, background: '#2d3a2d', color: 'white', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'center', gap: '12px' }}>
+                Proceed to Stripe <ArrowRight size={20} />
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     );
@@ -179,7 +266,7 @@ const CartPage = () => {
 
                 <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <button 
-                    onClick={handleCheckout}
+                    onClick={handleProceedToCheckout}
                     className="btn btn-primary checkout-btn" 
                     style={{ height: '64px', borderRadius: '20px', fontSize: '1.1rem', fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', width: '100%', background: '#2d3a2d', color: 'white', border: 'none', cursor: 'pointer' }}
                   >

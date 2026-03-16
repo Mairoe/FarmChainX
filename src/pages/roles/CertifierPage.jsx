@@ -36,7 +36,7 @@ const CertifierPage = () => {
     { label: 'Compliance Rate', value: '94%', icon: <ShieldCheck size={20} />, color: '#059669' },
   ];
 
-  const pendingBatches = [
+  const [pendingBatches, setPendingBatches] = useState([
     {
       id: 'ORG-TOM-001',
       name: 'Organic Tomatoes',
@@ -54,7 +54,8 @@ const CertifierPage = () => {
           seeds: true,
           fertilizers: true,
           pestControl: true
-        }
+        },
+        certificates: ['Seed_Purchase_Receipt.pdf', 'Organic_Soil_Test.pdf']
       }
     },
     {
@@ -74,12 +75,13 @@ const CertifierPage = () => {
           seeds: true,
           fertilizers: false,
           pestControl: false
-        }
+        },
+        certificates: ['Basic_Receipt.pdf']
       }
     }
-  ];
+  ]);
 
-  const pastBatches = [
+  const [pastBatches, setPastBatches] = useState([
     { 
       id: 'ORG-TOM-992', 
       name: 'Standard Tomatoes', 
@@ -93,7 +95,8 @@ const CertifierPage = () => {
         seedInfo: 'Non-GMO Organic Certified Seeds',
         fertilizersApplied: 'Seaweed Extract & Compost',
         pestControlMethods: 'Biological Control (Ladybugs)',
-        compliance: { seeds: true, fertilizers: true, pestControl: true }
+        compliance: { seeds: true, fertilizers: true, pestControl: true },
+        certificates: ['Soil_Test.pdf']
       }
     },
     { 
@@ -109,7 +112,8 @@ const CertifierPage = () => {
         seedInfo: 'Organic Winter Wheat Seeds',
         fertilizersApplied: 'Manure (Dairy)',
         pestControlMethods: 'Synthentic Spray (Delta-X)',
-        compliance: { seeds: true, fertilizers: true, pestControl: false }
+        compliance: { seeds: true, fertilizers: true, pestControl: false },
+        certificates: []
       }
     },
     { 
@@ -125,10 +129,23 @@ const CertifierPage = () => {
         seedInfo: 'Grafted Organic Rootstock',
         fertilizersApplied: 'Micro-nutrient Organic Mix',
         pestControlMethods: 'Pheromone Traps',
-        compliance: { seeds: true, fertilizers: true, pestControl: true }
+        compliance: { seeds: true, fertilizers: true, pestControl: true },
+        certificates: []
       }
     },
-  ];
+  ]);
+
+  const handleProcessBatch = (status) => {
+    setPendingBatches(pendingBatches.filter(b => b.id !== selectedBatch.id));
+    setPastBatches([{
+      ...selectedBatch,
+      status,
+      date: new Date().toISOString().split('T')[0],
+      verdict: `Batch ${status} after review.`
+    }, ...pastBatches]);
+    setShowReviewModal(false);
+    alert(`Batch has been ${status}.`);
+  };
 
   const handleAction = (msg) => {
     alert(`${msg} processed for demo.`);
@@ -237,7 +254,7 @@ const CertifierPage = () => {
                 
                 {/* History Sub-tabs */}
                 <div style={{ display: 'flex', background: '#f1f5f9', padding: '4px', borderRadius: '12px', gap: '4px' }}>
-                  {['Approved', 'Rejected'].map(status => (
+                  {['Approved', 'Flagged', 'Rejected'].map(status => (
                     <button
                       key={status}
                       onClick={() => setHistoryFilter(status)}
@@ -273,7 +290,7 @@ const CertifierPage = () => {
                     style={{ padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}
                    >
                      <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
-                        <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: batch.status === 'Approved' ? '#f0fdf4' : '#fef2f2', display: 'flex', alignItems: 'center', justifyContent: 'center', color: batch.status === 'Approved' ? '#22c55e' : '#ef4444' }}>
+                        <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: batch.status === 'Approved' ? '#f0fdf4' : batch.status === 'Flagged' ? '#fffbeb' : '#fef2f2', display: 'flex', alignItems: 'center', justifyContent: 'center', color: batch.status === 'Approved' ? '#22c55e' : batch.status === 'Flagged' ? '#f59e0b' : '#ef4444' }}>
                           {batch.status === 'Approved' ? <CheckCircle2 size={20} /> : <AlertCircle size={20} />}
                         </div>
                         <div>
@@ -285,8 +302,8 @@ const CertifierPage = () => {
                         <div style={{ 
                           fontSize: '0.75rem', 
                           fontWeight: '700', 
-                          color: batch.status === 'Approved' ? '#166534' : '#991b1b',
-                          background: batch.status === 'Approved' ? '#dcfce7' : '#fee2e2',
+                          color: batch.status === 'Approved' ? '#166534' : batch.status === 'Flagged' ? '#9a3412' : '#991b1b',
+                          background: batch.status === 'Approved' ? '#dcfce7' : batch.status === 'Flagged' ? '#ffedd5' : '#fee2e2',
                           padding: '4px 10px',
                           borderRadius: '6px',
                           marginBottom: '4px',
@@ -362,6 +379,26 @@ const CertifierPage = () => {
                 </div>
               </section>
 
+              {/* Certificates Section */}
+              <section>
+                <h4 style={{ margin: '0 0 12px 0', fontSize: '0.95rem', fontWeight: '600' }}>Submitted Certificates</h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {selectedBatch.details.certificates && selectedBatch.details.certificates.length > 0 ? (
+                    selectedBatch.details.certificates.map((cert, idx) => (
+                      <div key={idx} style={{ background: '#f8fafc', padding: '12px', borderRadius: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <FileText size={16} color="#64748b" />
+                          <span style={{ fontSize: '0.85rem', fontWeight: '500' }}>{cert}</span>
+                        </div>
+                        <button onClick={() => alert(`Opening ${cert} viewer...`)} style={{ background: 'white', color: '#4f46e5', border: '1px solid #e2e8f0', padding: '4px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600', cursor: 'pointer' }}>View</button>
+                      </div>
+                    ))
+                  ) : (
+                    <div style={{ fontSize: '0.85rem', color: '#94a3b8' }}>No certificates attached.</div>
+                  )}
+                </div>
+              </section>
+
               {/* Compliance Check Section */}
               <section>
                 <h4 style={{ margin: '0 0 12px 0', fontSize: '0.95rem', fontWeight: '600' }}>Compliance Check</h4>
@@ -394,22 +431,22 @@ const CertifierPage = () => {
                 {activeTab === 'Reviews' ? (
                   <>
                     <button 
-                      onClick={() => {
-                        handleAction(`Batch ${selectedBatch.id} Approved`);
-                        setShowReviewModal(false);
-                      }}
-                      style={{ flex: 2, background: '#22c55e', color: 'white', padding: '14px', borderRadius: '12px', border: 'none', fontWeight: '600', cursor: 'pointer' }}
+                      onClick={() => handleProcessBatch('Approved')}
+                      style={{ flex: 1, background: '#22c55e', color: 'white', padding: '14px', borderRadius: '12px', border: 'none', fontWeight: '600', cursor: 'pointer' }}
                     >
-                      Approve Certification
+                      Approve
                     </button>
                     <button 
-                      onClick={() => {
-                        handleAction(`Batch ${selectedBatch.id} Flagged`);
-                        setShowReviewModal(false);
-                      }}
-                      style={{ flex: 1, background: 'white', color: '#1e293b', color: '#ef4444', padding: '14px', borderRadius: '12px', border: '1px solid #fee2e2', fontWeight: '600', cursor: 'pointer' }}
+                      onClick={() => handleProcessBatch('Flagged')}
+                      style={{ flex: 1, background: '#f59e0b', color: 'white', padding: '14px', borderRadius: '12px', border: 'none', fontWeight: '600', cursor: 'pointer' }}
                     >
-                      Flag Batch
+                      Flag
+                    </button>
+                    <button 
+                      onClick={() => handleProcessBatch('Rejected')}
+                      style={{ flex: 1, background: '#ef4444', color: 'white', padding: '14px', borderRadius: '12px', border: 'none', fontWeight: '600', cursor: 'pointer' }}
+                    >
+                      Reject
                     </button>
                   </>
                 ) : (

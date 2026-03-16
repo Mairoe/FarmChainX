@@ -16,25 +16,29 @@ const CORE_PRODUCTS = {
     name: 'Oxheart Heirloom Tomatoes', 
     producer: 'Sun Valley Organic Farm',
     distributor: 'Central Logistics Hub',
-    price: '₹370/kg' 
+    price: '₹60/kg',
+    image: 'https://images.unsplash.com/photo-1561136594-7f68413baa99?q=80&w=1000&auto=format&fit=crop'
   },
   OIL: { 
     name: 'Cold-Pressed Sunflower Oil', 
     producer: 'Golden Valley Millers',
     distributor: 'Eco-Express Distributors',
-    price: '₹990/L' 
+    price: '₹150/L',
+    image: 'https://images.unsplash.com/photo-1662058595162-10e024b1a907?q=80&w=1000&auto=format&fit=crop'
   },
   WHEAT: { 
     name: 'Ancient Spelt Grain', 
     producer: 'Heritage Highland Farms',
     distributor: 'Northern Bulk Distributors',
-    price: '₹265/kg' 
+    price: '₹40/kg',
+    image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=1000&auto=format&fit=crop'
   },
   HONEY: { 
     name: 'Wildflower Honey', 
     producer: 'Pure Bee Apiaries',
     distributor: 'Direct Logistics Co.',
-    price: '₹1310/u' 
+    price: '₹450/u',
+    image: 'https://images.unsplash.com/photo-1587049352851-8d4e89133924?q=80&w=1000&auto=format&fit=crop'
   },
 };
 
@@ -52,51 +56,67 @@ const MY_STOCK = [
 ];
 
 const RECENT_SALES = [
-  { id: 'TX-101', item: CORE_PRODUCTS.TOMATOES.name, qty: '5kg', total: '₹1860', time: '10 mins ago', distributor: 'Central Logistics Hub' },
-  { id: 'TX-102', item: CORE_PRODUCTS.OIL.name, qty: '2L', total: '₹1990', time: '1 hour ago', distributor: 'Eco-Express Distributors' },
-  { id: 'TX-103', item: CORE_PRODUCTS.WHEAT.name, qty: '20kg', total: '₹5300', time: 'Yesterday', distributor: 'Northern Bulk Distributors' },
+  { id: 'TX-101', item: CORE_PRODUCTS.TOMATOES.name, qty: '5kg', total: '₹300', time: '10 mins ago', distributor: 'Central Logistics Hub' },
+  { id: 'TX-102', item: CORE_PRODUCTS.OIL.name, qty: '2L', total: '₹300', time: '1 hour ago', distributor: 'Eco-Express Distributors' },
+  { id: 'TX-103', item: CORE_PRODUCTS.WHEAT.name, qty: '20kg', total: '₹800', time: 'Yesterday', distributor: 'Northern Bulk Distributors' },
 ];
 
 // --- SUB-VIEWS ---
 
 // 1. Sourcing View: Retailer buys from DISTRIBUTORS (who bought from farmers)
-const SourcingView = () => (
-  <div className="fade-in-up">
-    <div className="section-header" style={{ marginBottom: '32px' }}>
-      <h2 style={{ fontSize: '1.8rem', fontWeight: '800', color: '#1a1a1a' }}>Node Sourcing Marketplace</h2>
-      <p style={{ color: '#4a5568' }}>Connect with **Distributors** to purchase verified **Farmer Batches**.</p>
-    </div>
-    
-    <div className="marketplace-grid">
-      {MARKET_LIST.map(p => (
-        <div key={p.id} className="product-card">
-          <div className="product-image-placeholder">
-            {p.emoji}
-            <span className="product-badge">{p.cert}</span>
-          </div>
-          <div style={{ padding: '24px' }}>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '4px' }}>{p.name}</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '16px' }}>
-              <p style={{ fontSize: '0.8rem', color: '#64748b', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <Sprout size={14} color="#166534" /> Farm: **{p.producer}**
-              </p>
-              <p style={{ fontSize: '0.8rem', color: '#64748b', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <Truck size={14} color="#3b82f6" /> Via: **{p.distributor}**
-              </p>
+const SourcingView = () => {
+  const [orderedItems, setOrderedItems] = React.useState({});
+
+  const handleOrder = (id) => {
+    setOrderedItems(prev => ({ ...prev, [id]: true }));
+    setTimeout(() => {
+      setOrderedItems(prev => ({ ...prev, [id]: false }));
+    }, 2000);
+  };
+
+  return (
+    <div className="fade-in-up">
+      <div className="section-header" style={{ marginBottom: '32px' }}>
+        <h2 style={{ fontSize: '1.8rem', fontWeight: '800', color: '#1a1a1a' }}>Node Sourcing Marketplace</h2>
+        <p style={{ color: '#4a5568' }}>Connect with **Distributors** to purchase verified **Farmer Batches**.</p>
+      </div>
+      
+      <div className="marketplace-grid">
+        {MARKET_LIST.map(p => (
+          <div key={p.id} className="product-card" style={{ overflow: 'hidden', borderRadius: '16px' }}>
+            <div className="product-image-placeholder" style={{ padding: 0, position: 'relative', height: '160px', display: 'flex', borderRadius: 0, background: 'none' }}>
+              <img src={p.image} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <span className="product-badge" style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 10 }}>{p.cert}</span>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <div style={{ fontWeight: '800', fontSize: '1.3rem', color: '#4a6b4a' }}>{p.price}</div>
-                <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Available: {p.stock}</div>
+            <div style={{ padding: '24px' }}>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '4px' }}>{p.name}</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '16px' }}>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <Sprout size={14} color="#166534" /> Farm: **{p.producer}**
+                </p>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <Truck size={14} color="#3b82f6" /> Via: **{p.distributor}**
+                </p>
               </div>
-              <button className="primary-btn" style={{ padding: '10px 15px', borderRadius: '10px', background: '#2d3a2d', color: 'white', border: 'none', cursor: 'pointer', fontWeight: '700' }}>Order from Hub</button>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <div style={{ fontWeight: '800', fontSize: '1.3rem', color: '#4a6b4a' }}>{p.price}</div>
+                  <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Available: {p.stock}</div>
+                </div>
+                <button 
+                  onClick={() => handleOrder(p.id)}
+                  className="primary-btn" 
+                  style={{ padding: '10px 15px', borderRadius: '10px', background: orderedItems[p.id] ? '#10b981' : '#2d3a2d', color: 'white', border: 'none', cursor: 'pointer', fontWeight: '700', transition: 'all 0.3s' }}>
+                  {orderedItems[p.id] ? 'Ordered ✓' : 'Order from Hub'}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 // 2. My Shop View: Retailer manages their store stock
 const InventoryView = () => (
@@ -174,7 +194,7 @@ const RevenueView = () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div className="glass-card sub-box" style={{ padding: '30px', background: '#2d3a2d', color: 'white', borderRadius: '24px' }}>
         <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '10px' }}>Today's Revenue</h3>
-        <div style={{ fontSize: '2.8rem', fontWeight: '900' }}>₹102,900.00</div>
+        <div style={{ fontSize: '2.8rem', fontWeight: '900' }}>₹14,200.00</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#10b981', marginTop: '10px', fontWeight: '700' }}>
           <TrendingUp size={18} /> +12% vs Yesterday
         </div>
@@ -229,7 +249,7 @@ const RetailerPage = () => {
   const STATS = [
     { label: 'Purchasable Items', val: MARKET_LIST.length, trend: '4 Suppliers', icon: <Package size={20} color="#3b82f6" />, bg: '#eff6ff' },
     { label: 'My Inventory Items', val: MY_STOCK.length, trend: '1 Low Stock', icon: <ShoppingCart size={20} color="#a855f7" />, bg: '#faf5ff' },
-    { label: 'Today\'s Sales', val: '₹102,900', trend: '+12%', icon: <TrendingUp size={20} color="#22c55e" />, bg: '#f0fdf4' },
+    { label: 'Today\'s Sales', val: '₹14,200', trend: '+12%', icon: <TrendingUp size={20} color="#22c55e" />, bg: '#f0fdf4' },
     { label: 'Verified Status', val: 'Active', trend: 'Blockchain Sync', icon: <CheckCircle2 size={20} color="#f59e0b" />, bg: '#fffbeb' },
   ];
 

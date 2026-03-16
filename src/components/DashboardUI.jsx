@@ -43,13 +43,6 @@ export const Sidebar = ({ role }) => {
     consumer: [
       { icon: <LayoutDashboard size={20}/>, label: 'Journey Tracker', path: '/dashboard/consumer?tab=Overview' },
       { icon: <ShoppingCart size={20}/>, label: 'Marketplace', path: '/shop' },
-    ],
-    admin: [
-      { icon: <LayoutDashboard size={20}/>, label: 'Overview', path: '/dashboard/admin?tab=Overview' },
-      { icon: <User size={20}/>, label: 'User Management', path: '/dashboard/admin?tab=Users' },
-      { icon: <Package size={20}/>, label: 'Batch Ledger', path: '/dashboard/admin?tab=Batches' },
-      { icon: <ShieldCheck size={20}/>, label: 'Audit Log', path: '/dashboard/admin?tab=Blockchain' },
-      { icon: <Settings size={20}/>, label: 'System Settings', path: '/dashboard/admin?tab=Settings' },
     ]
   };
 
@@ -171,7 +164,7 @@ export const Topbar = ({ title, subtitle }) => {
   return (
     <header className="dashboard-header-clean" style={{ padding: '0 0 30px 0' }}>
       <div className="header-info">
-        <h1 style={{ fontSize: '1.75rem', fontWeight: '700', color: ['Customer Dashboard', 'Nexus Control Center', 'Distributor Dashboard', 'Store Manager Terminal', 'Warehouse Dashboard', 'Certifier Dashboard'].includes(title) ? '#1a1a1a' : 'white' }}>{title}</h1>
+        <h1 style={{ fontSize: '1.75rem', fontWeight: '700', color: ['Customer Dashboard', 'Distributor Dashboard', 'Store Manager Terminal', 'Warehouse Dashboard', 'Certifier Dashboard'].includes(title) ? '#1a1a1a' : 'white' }}>{title}</h1>
         <p style={{ color: '#999', fontSize: '0.9rem' }}>{subtitle}</p>
       </div>
       <div className="header-actions" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>

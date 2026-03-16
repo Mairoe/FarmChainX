@@ -21,6 +21,7 @@ const ConsumerDashboard = () => {
   const [batchNumber, setBatchNumber] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [selectedBatch, setSelectedBatch] = useState(null);
+  const [showQrCode, setShowQrCode] = useState(false);
 
   const demoBatch = {
     id: 'ORG-WHT-002',
@@ -32,6 +33,7 @@ const ConsumerDashboard = () => {
     if (batchNumber.toUpperCase() === 'ORG-WHT-002') {
       setSelectedBatch(demoBatch);
       setShowResults(true);
+      setShowQrCode(false);
     }
   };
 
@@ -39,6 +41,7 @@ const ConsumerDashboard = () => {
     setBatchNumber('ORG-WHT-002');
     setSelectedBatch(demoBatch);
     setShowResults(true);
+    setShowQrCode(false);
   };
 
   const JourneyItem = ({ icon, title, date, children, color }) => (
@@ -57,7 +60,7 @@ const ConsumerDashboard = () => {
         {icon}
       </div>
       <div style={{ flex: 1 }}>
-        <h4 style={{ margin: '0 0 5px 0', fontSize: '1.1rem', fontWeight: '600', color: 'white' }}>{title}</h4>
+        <h4 style={{ margin: '0 0 5px 0', fontSize: '1.1rem', fontWeight: '600', color: '#1e293b' }}>{title}</h4>
         {date && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#aaa', fontSize: '0.85rem', marginBottom: '10px' }}>
             <Calendar size={14} />
@@ -113,10 +116,34 @@ const ConsumerDashboard = () => {
               alignItems: 'center',
               marginBottom: '30px'
             }}>
-              <div className="sub-box" style={{ padding: '20px', borderRadius: '16px', marginBottom: '15px', background: 'white' }}>
-                <img src="/qr_code.png" alt="QR Code" style={{ width: '150px', height: '150px' }} />
-              </div>
-              <p style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Scan for quick access</p>
+              {!showQrCode ? (
+                <button
+                  onClick={() => setShowQrCode(true)}
+                  style={{
+                    background: '#22c55e',
+                    color: 'white',
+                    padding: '14px 28px',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    border: 'none',
+                    fontWeight: '700',
+                    fontSize: '1rem',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 6px -1px rgba(34, 197, 94, 0.2), 0 2px 4px -1px rgba(34, 197, 94, 0.1)'
+                  }}
+                >
+                  <QrCode size={22} /> Generate Shareable QR Code
+                </button>
+              ) : (
+                <>
+                  <div className="sub-box" style={{ padding: '20px', borderRadius: '16px', marginBottom: '15px', background: 'white' }}>
+                    <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=FARMCHAIN-BATCH-${selectedBatch.id}`} alt="QR Code" style={{ width: '150px', height: '150px' }} />
+                  </div>
+                  <p style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Scan for quick access on your mobile device</p>
+                </>
+              )}
             </div>
 
             <div className="glass-card" style={{ padding: '40px' }}>
@@ -160,14 +187,12 @@ const ConsumerDashboard = () => {
                 </JourneyItem>
 
                 <JourneyItem icon={<CheckCircle2 size={20} />} title="Organic Certification" color="#10b981">
-                   <div className="sub-box" style={{ background: '#f8fafc', padding: '15px' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-                        <h4 style={{ margin: 0, fontSize: '0.95rem', color: '#1e293b' }}>Organic Certification Board</h4>
-                        <span style={{ fontSize: '0.75rem', color: '#059669', fontWeight: '600' }}>approved</span>
-                      </div>
-                      <p style={{ margin: '0 0 8px 0', fontSize: '0.85rem', color: '#64748b' }}>2026-03-10</p>
-                      <p style={{ margin: 0, fontSize: '0.85rem', fontStyle: 'italic', color: '#10b981' }}>"Meets all organic standards"</p>
-                   </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '5px' }}>
+                    <h4 style={{ margin: 0, fontSize: '0.9rem', color: '#1e293b' }}>Organic Certification Board</h4>
+                    <span style={{ fontSize: '0.75rem', color: '#059669', fontWeight: '600' }}>approved</span>
+                  </div>
+                  <p style={{ margin: '0 0 5px 0', fontSize: '0.85rem', color: '#aaa' }}>2026-03-10</p>
+                  <p style={{ margin: 0, fontSize: '0.85rem', fontStyle: 'italic', color: '#10b981' }}>"Meets all organic standards"</p>
                 </JourneyItem>
               </div>
             </div>

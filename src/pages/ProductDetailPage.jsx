@@ -21,7 +21,7 @@ const products = [
   { 
     id: 1, 
     name: 'Oxheart Heirloom Tomatoes', 
-    price: 330, 
+    price: 60, 
     unit: '/kg',
     farmer: 'Sun Valley Organic Farm', 
     aiScore: 98,
@@ -33,7 +33,7 @@ const products = [
   { 
     id: 2, 
     name: 'Farm-Fresh Brown Eggs', 
-    price: 495, 
+    price: 80, 
     unit: '/dozen',
     farmer: 'Heritage Highland Farms', 
     aiScore: 95,
@@ -45,7 +45,7 @@ const products = [
   { 
     id: 3, 
     name: 'Crisp English Cucumbers', 
-    price: 165, 
+    price: 25, 
     unit: 'each',
     farmer: 'Hilltop Acres', 
     aiScore: 94,
@@ -57,7 +57,7 @@ const products = [
   { 
     id: 4, 
     name: 'Wild Organic Strawberries', 
-    price: 415, 
+    price: 250, 
     unit: '/kg',
     farmer: 'Sun Valley Organic Farm', 
     aiScore: 99,
@@ -69,7 +69,7 @@ const products = [
   { 
     id: 5, 
     name: 'Pure Wildflower Honey', 
-    price: 1310, 
+    price: 450, 
     unit: '340g jar',
     farmer: 'Pure Bee Apiaries', 
     aiScore: 97,
@@ -81,7 +81,7 @@ const products = [
   { 
     id: 6, 
     name: 'Valencia Juicy Oranges', 
-    price: 370, 
+    price: 120, 
     unit: '/bag',
     farmer: 'Riverbend Farms', 
     aiScore: 96,

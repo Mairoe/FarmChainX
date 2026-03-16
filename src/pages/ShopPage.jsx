@@ -19,7 +19,7 @@ const products = [
   {
     id: 1,
     name: 'Oxheart Heirloom Tomatoes',
-    price: 330,
+    price: 60,
     unit: '/kg',
     farmer: 'Sun Valley Organic Farm',
     aiScore: 98,
@@ -29,7 +29,7 @@ const products = [
   {
     id: 2,
     name: 'Farm-Fresh Brown Eggs',
-    price: 495,
+    price: 80,
     unit: '/dozen',
     farmer: 'Heritage Highland Farms',
     aiScore: 95,
@@ -39,7 +39,7 @@ const products = [
   {
     id: 3,
     name: 'Crisp English Cucumbers',
-    price: 165,
+    price: 25,
     unit: 'each',
     farmer: 'Hilltop Acres',
     aiScore: 94,
@@ -49,7 +49,7 @@ const products = [
   {
     id: 4,
     name: 'Wild Organic Strawberries',
-    price: 415,
+    price: 250,
     unit: '/kg',
     farmer: 'Sun Valley Organic Farm',
     aiScore: 99,
@@ -59,7 +59,7 @@ const products = [
   {
     id: 5,
     name: 'Pure Wildflower Honey',
-    price: 1310,
+    price: 450,
     unit: '340g jar',
     farmer: 'Pure Bee Apiaries',
     aiScore: 97,
@@ -69,7 +69,7 @@ const products = [
   {
     id: 6,
     name: 'Valencia Juicy Oranges',
-    price: 370,
+    price: 120,
     unit: '/bag',
     farmer: 'Riverbend Farms',
     aiScore: 96,
@@ -204,23 +204,7 @@ const ShopPage = () => {
               </div>
             </div>
 
-            <div className="filter-group" style={{ marginTop: '32px' }}>
-              <div className="filter-group-header">
-                <h4 style={{ textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', opacity: 0.5 }}>Trust Protocols</h4>
-              </div>
-              <div className="filter-options" style={{ marginTop: '15px' }}>
-                <label className="checkbox-container">
-                  <input type="checkbox" defaultChecked />
-                  <span className="checkmark"></span>
-                  Blockchain Validated
-                </label>
-                <label className="checkbox-container">
-                  <input type="checkbox" />
-                  <span className="checkmark"></span>
-                  Node-to-Table
-                </label>
-              </div>
-            </div>
+
 
             <div className="blockchain-verified-badge" style={{ marginTop: '40px', background: '#f8fafc', border: '1px solid #e2e8f0' }}>
               <ShieldCheck size={20} color="#3b82f6" />
