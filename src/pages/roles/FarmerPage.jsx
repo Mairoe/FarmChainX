@@ -23,7 +23,8 @@ import {
   TrendingUp,
   Map as MapIcon,
   Zap,
-  Truck
+  Truck,
+  Pencil
 } from 'lucide-react';
 import { Sidebar, Topbar } from '../../components/DashboardUI';
 import MapPicker from '../../components/MapPicker';
@@ -34,6 +35,41 @@ const FarmerPage = () => {
   const [showMapPicker, setShowMapPicker] = React.useState(false);
   const [location, setLocation] = React.useState('');
   const activeTab = searchParams.get('tab') || 'My Batches';
+  const [showEditModal, setShowEditModal] = React.useState(false);
+  const [editingBatch, setEditingBatch] = React.useState(null);
+
+  const EditModal = ({ batch, onClose }) => {
+    if (!batch) return null;
+    return (
+      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000, backdropFilter: 'blur(5px)' }}>
+        <div className="glass-card" style={{ padding: '40px', maxWidth: '500px', width: '90%', position: 'relative', background: 'white' }}>
+          <button onClick={onClose} style={{ position: 'absolute', right: '20px', top: '20px', background: 'none', border: 'none', cursor: 'pointer', color: '#666' }}><X size={24}/></button>
+          <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Edit Batch {batch.batch}</h3>
+          <p style={{ color: '#666', marginBottom: '25px' }}>Update key batch information</p>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <div className="input-group">
+              <label style={{ fontSize: '0.9rem', color: '#2d3a2d', fontWeight: '600', marginBottom: '8px', display: 'block' }}>Crop Type</label>
+              <input type="text" defaultValue={batch.name} style={{ background: '#f5f5f0', border: 'none', padding: '12px', borderRadius: '10px', width: '100%' }} />
+            </div>
+            <div className="input-group">
+              <label style={{ fontSize: '0.9rem', color: '#2d3a2d', fontWeight: '600', marginBottom: '8px', display: 'block' }}>Price (per unit)</label>
+              <input type="text" defaultValue={batch.price || '₹120'} style={{ background: '#f5f5f0', border: 'none', padding: '12px', borderRadius: '10px', width: '100%' }} />
+            </div>
+            <div className="input-group">
+              <label style={{ fontSize: '0.9rem', color: '#2d3a2d', fontWeight: '600', marginBottom: '8px', display: 'block' }}>Quantity (Total Units)</label>
+              <input type="text" defaultValue={batch.quantity || '500 kg'} style={{ background: '#f5f5f0', border: 'none', padding: '12px', borderRadius: '10px', width: '100%' }} />
+            </div>
+          </div>
+          
+          <div style={{ display: 'flex', gap: '15px', marginTop: '30px' }}>
+            <button onClick={onClose} style={{ flex: 1, padding: '12px', borderRadius: '10px', border: 'none', background: '#f0f0f0', fontWeight: '600', cursor: 'pointer' }}>Cancel</button>
+            <button onClick={onClose} className="btn btn-primary" style={{ flex: 1, padding: '12px', borderRadius: '10px', fontWeight: '700' }}>Save Changes</button>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   const stats = [
     { label: 'Active Batches', value: '12', icon: <Sprout size={18} /> },
@@ -181,8 +217,8 @@ const FarmerPage = () => {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 {[
-                  { name: 'Organic Tomato', batch: '123', planted: '2026-03-11', area: '2', fertilizers: '0', pestControl: '0' },
-                  { name: 'Organic Potato', batch: '111', planted: '2026-03-25', area: '5', fertilizers: '0', pestControl: '0' }
+                  { name: 'Organic Tomato', batch: '123', planted: '2026-03-11', area: '2', fertilizers: '0', pestControl: '0', price: '₹120/kg', quantity: '500 kg' },
+                  { name: 'Organic Potato', batch: '111', planted: '2026-03-25', area: '5', fertilizers: '0', pestControl: '0', price: '₹45/kg', quantity: '1200 kg' }
                 ].map((item, idx) => (
                   <div key={idx} className="glass-card" style={{ padding: '25px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
@@ -201,6 +237,12 @@ const FarmerPage = () => {
                         <MapPin size={16} /> Area: {item.area} units
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#666', fontSize: '0.9rem' }}>
+                        <Tag size={16} /> Price: {item.price}
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#666', fontSize: '0.9rem' }}>
+                        <Package size={16} /> Stock: {item.quantity}
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#666', fontSize: '0.9rem' }}>
                         <Sprout size={16} /> Fertilizers: {item.fertilizers} applied
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#666', fontSize: '0.9rem' }}>
@@ -209,6 +251,7 @@ const FarmerPage = () => {
                     </div>
 
                     <div style={{ display: 'flex', gap: '10px' }}>
+                       <button onClick={() => { setEditingBatch(item); setShowEditModal(true); }} className="tab-btn" style={{ fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}><Pencil size={14}/> Edit Batch</button>
                        <button className="tab-btn" style={{ fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}><Sprout size={14}/> Add Fertilizer</button>
                        <button className="tab-btn" style={{ fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}><Bug size={14}/> Log Pest Control</button>
                        <button className="tab-btn" style={{ fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}><Droplets size={14}/> Add Irrigation</button>
@@ -295,6 +338,14 @@ const FarmerPage = () => {
                       <label style={{ fontSize: '0.9rem', color: '#2d3a2d', fontWeight: '600', marginBottom: '10px', display: 'block' }}>Crop Type</label>
                       <input type="text" placeholder="e.g. cucumber" style={{ background: '#f5f5f0', border: 'none', padding: '15px', borderRadius: '12px', width: '100%' }} />
                    </div>
+                    <div className="input-group">
+                       <label style={{ fontSize: '0.9rem', color: '#2d3a2d', fontWeight: '600', marginBottom: '10px', display: 'block' }}>Expected Price (per unit)</label>
+                       <input type="text" placeholder="e.g. 120" style={{ background: '#f5f5f0', border: 'none', padding: '15px', borderRadius: '12px', width: '100%' }} />
+                    </div>
+                    <div className="input-group">
+                       <label style={{ fontSize: '0.9rem', color: '#2d3a2d', fontWeight: '600', marginBottom: '10px', display: 'block' }}>Total Quantity (Units)</label>
+                       <input type="text" placeholder="e.g. 500" style={{ background: '#f5f5f0', border: 'none', padding: '15px', borderRadius: '12px', width: '100%' }} />
+                    </div>
                    <div className="input-group">
                       <label style={{ fontSize: '0.9rem', color: '#2d3a2d', fontWeight: '600', marginBottom: '10px', display: 'block' }}>Planted/Location Details</label>
                       <input type="text" placeholder="Farm Name & Unit" style={{ background: '#f5f5f0', border: 'none', padding: '15px', borderRadius: '12px', width: '100%' }} />
@@ -565,6 +616,13 @@ const FarmerPage = () => {
         <div className="tab-content" style={{ marginTop: activeTab === 'create' ? '0' : '20px' }}>
           {renderContent()}
         </div>
+
+        {showEditModal && (
+          <EditModal 
+            batch={editingBatch} 
+            onClose={() => { setShowEditModal(false); setEditingBatch(null); }} 
+          />
+        )}
 
         {showMapPicker && (
           <MapPicker 
