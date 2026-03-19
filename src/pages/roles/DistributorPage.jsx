@@ -122,32 +122,46 @@ const DistributorPage = () => {
         );
       case 'Inventory':
         return (
-          <div className="glass-card" style={{ padding: '30px', marginBottom: '30px' }}>
-             <h3 style={{ margin: '0 0 5px 0', fontSize: '1.2rem' }}>Incoming Shipments</h3>
-             <p style={{ margin: '0 0 25px 0', color: '#64748b', fontSize: '0.9rem' }}>Batches assigned to your logistics network</p>
+          <div style={{ animation: 'fadeIn 0.4s ease' }}>
+             <div style={{ marginBottom: '25px' }}>
+               <h3 style={{ margin: '0 0 5px 0', fontSize: '1.25rem', fontWeight: '800' }}>Incoming Shipments</h3>
+               <p style={{ margin: 0, color: '#64748b', fontSize: '0.95rem' }}>Batches assigned to your logistics network</p>
+             </div>
              
-             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                {inventoryBatches.map((batch, i) => (
-                  <div key={i} className="sub-box" style={{ display: 'flex', alignItems: 'center', padding: '20px', gap: '20px' }}>
-                    <div style={{ width: '48px', height: '48px', background: '#f0fdf4', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#22c55e' }}>
-                      <Package size={24} />
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <h4 style={{ margin: '0 0 4px 0', fontSize: '1.05rem', fontWeight: '700' }}>{batch.name}</h4>
-                      <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b' }}><Leaf size={12} /> {batch.source} • {batch.id}</p>
-                    </div>
-                    <div style={{ textAlign: 'right', minWidth: '120px' }}>
-                      <div style={{ fontWeight: '800', fontSize: '1.1rem' }}>{batch.quantity}</div>
-                      <div style={{ fontSize: '0.75rem', color: '#166534', fontWeight: '700' }}>Grade: {batch.quality}</div>
-                    </div>
-                    <button 
-                      onClick={() => setShowDistributeModal(true)}
-                      style={{ padding: '10px 20px', borderRadius: '10px', background: '#0a0a0a', color: 'white', border: 'none', cursor: 'pointer', fontWeight: '700', fontSize: '0.85rem' }}
-                    >
-                      Ship to Retail
-                    </button>
-                  </div>
-                ))}
+             <div className="table-container shadow-sm" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
+               <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                 <thead style={{ background: '#f1f5f9', borderBottom: '1px solid #e2e8f0' }}>
+                   <tr>
+                     <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Batch ID</th>
+                     <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Product</th>
+                     <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Source</th>
+                     <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Quantity</th>
+                     <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Quality</th>
+                     <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Actions</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   {inventoryBatches.map((batch, i) => (
+                     <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                       <td style={{ padding: '18px 20px', fontWeight: '700', color: '#3b82f6', fontSize: '0.85rem' }}>{batch.id}</td>
+                       <td style={{ padding: '18px 20px', fontWeight: '600', color: '#1e293b' }}>{batch.name}</td>
+                       <td style={{ padding: '18px 20px', color: '#64748b', fontSize: '0.9rem' }}>{batch.source}</td>
+                       <td style={{ padding: '18px 20px', color: '#1e293b', fontWeight: '700' }}>{batch.quantity}</td>
+                       <td style={{ padding: '18px 20px' }}>
+                          <span style={{ padding: '4px 12px', borderRadius: '6px', fontSize: '0.65rem', fontWeight: '800', background: '#dcfce7', color: '#166534' }}>{batch.quality}</span>
+                       </td>
+                       <td style={{ padding: '18px 20px' }}>
+                         <button 
+                           onClick={() => setShowDistributeModal(true)}
+                           style={{ padding: '8px 16px', borderRadius: '8px', background: '#0a0a0a', color: 'white', border: 'none', cursor: 'pointer', fontWeight: '700', fontSize: '0.8rem' }}
+                         >
+                           Ship to Retail
+                         </button>
+                       </td>
+                     </tr>
+                   ))}
+                 </tbody>
+               </table>
              </div>
           </div>
         );

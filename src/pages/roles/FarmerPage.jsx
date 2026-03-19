@@ -23,7 +23,9 @@ import {
   TrendingUp,
   Map as MapIcon,
   Zap,
-  Truck
+  Truck,
+  Edit,
+  Trash
 } from 'lucide-react';
 import { Sidebar, Topbar } from '../../components/DashboardUI';
 import MapPicker from '../../components/MapPicker';
@@ -34,6 +36,117 @@ const FarmerPage = () => {
   const [showMapPicker, setShowMapPicker] = React.useState(false);
   const [location, setLocation] = React.useState('');
   const activeTab = searchParams.get('tab') || 'My Batches';
+
+  // State for Crops Functionalites
+  const [crops, setCrops] = React.useState([
+    { id: 1, name: 'Organic Tomatoes', type: 'Vegetable', quantity: 500, price: 40, status: 'ACTIVE', date: '2024-01-15' },
+    { id: 2, name: 'Basmati Rice', type: 'Grain', quantity: 800, price: 120, status: 'ACTIVE', date: '2024-01-14' },
+    { id: 3, name: 'Carrots', type: 'Vegetable', quantity: 600, price: 30, status: 'ACTIVE', date: '2024-01-13' },
+    { id: 4, name: 'Mangoes', type: 'Fruit', quantity: 300, price: 150, status: 'ACTIVE', date: '2024-01-12' },
+    { id: 5, name: 'Spinach', type: 'Vegetable', quantity: 400, price: 25, status: 'PENDING', date: '2024-01-11' },
+  ]);
+
+  const [editModalOpen, setEditModalOpen] = React.useState(false);
+  const [currentCrop, setCurrentCrop] = React.useState(null);
+
+  const handleEdit = (crop) => {
+    setCurrentCrop({ ...crop });
+    setEditModalOpen(true);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm('Are you sure you want to delete this crop?')) {
+      setCrops(crops.filter(c => c.id !== id));
+    }
+  };
+
+  const handleSaveCrop = (e) => {
+    e.preventDefault();
+    setCrops(crops.map(c => c.id === currentCrop.id ? currentCrop : c));
+    setEditModalOpen(false);
+  };
+
+  const EditModal = () => (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0,0,0,0.5)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 1000,
+      backdropFilter: 'blur(4px)'
+    }}>
+      <div className="glass-card" style={{ width: '600px', padding: '30px', position: 'relative', background: 'white', borderRadius: '16px' }}>
+        <button 
+          onClick={() => setEditModalOpen(false)}
+          style={{ position: 'absolute', right: '20px', top: '20px', background: '#f8fafc', border: 'none', cursor: 'pointer', padding: '8px', borderRadius: '50%' }}
+        >
+          <X size={20} color="#64748b" />
+        </button>
+        <h3 style={{ marginBottom: '25px', fontSize: '1.5rem', fontWeight: '700', color: '#1a1a1a' }}>Edit Crop</h3>
+        <form onSubmit={handleSaveCrop}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '25px', marginBottom: '30px' }}>
+            <div className="form-group">
+              <label style={{ display: 'block', marginBottom: '10px', fontSize: '0.95rem', fontWeight: '600', color: '#334155' }}>Crop Name</label>
+              <input 
+                type="text" 
+                value={currentCrop?.name}
+                onChange={(e) => setCurrentCrop({...currentCrop, name: e.target.value})}
+                style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '1rem' }}
+              />
+            </div>
+            <div className="form-group">
+              <label style={{ display: 'block', marginBottom: '10px', fontSize: '0.95rem', fontWeight: '600', color: '#334155' }}>Crop Type</label>
+              <select 
+                value={currentCrop?.type}
+                onChange={(e) => setCurrentCrop({...currentCrop, type: e.target.value})}
+                style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '1rem' }}
+              >
+                <option value="Vegetable">Vegetable</option>
+                <option value="Grain">Grain</option>
+                <option value="Fruit">Fruit</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label style={{ display: 'block', marginBottom: '10px', fontSize: '0.95rem', fontWeight: '600', color: '#334155' }}>Quantity (kg)</label>
+              <input 
+                type="number" 
+                value={currentCrop?.quantity}
+                onChange={(e) => setCurrentCrop({...currentCrop, quantity: parseInt(e.target.value)})}
+                style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '1rem' }}
+              />
+            </div>
+            <div className="form-group">
+              <label style={{ display: 'block', marginBottom: '10px', fontSize: '0.95rem', fontWeight: '600', color: '#334155' }}>Price per Unit (₹)</label>
+              <input 
+                type="number" 
+                value={currentCrop?.price}
+                onChange={(e) => setCurrentCrop({...currentCrop, price: parseFloat(e.target.value)})}
+                style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '1rem' }}
+              />
+            </div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '15px', marginTop: '10px' }}>
+            <button 
+              type="button"
+              onClick={() => setEditModalOpen(false)}
+              className="btn"
+              style={{ background: '#f1f5f9', color: '#166534', fontWeight: '700', padding: '12px 24px', borderRadius: '10px', border: 'none' }}
+            >Cancel</button>
+            <button 
+              type="submit"
+              className="btn"
+              style={{ background: '#22c55e', color: 'white', fontWeight: '700', padding: '12px 24px', borderRadius: '10px', border: 'none' }}
+            >Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 
   const stats = [
     { label: 'Active Batches', value: '12', icon: <Sprout size={18} /> },
@@ -171,50 +284,97 @@ const FarmerPage = () => {
           <div className="glass-card" style={{ padding: '30px' }}>
              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
                 <div>
-                  <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>My Crop Batches</h3>
+                  <h3 style={{ fontSize: '1.25rem', marginBottom: '5px' }}>Your Crops</h3>
                   <p style={{ color: '#666', fontSize: '0.9rem' }}>Detailed view of your current production units.</p>
                 </div>
-                <button onClick={() => window.location.href = '/dashboard/farmer?tab=create'} className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Plus size={18} /> Create New Batch
-                </button>
+                <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+                  <div className="search-pill" style={{ width: '250px' }}>
+                    <Search size={18} color="#999" />
+                    <input type="text" placeholder="Search crops..." style={{ border: 'none', background: 'transparent', width: '100%', outline: 'none' }} />
+                  </div>
+                  <button onClick={() => window.location.href = '/dashboard/farmer?tab=create'} className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Plus size={18} /> Create New Batch
+                  </button>
+                </div>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                {[
-                  { name: 'Organic Tomato', batch: '123', planted: '2026-03-11', area: '2', fertilizers: '0', pestControl: '0' },
-                  { name: 'Organic Potato', batch: '111', planted: '2026-03-25', area: '5', fertilizers: '0', pestControl: '0' }
-                ].map((item, idx) => (
-                  <div key={idx} className="glass-card" style={{ padding: '25px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
-                      <div>
-                        <h4 style={{ fontSize: '1.15rem', color: '#2d3a2d', marginBottom: '4px' }}>{item.name}</h4>
-                        <span style={{ color: '#999', fontSize: '0.9rem' }}>Batch: {item.batch}</span>
-                      </div>
-                      <div style={{ background: '#f8fbf8', padding: '6px 12px', borderRadius: '100px', color: '#4a6b4a', fontSize: '0.8rem', fontWeight: 'bold' }}>Active</div>
-                    </div>
+              <div className="table-container shadow-sm" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                  <thead style={{ background: '#f1f5f9', borderBottom: '1px solid #e2e8f0' }}>
+                    <tr>
+                      <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Crop Name</th>
+                      <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Type</th>
+                      <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Quantity (kg)</th>
+                      <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Price/Unit</th>
+                      <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Status</th>
+                      <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Date Added</th>
+                      <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {crops.map((crop) => (
+                      <tr key={crop.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                        <td style={{ padding: '18px 20px', fontWeight: '600', color: '#1e293b' }}>{crop.name}</td>
+                        <td style={{ padding: '18px 20px', color: '#64748b', fontSize: '0.9rem' }}>{crop.type}</td>
+                        <td style={{ padding: '18px 20px', color: '#64748b', fontSize: '0.9rem' }}>{crop.quantity} kg</td>
+                        <td style={{ padding: '18px 20px', color: '#64748b', fontSize: '0.9rem' }}>₹{crop.price.toFixed(2)}</td>
+                        <td style={{ padding: '18px 20px' }}>
+                          <span style={{ 
+                            padding: '4px 12px', 
+                            borderRadius: '6px', 
+                            fontSize: '0.65rem', 
+                            fontWeight: '800', 
+                            background: crop.status === 'ACTIVE' ? '#dcfce7' : '#ffedd5', 
+                            color: crop.status === 'ACTIVE' ? '#166534' : '#9a3412',
+                            textTransform: 'uppercase'
+                          }}>
+                            {crop.status}
+                          </span>
+                        </td>
+                        <td style={{ padding: '18px 20px', color: '#94a3b8', fontSize: '0.8rem' }}>{crop.date}</td>
+                        <td style={{ padding: '18px 20px' }}>
+                          <div style={{ display: 'flex', gap: '10px' }}>
+                            <button 
+                              onClick={() => handleEdit(crop)}
+                              style={{ padding: '8px', borderRadius: '8px', background: '#3b82f6', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                            >
+                              <Edit size={14} />
+                            </button>
+                            <button 
+                              onClick={() => handleDelete(crop.id)}
+                              style={{ padding: '8px', borderRadius: '8px', background: '#ef4444', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                            >
+                              <Trash size={14} />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '15px', marginBottom: '25px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#666', fontSize: '0.9rem' }}>
-                        <Calendar size={16} /> Planted: {item.planted}
-                      </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#666', fontSize: '0.9rem' }}>
-                        <MapPin size={16} /> Area: {item.area} units
-                      </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#666', fontSize: '0.9rem' }}>
-                        <Sprout size={16} /> Fertilizers: {item.fertilizers} applied
-                      </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#666', fontSize: '0.9rem' }}>
-                        <Bug size={16} /> Pest Control: {item.pestControl} entries
-                      </div>
-                    </div>
-
-                    <div style={{ display: 'flex', gap: '10px' }}>
-                       <button className="tab-btn" style={{ fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}><Sprout size={14}/> Add Fertilizer</button>
-                       <button className="tab-btn" style={{ fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}><Bug size={14}/> Log Pest Control</button>
-                       <button className="tab-btn" style={{ fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}><Droplets size={14}/> Add Irrigation</button>
-                    </div>
-                  </div>
-                ))}
+              <div style={{ marginTop: '50px' }}>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '20px', fontWeight: '700' }}>Order Requests</h3>
+                <div className="table-container shadow-sm" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                    <thead style={{ background: '#f1f5f9', borderBottom: '1px solid #e2e8f0' }}>
+                      <tr>
+                        <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Distributor</th>
+                        <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Crop</th>
+                        <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Quantity</th>
+                        <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Total Price</th>
+                        <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Status</th>
+                        <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                        <td colSpan="6" style={{ padding: '60px', textAlign: 'center', color: '#94a3b8', fontSize: '0.9rem' }}>No pending order requests available</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
           </div>
         );
@@ -546,7 +706,7 @@ const FarmerPage = () => {
     <div className="dashboard-layout dark-sidebar">
       <Sidebar role="farmer" />
       <main className="dashboard-main light-bg">
-        <Topbar title="Farmer Dashboard" subtitle={`Sunday, ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`} />
+        <Topbar title="Farmer Dashboard" subtitle="Welcome, John Martinez!" />
         
         {activeTab !== 'create' && (
           <div className="dashboard-stats-row">
@@ -572,6 +732,8 @@ const FarmerPage = () => {
             onClose={() => setShowMapPicker(false)} 
           />
         )}
+
+        {editModalOpen && <EditModal />}
       </main>
     </div>
   );

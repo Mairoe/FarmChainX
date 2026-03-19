@@ -36,24 +36,47 @@ const WarehousePage = () => {
         );
       case 'Inventory':
         return (
-          <div className="glass-card" style={{ padding: '30px' }}>
-            <h3>Inventory Management</h3>
-            <div className="table-container">
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                  <tr style={{ textAlign: 'left', borderBottom: '1px solid #eee' }}>
-                    <th style={{ padding: '15px 0' }}>Batch ID</th>
-                    <th style={{ padding: '15px 0' }}>Category</th>
-                    <th style={{ padding: '15px 0' }}>Entry Date</th>
-                    <th style={{ padding: '15px 0' }}>Status</th>
+          <div style={{ animation: 'fadeIn 0.4s ease' }}>
+            <div style={{ marginBottom: '25px' }}>
+              <h3 style={{ margin: '0 0 5px 0', fontSize: '1.25rem', fontWeight: '800' }}>Inventory Management</h3>
+              <p style={{ margin: 0, color: '#64748b', fontSize: '0.95rem' }}>Track and manage batches stored in this facility</p>
+            </div>
+            
+            <div className="table-container shadow-sm" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                <thead style={{ background: '#f1f5f9', borderBottom: '1px solid #e2e8f0' }}>
+                  <tr>
+                    <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Batch ID</th>
+                    <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Category</th>
+                    <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Entry Date</th>
+                    <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Status</th>
+                    <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style={{ borderBottom: '1px solid #f8f8f8' }}>
-                    <td style={{ padding: '20px 0', fontWeight: 'bold' }}>#452</td>
-                    <td style={{ padding: '20px 0' }}>Grains</td>
-                    <td style={{ padding: '20px 0' }}>2024-03-05</td>
-                    <td style={{ padding: '20px 0' }}><span className="status-badge stored">Stored</span></td>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '18px 20px', fontWeight: '700', color: '#3b82f6', fontSize: '0.85rem' }}>#452</td>
+                    <td style={{ padding: '18px 20px', fontWeight: '600', color: '#1e293b' }}>Grains</td>
+                    <td style={{ padding: '18px 20px', color: '#64748b', fontSize: '0.9rem' }}>2024-03-05</td>
+                    <td style={{ padding: '18px 20px' }}>
+                      <span style={{ 
+                        padding: '4px 12px', 
+                        borderRadius: '6px', 
+                        fontSize: '0.65rem', 
+                        fontWeight: '800', 
+                        background: '#dcfce7', 
+                        color: '#166534',
+                        textTransform: 'uppercase'
+                      }}>Stored</span>
+                    </td>
+                    <td style={{ padding: '18px 20px' }}>
+                      <button 
+  onClick={() => alert('Starting quality check process for Batch #452')}
+  style={{ padding: '8px 16px', borderRadius: '8px', background: '#0a0a0a', color: 'white', border: 'none', cursor: 'pointer', fontWeight: '700', fontSize: '0.8rem' }}
+>
+  Check Quality
+</button>
+                    </td>
                   </tr>
                 </tbody>
               </table>

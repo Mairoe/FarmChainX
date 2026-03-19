@@ -193,51 +193,56 @@ const CertifierPage = () => {
 
             {/* Certifications List */}
             <div>
-              <div style={{ marginBottom: '20px' }}>
-                <h3 style={{ margin: '0 0 4px 0', fontSize: '1.1rem', fontWeight: '600' }}>Pending Certifications</h3>
-                <p style={{ margin: 0, color: '#64748b', fontSize: '0.9rem' }}>Review and approve organic crop batches</p>
+              <div style={{ marginBottom: '25px' }}>
+                <h3 style={{ margin: '0 0 5px 0', fontSize: '1.25rem', fontWeight: '800' }}>Pending Certifications</h3>
+                <p style={{ margin: 0, color: '#64748b', fontSize: '0.95rem' }}>Review and approve organic crop batches</p>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                {pendingBatches.map((batch, i) => (
-                  <div key={i} className="glass-card" style={{ padding: '30px', position: 'relative' }}>
-                    <div style={{ position: 'absolute', top: '30px', right: '30px' }}>
-                      <span style={{ background: '#fffbeb', color: '#9a3412', padding: '5px 15px', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '700' }}>{batch.status}</span>
-                    </div>
-                    
-                    <h4 style={{ margin: '0 0 5px 0', fontSize: '1.2rem', fontWeight: '700' }}>{batch.name}</h4>
-                    <p style={{ margin: '0 0 25px 0', color: '#64748b', fontSize: '0.9rem' }}>Batch ID: {batch.id}</p>
-                    
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px 60px', marginBottom: '30px' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.95rem' }}>
-                        <span style={{ color: '#64748b' }}>Planted Date:</span>
-                        <span style={{ fontWeight: '600' }}>{batch.plantedDate}</span>
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.95rem' }}>
-                        <span style={{ color: '#64748b' }}>Area Size:</span>
-                        <span style={{ fontWeight: '600' }}>{batch.areaSize}</span>
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.95rem' }}>
-                        <span style={{ color: '#64748b' }}>Fertilizers:</span>
-                        <span style={{ fontWeight: '600' }}>{batch.fertilizers}</span>
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.95rem' }}>
-                        <span style={{ color: '#64748b' }}>Pest Control:</span>
-                        <span style={{ fontWeight: '600' }}>{batch.pests}</span>
-                      </div>
-                    </div>
-                    
-                    <button 
-                      onClick={() => {
-                        setSelectedBatch(batch);
-                        setShowReviewModal(true);
-                      }}
-                      style={{ width: '100%', background: '#0a0a0a', color: 'white', padding: '15px', borderRadius: '12px', border: 'none', fontWeight: '700', cursor: 'pointer', transition: 'var(--transition-normal)' }}
-                    >
-                      Process Certification
-                    </button>
-                  </div>
-                ))}
+              <div className="table-container shadow-sm" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                  <thead style={{ background: '#f1f5f9', borderBottom: '1px solid #e2e8f0' }}>
+                    <tr>
+                      <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Batch ID</th>
+                      <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Crop Name</th>
+                      <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Planted Date</th>
+                      <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Area Size</th>
+                      <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Status</th>
+                      <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {pendingBatches.map((batch, i) => (
+                      <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                        <td style={{ padding: '18px 20px', fontWeight: '700', color: '#3b82f6', fontSize: '0.85rem' }}>{batch.id}</td>
+                        <td style={{ padding: '18px 20px', fontWeight: '600', color: '#1e293b' }}>{batch.name}</td>
+                        <td style={{ padding: '18px 20px', color: '#64748b', fontSize: '0.9rem' }}>{batch.plantedDate}</td>
+                        <td style={{ padding: '18px 20px', color: '#64748b', fontSize: '0.9rem' }}>{batch.areaSize}</td>
+                        <td style={{ padding: '18px 20px' }}>
+                          <span style={{ 
+                            padding: '4px 12px', 
+                            borderRadius: '6px', 
+                            fontSize: '0.65rem', 
+                            fontWeight: '800', 
+                            background: '#fffbeb', 
+                            color: '#9a3412',
+                            textTransform: 'uppercase'
+                          }}>{batch.status}</span>
+                        </td>
+                        <td style={{ padding: '18px 20px' }}>
+                          <button 
+                            onClick={() => {
+                              setSelectedBatch(batch);
+                              setShowReviewModal(true);
+                            }}
+                            style={{ padding: '8px 16px', borderRadius: '8px', background: '#0a0a0a', color: 'white', border: 'none', cursor: 'pointer', fontWeight: '700', fontSize: '0.8rem' }}
+                          >
+                            Process
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
