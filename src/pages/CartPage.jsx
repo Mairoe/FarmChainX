@@ -8,13 +8,16 @@ import {
   CreditCard,
   Truck
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/pages.css';
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   const [checkoutStep, setCheckoutStep] = useState(0); // 0: Cart, 1: Checkout Form, 2: Success
 
@@ -46,8 +49,14 @@ const CartPage = () => {
   const total = subtotal + deliveryFee;
 
   const handleProceedToCheckout = () => {
+    if (!isAuthenticated) {
+      // Redirect to login if not authenticated
+      navigate('/auth?redirect=/cart');
+      return;
+    }
     setCheckoutStep(1);
   };
+
 
   const handleProcessPayment = (e) => {
     e.preventDefault();

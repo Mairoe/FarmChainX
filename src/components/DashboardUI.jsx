@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAuth } from '../context/AuthContext';
 import { 
   LayoutDashboard, Package, Truck, Warehouse, 
   ShieldCheck, Store, Settings, LogOut, PlusCircle,
@@ -146,39 +147,66 @@ export const Sidebar = ({ role }) => {
         )}
       </nav>
 
-      <div className="sidebar-footer" style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px' }}>
-        <div className="user-profile-mini" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div className="avatar-circle" style={{ width: '36px', height: '36px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyCenter: 'center', fontSize: '0.8rem' }}>A</div>
-          <div className="user-name">
-            <h4 style={{ fontSize: '0.9rem', margin: 0 }}>a</h4>
-            <span style={{ fontSize: '0.75rem', color: 'white' }}>{role}</span>
-          </div>
-          <Link to="/auth" style={{ marginLeft: 'auto', color: 'rgba(255,255,255,0.5)' }}><LogOut size={18}/></Link>
-        </div>
-      </div>
+      <SidebarFooter role={role} />
     </aside>
+  );
+};
+
+const SidebarFooter = ({ role }) => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/auth');
+  };
+
+  return (
+    <div className="sidebar-footer" style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px' }}>
+      <div className="user-profile-mini" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div className="avatar-circle" style={{ width: '36px', height: '36px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', borderRadius: '50%' }}>
+          {user?.name?.charAt(0)?.toUpperCase() || 'U'}
+        </div>
+        <div className="user-name">
+          <h4 style={{ fontSize: '0.9rem', margin: 0 }}>{user?.name || 'User'}</h4>
+          <span style={{ fontSize: '0.75rem', color: 'white', opacity: 0.7 }}>{role}</span>
+        </div>
+        <button onClick={handleLogout} style={{ marginLeft: 'auto', color: 'rgba(255,255,255,0.5)', background: 'none', border: 'none', cursor: 'pointer' }}>
+          <LogOut size={18}/>
+        </button>
+      </div>
+    </div>
   );
 };
 
 export const Topbar = ({ title, subtitle }) => {
   return (
-    <header className="dashboard-header-clean" style={{ padding: '0 0 30px 0' }}>
+    <header className="dashboard-header-clean" style={{ 
+      padding: '20px 30px', 
+      background: 'white', 
+      borderRadius: '20px', 
+      marginBottom: '30px',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+    }}>
       <div className="header-info">
-        <h1 style={{ fontSize: '1.75rem', fontWeight: '700', color: ['Customer Dashboard', 'Distributor Dashboard', 'Store Manager Terminal', 'Warehouse Dashboard', 'Certifier Dashboard'].includes(title) ? '#1a1a1a' : 'white' }}>{title}</h1>
-        <p style={{ color: '#999', fontSize: '0.9rem' }}>{subtitle}</p>
+        <h1 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#000' }}>{title}</h1>
+        <p style={{ color: '#666', fontSize: '0.9rem' }}>{subtitle}</p>
       </div>
       <div className="header-actions" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-        <div className="search-pill" style={{ background: '#f0f0f0', borderRadius: '100px', display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 20px', width: '300px' }}>
+        <div className="search-pill" style={{ background: '#f5f5f0', borderRadius: '100px', display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 20px', width: '300px', border: '1px solid #eee' }}>
           <Search size={18} color="#999" />
-          <input type="text" placeholder="Search..." style={{ border: 'none', background: 'none', width: '100%', outline: 'none', fontSize: '0.9rem' }} />
+          <input type="text" placeholder="Search..." style={{ border: 'none', background: 'none', width: '100%', outline: 'none', fontSize: '0.9rem', color: '#000' }} />
         </div>
         <div style={{ position: 'relative' }}>
-          <button className="icon-btn-ghost" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#666' }}>
+          <button className="icon-btn-ghost" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#333' }}>
             <Bell size={20}/>
           </button>
           <div style={{ position: 'absolute', top: '2px', right: '2px', width: '8px', height: '8px', background: '#e53e3e', borderRadius: '50%', border: '2px solid white' }}></div>
         </div>
-        <div className="avatar-main" style={{ width: '40px', height: '40px', background: '#2d3a2d', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', fontWeight: '700' }}>A</div>
+        <div className="avatar-main" style={{ width: '40px', height: '40px', background: '#000', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', fontWeight: '700' }}>A</div>
       </div>
     </header>
   );

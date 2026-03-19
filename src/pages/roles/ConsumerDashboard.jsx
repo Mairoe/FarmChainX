@@ -218,7 +218,7 @@ const ConsumerDashboard = () => {
 
     return (
       <div style={{ maxWidth: '800px', width: '100%', textAlign: 'center', margin: '0 auto', paddingTop: '40px' }}>
-        <h1 style={{ fontSize: '2.5rem', color: '#1a202c', marginBottom: '16px', fontWeight: '700' }}>Track Your Organic Product Journey</h1>
+        <h1 style={{ fontSize: '2.5rem', color: '#000', marginBottom: '16px', fontWeight: '800' }}>Track Your Organic Product Journey</h1>
         <p style={{ color: '#4a5568', fontSize: '1.1rem', marginBottom: '60px' }}>Scan the QR code or enter the batch number to see the complete farm-to-table story</p>
 
         <div className="glass-card" style={{ padding: '40px', textAlign: 'left', marginBottom: '40px' }}>

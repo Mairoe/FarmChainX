@@ -16,10 +16,10 @@
   
   /* Text Contrast System */
   --text-on-dark: var(--color-cream);
-  --text-on-light: var(--color-dark);
+  --text-on-light: #000;
   
-  --text-main: var(--text-on-light);
-  --text-headers: var(--text-on-light);
+  --text-main: #222;
+  --text-headers: #000;
   --text-contrast: var(--text-on-dark);
   
   /* Styling Tokens */

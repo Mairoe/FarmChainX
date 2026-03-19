@@ -601,3 +601,72 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Activity and Status Badges */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(0,0,0,0.1);
+    display: inline-block;
+}
+
+.status-badge.pending {
+    background: #fdf2f2 !important;
+    color: #9b1c1c !important;
+    border-color: #fbd5d5 !important;
+}
+
+.status-badge.in-review {
+    background: #fef9c3 !important;
+    color: #854d0e !important;
+    border-color: #fef08a !important;
+}
+
+.status-badge.stored {
+    background: #f0fdf4 !important;
+    color: #166534 !important;
+    border-color: #bbf7d0 !important;
+}
+
+.status-badge.passed {
+    background: #ecfdf5 !important;
+    color: #065f46 !important;
+    border-color: #a7f3d0 !important;
+}
+
+.status-badge.failed {
+    background: #fff1f2 !important;
+    color: #9f1239 !important;
+    border-color: #fecdd3 !important;
+}
+
+/* Dashboard Content Tables */
+.table-container {
+    overflow-x: auto;
+}
+
+.table-container table th {
+    font-family: 'Outfit', sans-serif !important;
+    letter-spacing: 1px;
+}
+
+/* Buttons in Dashboard */
+.btn-action {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn-action:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2) !important;
+}
+
+.btn-action:active {
+    transform: translateY(0);
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1) !important;
+}

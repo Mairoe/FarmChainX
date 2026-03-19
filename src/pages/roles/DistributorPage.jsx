@@ -92,7 +92,7 @@ const DistributorPage = () => {
           <div className="sub-box tab-fade-in" style={{ background: 'white', color: '#1e293b', padding: '40px' }}>
              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '30px' }}>
                 <div>
-                  <h3 style={{ margin: '0 0 5px 0', fontSize: '1.25rem', fontWeight: '800' }}>Farmer Batch Sourcing</h3>
+                  <h3 style={{ margin: '0 0 5px 0', fontSize: '1.25rem', fontWeight: '800', color: '#000' }}>Farmer Batch Sourcing</h3>
                   <p style={{ margin: 0, color: '#64748b', fontSize: '0.95rem' }}>Purchase verified organic batches directly from certified producers.</p>
                 </div>
              </div>
@@ -101,7 +101,7 @@ const DistributorPage = () => {
                 {pharmaFarms.map((farm, i) => (
                   <div key={i} className="sub-box" style={{ padding: '25px', background: '#f8fafc' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px' }}>
-                      <h4 style={{ margin: '0 0 4px 0', fontWeight: '700' }}>{farm.name}</h4>
+                      <h4 style={{ margin: '0 0 4px 0', fontWeight: '800', color: '#000' }}>{farm.name}</h4>
                       <span style={{ fontSize: '0.75rem', background: '#f0fdf4', color: '#166534', padding: '4px 10px', borderRadius: '100px', fontWeight: '800', height: 'fit-content' }}>{farm.certification}</span>
                     </div>
                     <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '0 0 20px 0' }}><MapPin size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px'}} /> {farm.location}</p>
@@ -133,7 +133,7 @@ const DistributorPage = () => {
                       <Package size={24} />
                     </div>
                     <div style={{ flex: 1 }}>
-                      <h4 style={{ margin: '0 0 4px 0', fontSize: '1.05rem', fontWeight: '700' }}>{batch.name}</h4>
+                      <h4 style={{ margin: '0 0 4px 0', fontSize: '1.05rem', fontWeight: '800', color: '#000' }}>{batch.name}</h4>
                       <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b' }}><Leaf size={12} /> {batch.source} • {batch.id}</p>
                     </div>
                     <div style={{ textAlign: 'right', minWidth: '120px' }}>

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Leaf, ShoppingCart, User, Menu } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Leaf, ShoppingCart, User, Menu, LogOut, LayoutDashboard } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 import '../styles/components.css';
 
 const Navbar = () => {
   const [cartCount, setCartCount] = useState(0);
+  const { user, logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const updateCount = () => {
@@ -28,6 +31,24 @@ const Navbar = () => {
       window.removeEventListener('farmchain_cart_updated', updateCount);
     };
   }, []);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
+  const getDashboardPath = () => {
+    if (!user) return '/auth';
+    switch (user.role) {
+      case 'farmer': return '/dashboard/farmer';
+      case 'customer': return '/dashboard/consumer';
+      case 'distributor': return '/dashboard/distributor';
+      case 'certifier': return '/dashboard/certifier';
+      case 'retailer': return '/dashboard/retailer';
+      case 'warehouse': return '/dashboard/warehouse';
+      default: return '/dashboard/consumer';
+    }
+  };
 
   return (
     <nav className="navbar">
@@ -70,10 +91,25 @@ const Navbar = () => {
               </span>
             )}
           </Link>
-          <Link to="/auth" className="btn btn-primary auth-btn">
-            <User size={18} />
-            <span>Login</span>
-          </Link>
+
+          {isAuthenticated ? (
+            <div className="user-profile-nav" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+              <Link to={getDashboardPath()} className="btn btn-secondary auth-btn" style={{ background: '#f8fafc', color: '#2d3a2d', border: '1px solid #e2e8f0' }}>
+                <LayoutDashboard size={18} />
+                <span>Dashboard</span>
+              </Link>
+              <button onClick={handleLogout} className="btn btn-primary auth-btn" style={{ background: '#ef4444' }}>
+                <LogOut size={18} />
+                <span>Logout</span>
+              </button>
+            </div>
+          ) : (
+            <Link to="/auth" className="btn btn-primary auth-btn">
+              <User size={18} />
+              <span>Login</span>
+            </Link>
+          )}
+
           <button className="mobile-menu-btn">
             <Menu size={24} />
           </button>
@@ -84,3 +120,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

@@ -194,7 +194,7 @@ const CertifierPage = () => {
             {/* Certifications List */}
             <div>
               <div style={{ marginBottom: '20px' }}>
-                <h3 style={{ margin: '0 0 4px 0', fontSize: '1.1rem', fontWeight: '600' }}>Pending Certifications</h3>
+                <h3 style={{ margin: '0 0 44px 0', fontSize: '1.25rem', fontWeight: '800', color: '#000' }}>Pending Certifications</h3>
                 <p style={{ margin: 0, color: '#64748b', fontSize: '0.9rem' }}>Review and approve organic crop batches</p>
               </div>
 
@@ -205,7 +205,7 @@ const CertifierPage = () => {
                       <span style={{ background: '#fffbeb', color: '#9a3412', padding: '5px 15px', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '700' }}>{batch.status}</span>
                     </div>
                     
-                    <h4 style={{ margin: '0 0 5px 0', fontSize: '1.2rem', fontWeight: '700' }}>{batch.name}</h4>
+                    <h4 style={{ margin: '0 0 5px 0', fontSize: '1.2rem', fontWeight: '800', color: '#000' }}>{batch.name}</h4>
                     <p style={{ margin: '0 0 25px 0', color: '#64748b', fontSize: '0.9rem' }}>Batch ID: {batch.id}</p>
                     
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px 60px', marginBottom: '30px' }}>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
@@ -16,29 +18,55 @@ import './styles/global.css';
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <Routes>
-          {/* Main Site with Navbar */}
-          <Route path="/" element={<><Navbar /><LandingPage /></>} />
-          <Route path="/shop" element={<><Navbar /><ShopPage /></>} />
-          <Route path="/product/:id" element={<ProductDetailPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/auth" element={<AuthPage />} />
-          
-          {/* Dashboards - Different routes for different roles */}
-          <Route path="/dashboard/consumer" element={<ConsumerDashboard />} />
-          <Route path="/dashboard/farmer" element={<FarmerPage />} />
-          <Route path="/dashboard/certifier" element={<CertifierPage />} />
-          <Route path="/dashboard/distributor" element={<DistributorPage />} />
-          <Route path="/dashboard/retailer" element={<RetailerPage />} />
-          <Route path="/dashboard/warehouse" element={<WarehousePage />} />
-          
-          {/* Default to landing if not found */}
-          <Route path="*" element={<><Navbar /><LandingPage /></>} />
-        </Routes>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className="app">
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<><Navbar /><LandingPage /></>} />
+            <Route path="/shop" element={<><Navbar /><ShopPage /></>} />
+            <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/auth" element={<AuthPage />} />
+            
+            {/* Protected Dashboard Routes */}
+            <Route path="/dashboard/consumer" element={
+              <ProtectedRoute allowedRoles={['customer']}>
+                <ConsumerDashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/dashboard/farmer" element={
+              <ProtectedRoute allowedRoles={['farmer']}>
+                <FarmerPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/dashboard/certifier" element={
+              <ProtectedRoute allowedRoles={['certifier']}>
+                <CertifierPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/dashboard/distributor" element={
+              <ProtectedRoute allowedRoles={['distributor']}>
+                <DistributorPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/dashboard/retailer" element={
+              <ProtectedRoute allowedRoles={['retailer']}>
+                <RetailerPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/dashboard/warehouse" element={
+              <ProtectedRoute allowedRoles={['warehouse']}>
+                <WarehousePage />
+              </ProtectedRoute>
+            } />
+            
+            {/* Catch-all */}
+            <Route path="*" element={<><Navbar /><LandingPage /></>} />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

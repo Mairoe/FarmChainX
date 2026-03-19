@@ -1,24 +1,60 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Leaf } from 'lucide-react';
+import { authAPI } from '../services/api';
+import { useAuth } from '../context/AuthContext';
 import '../styles/auth.css';
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [role, setRole] = useState('farmer'); // Default to farmer for testing
-  const navigate = useNavigate();
+  const [role, setRole] = useState('farmer');
+  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleAuth = (e) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
+
+  const queryParams = new URLSearchParams(location.search);
+  const redirectPath = queryParams.get('redirect');
+
+  const handleAuth = async (e) => {
     e.preventDefault();
-    
-    // Simple logic to navigate to dashboards
-    if (role === 'customer') {
-      navigate('/dashboard/consumer');
-    } else {
-      navigate(`/dashboard/${role}`);
+    setError('');
+    setLoading(true);
+
+    try {
+      let data;
+
+      if (isLogin) {
+        // LOGIN — call real backend API and pass selected UI role for testing
+        data = await authAPI.login(username, password, role);
+      } else {
+        // REGISTER — call real backend API
+        data = await authAPI.register({ name, username, password, role });
+      }
+
+      // Store user in AuthContext (saves to localStorage too)
+      login(data);
+
+      // Navigate to the redirect path if provided, else user's dashboard
+      if (redirectPath) {
+        navigate(redirectPath);
+      } else if (data.role === 'customer') {
+        navigate('/dashboard/consumer');
+      } else {
+        navigate(`/dashboard/${data.role}`);
+      }
+    } catch (err) {
+      setError(err.message || 'Authentication failed. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
+
 
   return (
     <div className="auth-container">
@@ -35,25 +71,34 @@ const AuthPage = () => {
           <p className="tagline">Blockchain-Powered Supply Chain Transparency</p>
         </div>
 
-        <motion.div 
-          className="auth-card glass-card"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="auth-card glass-card">
           <div className="auth-header">
             <h2>Welcome</h2>
-            <p>{isLogin ? 'Login or create an account to get started' : 'Join our transparent supply chain today'}</p>
+            <p>{isLogin ? 'Login to your account' : 'Join our transparent supply chain today'}</p>
           </div>
+
+          {error && (
+            <div style={{
+              background: '#fef2f2',
+              color: '#991b1b',
+              padding: '12px 16px',
+              borderRadius: '10px',
+              fontSize: '0.9rem',
+              marginBottom: '20px',
+              border: '1px solid #fecaca'
+            }}>
+              {error}
+            </div>
+          )}
 
           <div className="auth-toggle">
             <button 
               className={isLogin ? 'active' : ''} 
-              onClick={() => setIsLogin(true)}
+              onClick={() => { setIsLogin(true); setError(''); }}
             >Login</button>
             <button 
               className={!isLogin ? 'active' : ''} 
-              onClick={() => setIsLogin(false)}
+              onClick={() => { setIsLogin(false); setError(''); }}
             >Register</button>
           </div>
 
@@ -61,16 +106,34 @@ const AuthPage = () => {
             {!isLogin && (
               <div className="form-group">
                 <label>Full Name</label>
-                <input type="text" placeholder="Enter your full name" required />
+                <input 
+                  type="text" 
+                  placeholder="Enter your full name" 
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required 
+                />
               </div>
             )}
             <div className="form-group">
-              <label>Email</label>
-              <input type="email" placeholder="Enter your email" required />
+              <label>Username</label>
+              <input 
+                type="text" 
+                placeholder="Enter your username" 
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required 
+              />
             </div>
             <div className="form-group">
               <label>Password</label>
-              <input type="password" placeholder={isLogin ? "Enter your password" : "Create a password"} required />
+              <input 
+                type="password" 
+                placeholder={isLogin ? "Enter your password" : "Create a password (min 6 chars)"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required 
+              />
             </div>
             
             <div className="form-group">
@@ -89,11 +152,11 @@ const AuthPage = () => {
               </select>
             </div>
 
-            <button type="submit" className="login-btn">
-              {isLogin ? 'Login' : 'Create Account'}
+            <button type="submit" className="login-btn" disabled={loading}>
+              {loading ? 'Please wait...' : (isLogin ? 'Login' : 'Create Account')}
             </button>
           </form>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
