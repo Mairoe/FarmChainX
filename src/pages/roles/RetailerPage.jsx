@@ -126,45 +126,37 @@ const InventoryView = () => (
       <p style={{ color: '#64748b' }}>Managing **Farmer Heritage** stock received through our **Distributor Network**.</p>
     </div>
     
-    <div className="table-container shadow-sm" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
-      <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-        <thead style={{ background: '#f1f5f9', borderBottom: '1px solid #e2e8f0' }}>
+    <div className="inventory-container">
+      <table className="retail-table">
+        <thead>
           <tr>
-            <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Product Heritage</th>
-            <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>On-Hand</th>
-            <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Supply Hub</th>
-            <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Chain Integrity</th>
-            <th style={{ padding: '12px 20px', fontSize: '0.7rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Action</th>
+            <th>Product Heritage</th>
+            <th>On-Hand</th>
+            <th>Supply Hub</th>
+            <th>Chain Integrity</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {MY_STOCK.map(item => (
-            <tr key={item.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
-              <td style={{ padding: '18px 20px' }}>
-                <div style={{ fontWeight: '700', color: '#1e293b' }}>{item.name}</div>
+            <tr key={item.id}>
+              <td>
+                <div style={{ fontWeight: '700' }}>{item.name}</div>
                 <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>ID: {item.id}</div>
               </td>
-              <td style={{ padding: '18px 20px', fontWeight: '700', color: '#1e293b' }}>{item.current}</td>
-              <td style={{ padding: '18px 20px', color: '#64748b', fontSize: '0.85rem' }}>{item.sourceHub}</td>
-              <td style={{ padding: '18px 20px' }}>
+              <td style={{ fontWeight: '600' }}>{item.current}</td>
+              <td style={{ color: '#64748b', fontSize: '0.85rem' }}>{item.sourceHub}</td>
+              <td>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <span style={{ 
-                    padding: '4px 12px', borderRadius: '6px', fontSize: '0.65rem', fontWeight: '800',
-                    background: item.status === 'Optimal' ? '#dcfce7' : item.status === 'Low' ? '#fff7ed' : '#fef2f2',
-                    color: item.status === 'Optimal' ? '#166534' : item.status === 'Low' ? '#9a3412' : '#991b1b',
-                    textTransform: 'uppercase'
+                    padding: '6px 12px', borderRadius: '100px', fontSize: '0.75rem', fontWeight: '800',
+                    background: item.status === 'Optimal' ? '#f0fdf4' : item.status === 'Low' ? '#fff7ed' : '#fef2f2',
+                    color: item.status === 'Optimal' ? '#166534' : item.status === 'Low' ? '#9a3412' : '#991b1b'
                   }}>{item.status}</span>
-                  <span style={{ fontSize: '0.75rem', color: '#3b82f6', fontWeight: '700' }}>{item.batch}</span>
+                  <span style={{ fontSize: '0.75rem', color: '#3b82f6', textDecoration: 'underline' }}>{item.batch}</span>
                 </div>
               </td>
-              <td style={{ padding: '18px 20px' }}>
-                <button 
-                  onClick={() => alert(`Viewing details for ${item.name} (Batch: ${item.batch})`)}
-                  style={{ background: '#f8fafc', border: '1px solid #e2e8f0', cursor: 'pointer', color: '#64748b', padding: '8px', borderRadius: '8px' }}
-                >
-                  <Eye size={18} />
-                </button>
-              </td>
+              <td><button className="icon-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#64748b' }}><Eye size={18} /></button></td>
             </tr>
           ))}
         </tbody>
@@ -244,12 +236,7 @@ const InsightsView = () => (
       <div style={{ width: '70px', height: '70px', borderRadius: '20px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px auto' }}><BarChart3 size={36} /></div>
       <h3 style={{ fontSize: '1.6rem', fontWeight: '800', marginBottom: '12px' }}>Forecasting Model Active</h3>
       <p style={{ opacity: 0.7, fontSize: '0.95rem', marginBottom: '32px' }}>Your store efficiency is currently 92%. Applying AI suggestions can boost this to 98%.</p>
-      <button 
-        onClick={() => alert('Generating your weekly store efficiency report... PDF will be ready in a moment.')}
-        style={{ padding: '16px 32px', background: '#10b981', color: 'white', border: 'none', borderRadius: '12px', fontWeight: '800', cursor: 'pointer' }}
-      >
-        Generate Weekly Report
-      </button>
+      <button style={{ padding: '16px 32px', background: '#10b981', color: 'white', border: 'none', borderRadius: '12px', fontWeight: '800', cursor: 'pointer' }}>Generate Weekly Report</button>
     </div>
   </div>
 );

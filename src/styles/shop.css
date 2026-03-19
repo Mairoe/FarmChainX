@@ -172,9 +172,8 @@
     margin-bottom: 2px;
     color: var(--color-dark);
 }
-.category-card.active .cat-info h4,
-.category-card.active .cat-info span {
-    color: white !important;
+.category-card.active .cat-info h4 {
+    color: var(--primary);
 }
 
 /* Main Content Layout */

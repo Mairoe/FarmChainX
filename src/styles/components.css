@@ -27,7 +27,7 @@
 }
 
 .logo-icon {
-    background: linear-gradient(135deg, var(--primary), var(--color-dark));
+    background: linear-gradient(135deg, var(--color-primary), var(--color-darkest));
     width: 40px;
     height: 40px;
     border-radius: 12px;

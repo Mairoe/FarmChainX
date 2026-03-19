@@ -162,51 +162,23 @@ export const Sidebar = ({ role }) => {
 
 export const Topbar = ({ title, subtitle }) => {
   return (
-    <header className="dashboard-header-clean" style={{ 
-      padding: '24px 0', 
-      marginBottom: '30px', 
-      borderBottom: '2px solid #4a6b4a',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    }}>
+    <header className="dashboard-header-clean" style={{ padding: '0 0 30px 0' }}>
       <div className="header-info">
-        <h1 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#0a0a0a', marginBottom: '4px' }}>{title}</h1>
-        <p style={{ color: '#64748b', fontSize: '0.95rem' }}>{subtitle}</p>
+        <h1 style={{ fontSize: '1.75rem', fontWeight: '700', color: ['Customer Dashboard', 'Distributor Dashboard', 'Store Manager Terminal', 'Warehouse Dashboard', 'Certifier Dashboard'].includes(title) ? '#1a1a1a' : 'white' }}>{title}</h1>
+        <p style={{ color: '#999', fontSize: '0.9rem' }}>{subtitle}</p>
       </div>
       <div className="header-actions" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-        <div className="search-pill" style={{ background: 'white', border: '1px solid #e2e8f0', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 16px', width: '300px', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
-          <Search size={18} color="#94a3b8" />
-          <input type="text" placeholder="Search..." style={{ border: 'none', background: 'none', width: '100%', outline: 'none', fontSize: '0.9rem', color: '#1e293b' }} />
+        <div className="search-pill" style={{ background: '#f0f0f0', borderRadius: '100px', display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 20px', width: '300px' }}>
+          <Search size={18} color="#999" />
+          <input type="text" placeholder="Search..." style={{ border: 'none', background: 'none', width: '100%', outline: 'none', fontSize: '0.9rem' }} />
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{ position: 'relative' }}>
-            <button 
-              onClick={() => alert('No new notifications')}
-              className="icon-btn-ghost" 
-              style={{ background: '#f8fafc', border: 'none', cursor: 'pointer', color: '#64748b', padding: '10px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-            >
-              <Bell size={20}/>
-            </button>
-            <div style={{ position: 'absolute', top: '8px', right: '8px', width: '8px', height: '8px', background: '#e53e3e', borderRadius: '50%', border: '2px solid white' }}></div>
-          </div>
-          <button 
-            onClick={() => alert('User Profile & Settings is coming soon!')}
-            style={{ background: '#f8fafc', border: 'none', cursor: 'pointer', color: '#64748b', padding: '10px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s ease' }}
-            onMouseOver={(e) => e.currentTarget.style.background = '#f1f5f9'}
-            onMouseOut={(e) => e.currentTarget.style.background = '#f8fafc'}
-          >
-            <User size={20}/>
+        <div style={{ position: 'relative' }}>
+          <button className="icon-btn-ghost" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#666' }}>
+            <Bell size={20}/>
           </button>
-          <button 
-            onClick={() => navigate('/auth')}
-            style={{ background: '#f8fafc', border: 'none', cursor: 'pointer', color: '#ef4444', padding: '10px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s ease' }}
-            onMouseOver={(e) => e.currentTarget.style.background = '#fef2f2'}
-            onMouseOut={(e) => e.currentTarget.style.background = '#f8fafc'}
-          >
-            <LogOut size={20}/>
-          </button>
+          <div style={{ position: 'absolute', top: '2px', right: '2px', width: '8px', height: '8px', background: '#e53e3e', borderRadius: '50%', border: '2px solid white' }}></div>
         </div>
+        <div className="avatar-main" style={{ width: '40px', height: '40px', background: '#2d3a2d', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', fontWeight: '700' }}>A</div>
       </div>
     </header>
   );

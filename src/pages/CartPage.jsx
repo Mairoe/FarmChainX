@@ -8,14 +8,13 @@ import {
   CreditCard,
   Truck
 } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/pages.css';
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
-  const navigate = useNavigate();
 
   const [checkoutStep, setCheckoutStep] = useState(0); // 0: Cart, 1: Checkout Form, 2: Success
 
@@ -47,12 +46,7 @@ const CartPage = () => {
   const total = subtotal + deliveryFee;
 
   const handleProceedToCheckout = () => {
-    const user = localStorage.getItem('farmchain_user');
-    if (!user) {
-      navigate('/auth');
-    } else {
-      setCheckoutStep(1);
-    }
+    setCheckoutStep(1);
   };
 
   const handleProcessPayment = (e) => {

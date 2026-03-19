@@ -11,16 +11,7 @@ const AuthPage = () => {
 
   const handleAuth = (e) => {
     e.preventDefault();
-
-    // Mock User Logic
-    const mockUser = {
-      name: isLogin ? 'User' : (e.target.elements[0]?.value || 'User'),
-      email: isLogin ? (e.target.elements[0]?.value || 'user@example.com') : (e.target.elements[1]?.value || 'user@example.com'),
-      role: role
-    };
-    localStorage.setItem('farmchain_user', JSON.stringify(mockUser));
-    window.dispatchEvent(new Event('farmchain_auth_updated'));
-
+    
     // Simple logic to navigate to dashboards
     if (role === 'customer') {
       navigate('/dashboard/consumer');
@@ -31,6 +22,8 @@ const AuthPage = () => {
 
   return (
     <div className="auth-container">
+      <div className="aurora-bg"></div>
+      
       <div className="auth-content">
         <div className="auth-info">
           <div className="logo-section">
@@ -42,19 +35,24 @@ const AuthPage = () => {
           <p className="tagline">Blockchain-Powered Supply Chain Transparency</p>
         </div>
 
-        <div className="auth-card glass-card">
+        <motion.div 
+          className="auth-card glass-card"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="auth-header">
             <h2>Welcome</h2>
             <p>{isLogin ? 'Login or create an account to get started' : 'Join our transparent supply chain today'}</p>
           </div>
 
           <div className="auth-toggle">
-            <button
-              className={isLogin ? 'active' : ''}
+            <button 
+              className={isLogin ? 'active' : ''} 
               onClick={() => setIsLogin(true)}
             >Login</button>
-            <button
-              className={!isLogin ? 'active' : ''}
+            <button 
+              className={!isLogin ? 'active' : ''} 
               onClick={() => setIsLogin(false)}
             >Register</button>
           </div>
@@ -74,12 +72,12 @@ const AuthPage = () => {
               <label>Password</label>
               <input type="password" placeholder={isLogin ? "Enter your password" : "Create a password"} required />
             </div>
-
+            
             <div className="form-group">
               <label>Role</label>
-              <select
-                className="role-select"
-                value={role}
+              <select 
+                className="role-select" 
+                value={role} 
                 onChange={(e) => setRole(e.target.value)}
               >
                 <option value="customer">Customer</option>
@@ -95,7 +93,7 @@ const AuthPage = () => {
               {isLogin ? 'Login' : 'Create Account'}
             </button>
           </form>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

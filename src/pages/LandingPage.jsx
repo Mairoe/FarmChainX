@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, Sprout, Truck, Store } from 'lucide-react';
 import '../styles/pages.css';
 
@@ -18,16 +17,9 @@ const LandingPage = () => {
             <span className="badge">Blockchain Powered</span>
             <h1>Trust Every Bite with <span>FarmChainX</span></h1>
             <p>Empowering consumers with transparent, blockchain-tracked organic produce. From seed to shelf, we ensure quality and authenticity.</p>
-            <div className="hero-btns" style={{ display: 'flex', gap: '15px' }}>
-              <Link to="/dashboard/consumer" className="btn btn-primary" style={{ textDecoration: 'none' }}>
-                Start Tracking <ArrowRight size={18} style={{ marginLeft: '8px' }}/>
-              </Link>
-              <button 
-                onClick={() => document.getElementById('features-section').scrollIntoView({ behavior: 'smooth' })} 
-                className="btn btn-outline"
-              >
-                Learn More
-              </button>
+            <div className="hero-btns">
+              <button className="btn btn-primary">Start Tracking <ArrowRight size={18}/></button>
+              <button className="btn btn-outline">Learn More</button>
             </div>
           </motion.div>
           
@@ -43,7 +35,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section id="features-section" className="features">
+      <section className="features">
         <div className="container">
           <div className="section-header">
             <h2>Our Transparent Ecosystem</h2>
@@ -52,17 +44,15 @@ const LandingPage = () => {
           
           <div className="features-grid">
             {[
-              { icon: <Sprout size={32}/>, title: 'Farmers', desc: 'Log production practices and seed sources securely.', path: '/auth' },
-              { icon: <ShieldCheck size={32}/>, title: 'Certifiers', desc: 'Immutable validation of organic standards.', path: '/auth' },
-              { icon: <Truck size={32}/>, title: 'Distributors', desc: 'Real-time tracking of movement and storage.', path: '/auth' },
-              { icon: <Store size={32}/>, title: 'Retailers', desc: 'Verify authenticity before reaching consumers.', path: '/auth' }
+              { icon: <Sprout size={32}/>, title: 'Farmers', desc: 'Log production practices and seed sources securely.' },
+              { icon: <ShieldCheck size={32}/>, title: 'Certifiers', desc: 'Immutable validation of organic standards.' },
+              { icon: <Truck size={32}/>, title: 'Distributors', desc: 'Real-time tracking of movement and storage.' },
+              { icon: <Store size={32}/>, title: 'Retailers', desc: 'Verify authenticity before reaching consumers.' }
             ].map((f, i) => (
               <motion.div 
                 key={i}
                 whileHover={{ y: -10 }}
                 className="feature-card glass-card"
-                onClick={() => window.location.href = f.path}
-                style={{ cursor: 'pointer' }}
               >
                 <div className="feature-icon">{f.icon}</div>
                 <h3>{f.title}</h3>

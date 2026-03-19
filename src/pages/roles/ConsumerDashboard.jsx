@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import {
-  Search,
-  QrCode,
+import { 
+  Search, 
+  QrCode, 
   Leaf,
   Truck,
   Warehouse,
@@ -46,13 +46,13 @@ const ConsumerDashboard = () => {
 
   const JourneyItem = ({ icon, title, date, children, color }) => (
     <div style={{ display: 'flex', gap: '20px', marginBottom: '30px', position: 'relative' }}>
-      <div style={{
-        width: '40px',
-        height: '40px',
-        borderRadius: '50%',
-        background: color || '#22c55e',
-        display: 'flex',
-        alignItems: 'center',
+      <div style={{ 
+        width: '40px', 
+        height: '40px', 
+        borderRadius: '50%', 
+        background: color || '#22c55e', 
+        display: 'flex', 
+        alignItems: 'center', 
         justifyContent: 'center',
         color: 'white',
         zIndex: 1
@@ -72,12 +72,12 @@ const ConsumerDashboard = () => {
         </div>
       </div>
       {/* Connector line */}
-      <div style={{
-        position: 'absolute',
-        left: '19px',
-        top: '40px',
-        bottom: '-30px',
-        width: '2px',
+      <div style={{ 
+        position: 'absolute', 
+        left: '19px', 
+        top: '40px', 
+        bottom: '-30px', 
+        width: '2px', 
         background: '#e2e8f0',
         zIndex: 0
       }} />
@@ -88,15 +88,15 @@ const ConsumerDashboard = () => {
     if (showResults) {
       return (
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <button
+          <button 
             onClick={() => setShowResults(false)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              background: 'none',
-              border: 'none',
-              color: '#ccc',
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '8px', 
+              background: 'none', 
+              border: 'none', 
+              color: '#ccc', 
               cursor: 'pointer',
               marginBottom: '20px',
               padding: '0',
@@ -108,9 +108,9 @@ const ConsumerDashboard = () => {
 
           <div className="batch-header" style={{ marginBottom: '30px' }}>
             <p style={{ color: '#aaa', margin: '0 0 5px 0' }}>Batch: {selectedBatch.id}</p>
-
-            <div className="glass-card" style={{
-              padding: '40px',
+            
+            <div className="glass-card" style={{ 
+              padding: '40px', 
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -224,16 +224,16 @@ const ConsumerDashboard = () => {
         <div className="glass-card" style={{ padding: '40px', textAlign: 'left', marginBottom: '40px' }}>
           <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>Enter Batch Number</h3>
           <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '24px' }}>Find the batch number on your product packaging</p>
-
+          
           <div style={{ display: 'flex', gap: '16px' }}>
-            <input
-              type="text"
-              placeholder="e.g., ORG-WHT-002"
+            <input 
+              type="text" 
+              placeholder="e.g., ORG-WHT-002" 
               value={batchNumber}
               onChange={(e) => setBatchNumber(e.target.value)}
               style={{ flex: 1, padding: '16px 20px', background: '#f1f5f9', border: 'none', borderRadius: '12px', fontSize: '1rem', outline: 'none', color: '#1e293b' }}
             />
-            <button
+            <button 
               onClick={handleSearch}
               style={{ background: '#0a0a0a', color: 'white', padding: '0 32px', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '8px', border: 'none', fontWeight: '600', cursor: 'pointer', transition: 'all 0.2s ease' }}
               onMouseOver={(e) => e.currentTarget.style.background = '#333'}
@@ -247,12 +247,12 @@ const ConsumerDashboard = () => {
         <div className="glass-card" style={{ padding: '40px', textAlign: 'left' }}>
           <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>Try Demo Batches</h3>
           <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '32px' }}>Click on a batch to see its complete journey</p>
-
-          <div
+          
+          <div 
             onClick={handleDemoClick}
             className="glass-card"
-            style={{
-              padding: '24px',
+            style={{ 
+              padding: '24px', 
               cursor: 'pointer',
               maxWidth: '350px'
             }}
